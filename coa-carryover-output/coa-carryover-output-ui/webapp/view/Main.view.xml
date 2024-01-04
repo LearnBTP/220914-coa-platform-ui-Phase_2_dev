@@ -1,0 +1,229 @@
+<mvc:View
+    controllerName="coa.coacarryoveroutputui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:u="sap.ui.unified"
+>
+    <Page id="main" showHeader="false" backgroundDesign="Transparent" showFooter="false" enableScrolling="false">
+        <content>
+            <semantic:SemanticPage id="pageDrawingSearch" fitContent="false" class="dPageHeader" headerExpanded="true" headerPinnable="true" preserveHeaderStateOnScroll="false" showFooter="false" toggleHeaderOnTitleClick="false">
+                <semantic:headerContent>
+                    <!-- <f:DynamicPageHeader id = 'idCarryOverPage' class="zDynamicPageHeader">
+                        <f:content> -->
+                    <Title id="titl" level="H1" text="CO Output" class="pageTitleContrast sapUiSmallMarginBottom" />
+
+                    <smartFilterBar:SmartFilterBar id="idCarryOverSmartFilBar" showGoOnFB="true" useToolbar="false" entitySet="CO_Output" class="contrastTextSF applePrimaryBtn appleSecondaryBtn" search="onCOTbleSearch" showClearOnFB="true" pendingChange="onPending">
+                        <smartFilterBar:groupConfiguration>
+                            <smartFilterBar:GroupConfiguration id='GC' index="1" key="CarryoverOutput" label="Input Parameters" />
+                        </smartFilterBar:groupConfiguration>
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration id='CC' key="To_CM" />
+                        </smartFilterBar:controlConfiguration>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData id='smartLayout' shrinkFactor="0" baseSize="0%" />
+                        </smartFilterBar:layoutData>
+                    </smartFilterBar:SmartFilterBar>
+                    <!-- </f:content>
+                    </f:DynamicPageHeader>
+                </f:header> -->
+                </semantic:headerContent>
+
+                <!-- <f:content class="sapUiResponsiveContentPadding"> -->
+                <semantic:content>
+                 <Panel headerText="">
+                    <FlexBox id="table" alignItems="Center" justifyContent="Center" class="sapUiNoMarginBottom" height="100%">
+                        <sap.ui.comp.smarttable:SmartTable
+                            xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                            id="idCarryOverSmartTble"
+                            customData:useSmartToggle="true"
+                            customData:useSmartField="true"
+                            visible="true"
+                            enableExport="false"
+                            enableAutoColumnWidth="true"
+                            header="CO Output"
+                            fitContainer="true"
+                            placeToolbarInTable="true"
+                            showFullScreenButton="true"
+                            useVariantManagement="false"
+                            showVariantManagement="false"
+                            useTablePersonalisation="true"
+                            editToggled="onEditToggle"
+                            editTogglable="{mAuthorizedModel>/modifiy}"
+                            showRowCount="true"
+                            enableAutoBinding="false"
+                            class="zTable buttonWithIconOnly zSTTitle"
+                            width="100%"
+                            direction="Column"
+                            entitySet="CO_Output"
+                             fieldChange="OnFieldChange"
+                            beforeRebindTable="onDataReceived"
+                            requestAtLeastFields="From_CM,From_Site,From_Product,AQID,To_CM,To_Site,To_Product"
+                            smartFilterId="idCarryOverSmartFilBar"
+                            ignoredFields="Edit"
+                            initiallyVisibleFields="From_GHSite,From_Product,From_Business_Grp,AQID,To_GHSite,To_Product,To_Business_Grp,MFR,EQ_Name,SHORT_NAME,Quantity,CM_Balance_Qty,Comment,Status,Approved_By_Name,Review_Date,modifiedAt,createdAt,modifiedBy_Name,createdBy_Name,CO_Type,BeError"
+                        >
+                            <sap.ui.comp.smarttable:customToolbar>
+                                <OverflowToolbar id="idCarryOverTbleToolBar" design="Transparent">
+                                    <ToolbarSpacer />
+                                     <Button id='idCOfeedtoGh' text="Feed To GH"   class="applePrimaryBtn" type="Emphasized"    tooltip="Feed To GH" press="" />
+                                    <OverflowToolbarButton id='OTBRefresh' icon="sap-icon://refresh" tooltip="Refresh" press="onRefreshbtn" class="buttonWithIconOnly" />
+                                    <Button id='idCOOSave' text="Save" tooltip="Save Changes" type="Emphasized" press="onSave" class="applePrimaryBtn" enabled="{= ${sm4rtM0d3l>/editable}}" />
+                                    <Button id='idCODelete' text="Delete" tooltip="Delete Entry"  visible="{mAuthorizedModel>/delmodifiy}" enabled="{= ${sm4rtM0d3l>/editable}}" press="onDelete" class="appleDangerBtn"/>
+                                    <Button id='idCOApprove' text="Approve" class="applePrimaryBtn" type="Emphasized" visible="{mAuthorizedModel>/Approve}" tooltip="Approve" press="onBeforeApprove" />
+                                    <Button id='idCOReject' text="Reject" class="appleDangerBtn" visible="{mAuthorizedModel>/Approve}" tooltip="Reject" press="onBeforeReject" />
+                                    <Button id='idCOUpdate' text="Mass Update" tooltip="Mass Update" type="Emphasized" press="onOpenUploadDialog" class="applePrimaryBtn" enabled="{= ${sm4rtM0d3l>/editable}}" />
+                                    <u:FileUploader
+                                        id="fileUploader"
+                                        sameFilenameAllowed="true"
+                                        name="myFileUpload"
+                                        tooltip="Upload your file"
+                                        buttonOnly="true"
+                                        buttonText="Upload"
+                                        class="appleAlternateBtn"
+                                        visible="{mAuthorizedModel>/modifiy}"
+                                        enabled="{= ${sm4rtM0d3l>/editable}}"
+                                        change="handleUploadPress"
+                                    />
+                                    <Button id='idCOHistory' text="Change Log" tooltip="Change Logs" press="onPressHistory" class="appleAlternateBtn" />
+                                    <MenuButton id='idCOdownload' text="Download" class="appleAlternateBtn">
+                                        <menu>
+                                            <Menu id="iddownloadMenu" itemSelected="onMenuDownloadAct">
+                                                <MenuItem id='idAllOutdownload' class="appleAlternateBtn" key="All Output" text="Download Data" press="onCustomDownload" icon="sap-icon://download" />
+                                                <MenuItem id='idAllCOdownload' class="appleAlternateBtn" key="CO Output" text="Download CO Output" press="onCustomDownload" icon="sap-icon://download" />
+                                            </Menu>
+                                        </menu>
+                                    </MenuButton>
+                                </OverflowToolbar>
+                            </sap.ui.comp.smarttable:customToolbar>
+                            <table:Table  id="idCOTab"  selectionBehavior="RowSelector" selectionMode="MultiToggle" rowSelectionChange=".TableRowSelectionChange" visibleRowCountMode="Interactive" visibleRowCount="16">
+                                <table:columns>
+                                    <table:Column
+                                        filterProperty="CM_Balance_Qty"
+                                        width="10rem"
+                                        sortProperty="CM_Balance_Qty"
+                                        customData:p13nData='\{"columnKey": "CM_Balance_Qty", "columnIndex":"11", "leadingProperty":"CM_Balance_Qty", "additionalProperty":"CM_Balance_Qty", "sortProperty": "CM_Balance_Qty", "filterProperty": "CM_Balance_Qty", "type":"string", "maxLength":"20", "displayBehaviour":"idAndDescription"}'
+                                    >
+                                        <Label text="CM Balance Qty" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text  text= "{CM_Balance_Qty}"   class="zCoreTextColumn" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                                    <Input  id="idSmrtbInpCMBal"  value="{CM_Balance_Qty}"  liveChange="onChangeCmBalSmartble"  visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+
+                                    <table:Column
+                                        filterProperty="Comment"
+                                        width="10rem"
+                                        sortProperty="Comment"
+                                        customData:p13nData='\{"columnKey": "Comment", "columnIndex":"12", "leadingProperty":"Comment", "additionalProperty":"Comment", "sortProperty": "Comment", "filterProperty": "Comment", "type":"string", "maxLength":"20", "displayBehaviour":"idAndDescription"}'
+                                    >
+                                        <Label text="Comment" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{Comment}" class="zCoreTextColumn" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                                    <Input value="{Comment}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+
+                                    <table:Column
+                                        filterProperty="Status"
+                                        width="14rem"
+                                        sortProperty="Status"
+                                        customData:p13nData='\{"columnKey": "Status", "columnIndex":"13", "leadingProperty":"Status", "additionalProperty":"Status", "sortProperty": "Status", "filterProperty": "Status", "type":"string", "maxLength":"20", "displayBehaviour":"idAndDescription"}'
+                                    >
+                                        <Label text="CO Balance Approval Status" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{Status}" class="zCoreTextColumn" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column
+                                        filterProperty="Approved_By_Name"
+                                        width="10rem"
+                                        sortProperty="Approved_By_Name"
+                                        customData:p13nData='\{"columnKey": "Approved_By_Name", "columnIndex":"14", "leadingProperty":"Approved_By_Name", "additionalProperty":"Approved_By_Name", "sortProperty": "Approved_By_Name", "filterProperty": "Approved_By_Name"}'
+                                    >
+                                        <Label text="CO Balance Approved By" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{Approved_By_Name}" class="zCoreTextColumn" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column
+                                        filterProperty="Review_Date"
+                                        width="10rem"
+                                        sortProperty="Review_Date"
+                                        customData:p13nData='\{"columnKey": "Review_Date", "columnIndex":"15", "leadingProperty":"Review_Date", "additionalProperty":"Review_Date", "sortProperty": "Review_Date", "filterProperty": "Review_Date"}'
+                                    >
+                                        <Label text="Approved/Rejected Date" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{path:'Review_Date',formatter:'.formatDate'}" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column
+                                        filterProperty="modifiedAt"
+                                        width="10rem"
+                                        sortProperty="modifiedAt"
+                                        customData:p13nData='\{"columnKey": "modifiedAt", "columnIndex":"19", "leadingProperty":"modifiedAt", "additionalProperty":"modifiedAt", "sortProperty": "modifiedAt", "filterProperty": "modifiedAt"}'
+                                    >
+                                        <Label text="Updated On" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{path:'modifiedAt',formatter:'.formatDate'}" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column
+                                        filterProperty="createdAt"
+                                        width="10rem"
+                                        sortProperty="createdAt"
+                                        customData:p13nData='\{"columnKey": "createdAt", "columnIndex":"17", "leadingProperty":"createdAt", "additionalProperty":"createdAt", "sortProperty": "createdAt", "filterProperty": "createdAt"}'
+                                    >
+                                        <Label text="Created On" />
+                                        <table:template>
+                                            <HBox class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text text="{path:'createdAt',formatter:'.formatDate'}" />
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        </sap.ui.comp.smarttable:SmartTable>
+                    </FlexBox>
+                     </Panel>
+                </semantic:content>
+            </semantic:SemanticPage>
+
+            <!-- </f:content> -->
+            <!-- </f:DynamicPage> -->
+        </content>
+    </Page>
+</mvc:View>

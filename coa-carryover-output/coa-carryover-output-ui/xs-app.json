@@ -1,0 +1,35 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+        "source": "^/coa-api/(.*)$",
+        "target": "$1",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "destination": "COA_APIM",
+        "scope": [
+            "$XSAPPNAME.COOutputReadOnly",
+            "$XSAPPNAME.COOutputModify",
+            "$XSAPPNAME.ApproveCoOutput"
+        ]
+    },
+    {
+      "source": "^/coa-api-ext/(.*)$",
+      "target": "$1",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "destination": "COA_APIM_EXT",
+      "scope": [
+        "$XSAPPNAME.COOutputReadOnly",
+        "$XSAPPNAME.COOutputModify"
+      ]
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

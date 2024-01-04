@@ -1,0 +1,29 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "^/coa-api/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM",
+            "scope": [
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.AqidModify"
+            ]
+        },
+
+        {
+            "source": "^/coa-api-ext/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM_EXT",
+            "scope": [
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.AqidModify"
+            ]
+          }
+    ],
+    "welcomeFile": "/coaaqidmappingui"
+}

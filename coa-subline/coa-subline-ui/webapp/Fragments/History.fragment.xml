@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog id="history" contentWidth="70%" contentHeight="62%" title="Change Log for Sub Line" draggable="true" horizontalScrolling="true" resizable="true" showHeader="true" type="Standard" verticalScrolling="true" afterClose="onAfterHistoryClose">
+        <content>
+            <smartFilterBar:SmartFilterBar id="smartFilterLog" showClearOnFB="true" entitySet="changHistory" class="sapUiSizeCompact" enableBasicSearch="false">
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration
+                        id="chglogfilter"
+                        key="modifiedAt"
+                        conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                                         operations: { 
+                                                            filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                                        {path: 'key', contains: 'TIME',exclude:true},
+                                                                        {path: 'key', contains: 'DATE'}
+                                                                        ] } }"
+                        visibleInAdvancedArea="true"
+                    />
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+            <smartTable:SmartTable
+                id="tabChangeLog"
+                entitySet="changHistory"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Logs"
+                showRowCount="true"
+                initialise = "historyTabInit"
+                smartFilterId="smartFilterLog"
+                enableAutoBinding="true"
+                beforeRebindTable="applyTableLogFilter"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                initiallyVisibleFields="Table,Key_Fields,Field_Name,Action_Type,Old_Value,New_Value,modifiedAt"
+            >
+                <t:Table id="logUITable" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+        <endButton>
+            <Button id="btndialogclose" text="Close" type="Ghost" press="onCloseDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

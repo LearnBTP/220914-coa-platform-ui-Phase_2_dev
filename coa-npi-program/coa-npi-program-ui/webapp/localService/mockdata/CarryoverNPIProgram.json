@@ -1,0 +1,32 @@
+{
+    "d": {
+        "results": [
+            {
+                "createdAt": "/Date(1670226927192+0000)/",
+                "createdBy": "",
+                "modifiedAt": "",
+                "modifiedBy": "",
+                "Program": "N94",
+                "Program_Description": "New Project",
+                "modifiedBy_Name": "",
+                "modifiedBy_mail": "",
+                "createdBy_Name": "",
+                "createdBy_mail": "",
+                "Error": ""
+            },
+            {
+                "createdAt": "/Date(1670226927192+0000)/",
+                "createdBy": "",
+                "modifiedAt": "",
+                "modifiedBy": "",
+                "Program": "N95",
+                "Program_Description": "New Project Created",
+                "modifiedBy_Name": "",
+                "modifiedBy_mail": "",
+                "createdBy_Name": "",
+                "createdBy_mail": "",
+                "Error": ""
+            }
+        ]
+    }
+}

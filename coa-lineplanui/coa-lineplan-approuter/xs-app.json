@@ -1,0 +1,16 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "^/coa-api/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM",
+            "scope": [
+                "$XSAPPNAME.LinePlanReadOnly"
+            ]
+        }
+    ],
+    "welcomeFile": "/coacoalineplanui"
+}

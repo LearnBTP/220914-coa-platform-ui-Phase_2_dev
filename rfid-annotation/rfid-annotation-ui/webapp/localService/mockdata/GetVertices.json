@@ -1,0 +1,126 @@
+{
+    "d": {
+        "results": [
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "b2148ae0-ef83-4c32-8f26-cb672cadbe69",
+                "Status": "DRAFT",
+                "Vertices_X": "803",
+                "Vertices_Y": "219",
+                "Sequence_No": 1,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='b2148ae0-ef83-4c32-8f26-cb672cadbe69',Status='DRAFT',Vertices_X=803m,Vertices_Y=219m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "b2148ae0-ef83-4c32-8f26-cb672cadbe69",
+                "Status": "DRAFT",
+                "Vertices_X": "760",
+                "Vertices_Y": "257",
+                "Sequence_No": 2,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='b2148ae0-ef83-4c32-8f26-cb672cadbe69',Status='DRAFT',Vertices_X=760m,Vertices_Y=257m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "b2148ae0-ef83-4c32-8f26-cb672cadbe69",
+                "Status": "DRAFT",
+                "Vertices_X": "821",
+                "Vertices_Y": "310",
+                "Sequence_No": 3,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='b2148ae0-ef83-4c32-8f26-cb672cadbe69',Status='DRAFT',Vertices_X=821m,Vertices_Y=310m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "b2148ae0-ef83-4c32-8f26-cb672cadbe69",
+                "Status": "DRAFT",
+                "Vertices_X": "846",
+                "Vertices_Y": "290",
+                "Sequence_No": 4,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='b2148ae0-ef83-4c32-8f26-cb672cadbe69',Status='DRAFT',Vertices_X=846m,Vertices_Y=290m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "e287cc2f-6f56-46b3-9c24-726a0f3c4d41",
+                "Status": "DRAFT",
+                "Vertices_X": "169",
+                "Vertices_Y": "125",
+                "Sequence_No": 1,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='e287cc2f-6f56-46b3-9c24-726a0f3c4d41',Status='DRAFT',Vertices_X=169m,Vertices_Y=125m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "e287cc2f-6f56-46b3-9c24-726a0f3c4d41",
+                "Status": "DRAFT",
+                "Vertices_X": "49",
+                "Vertices_Y": "123",
+                "Sequence_No": 2,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='e287cc2f-6f56-46b3-9c24-726a0f3c4d41',Status='DRAFT',Vertices_X=49m,Vertices_Y=123m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "fac4df9c-9537-4359-ae59-15799331c6d4",
+                "Status": "DRAFT",
+                "Vertices_X": "543",
+                "Vertices_Y": "112",
+                "Sequence_No": 1,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='fac4df9c-9537-4359-ae59-15799331c6d4',Status='DRAFT',Vertices_X=543m,Vertices_Y=112m)"
+                }
+            },
+            {
+                "createdAt": "/Date(1662145586809+0000)/",
+                "createdBy": "sb-zcoa_xsuaa!t9525",
+                "modifiedAt": "/Date(1662145586809+0000)/",
+                "modifiedBy": "sb-zcoa_xsuaa!t9525",
+                "Shape_Guid": "fac4df9c-9537-4359-ae59-15799331c6d4",
+                "Status": "DRAFT",
+                "Vertices_X": "72",
+                "Vertices_Y": "52",
+                "Sequence_No": 2,
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_VERTICES",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_VERTICES(Shape_Guid='fac4df9c-9537-4359-ae59-15799331c6d4',Status='DRAFT',Vertices_X=72m,Vertices_Y=52m)"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Annotation3DV" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="GetRFIDAnnotation" EntityType="Annotation3DV.GetRFIDAnnotation"/>
+                <EntitySet Name="Get3DVHeader" EntityType="Annotation3DV.Get3DVHeader"/>
+                <EntitySet Name="GetShapes" EntityType="Annotation3DV.GetShapes"/>
+                <EntitySet Name="GetVertices" EntityType="Annotation3DV.GetVertices"/>
+                <EntitySet Name="AnnotationDetails" EntityType="Annotation3DV.AnnotationDetails"/>
+                <EntitySet Name="HeaderAnnotation" EntityType="Annotation3DV.HeaderAnnotation"/>
+                <EntitySet Name="F4help" EntityType="Annotation3DV.F4help"/>
+                <EntitySet Name="DropDown" EntityType="Annotation3DV.DropDown"/>
+                <EntitySet Name="guidGenerator" EntityType="Annotation3DV.guidGenerator"/>
+                <FunctionImport Name="store3DVAnnotationData" m:HttpMethod="POST">
+                    <Parameter Name="contextData" Type="Annotation3DV.data" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="checkRFIDInsideShape" EntitySet="GetRFIDAnnotation" ReturnType="Collection(Annotation3DV.GetRFIDAnnotation)" m:HttpMethod="POST">
+                    <Parameter Name="request" Type="Annotation3DV.ShapeData" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="publishAnnotation" EntitySet="AnnotationDetails" ReturnType="Collection(Annotation3DV.AnnotationDetails)" m:HttpMethod="POST">
+                    <Parameter Name="request" Type="Annotation3DV.publishdata" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="createDraftAnnotation" EntitySet="AnnotationDetails" ReturnType="Collection(Annotation3DV.AnnotationDetails)" m:HttpMethod="POST">
+                    <Parameter Name="request" Type="Annotation3DV.publishdata" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="saveAsAnnotation" EntitySet="AnnotationDetails" ReturnType="Collection(Annotation3DV.AnnotationDetails)" m:HttpMethod="POST">
+                    <Parameter Name="request" Type="Annotation3DV.publishdata" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="locking" m:HttpMethod="POST">
+                    <Parameter Name="request" Type="Annotation3DV.headerkey" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="lockManager" m:HttpMethod="POST"/>
+                <AssociationSet Name="GetShapes_Shape_Vertices" Association="Annotation3DV.GetShapes_Shape_Vertices">
+                    <End Role="GetShapes" EntitySet="GetShapes"/>
+                    <End Role="GetVertices" EntitySet="GetVertices"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="GetRFIDAnnotation">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="Asset_ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Asset_ID" Type="Edm.Decimal" Precision="22" Nullable="false"/>
+                <Property Name="Rfid" Type="Edm.String" MaxLength="25"/>
+                <Property Name="Alderaan_ID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="255"/>
+                <Property Name="isAqidChanged" Type="Edm.Boolean"/>
+                <Property Name="isProgramChanged" Type="Edm.Boolean"/>
+                <Property Name="EquipName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="128"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Version_Id" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="150"/>
+                <Property Name="Rfid_XAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Rfid_YAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+                <Property Name="ErrorMsg" Type="Edm.String" MaxLength="150"/>
+            </EntityType>
+            <EntityType Name="Get3DVHeader">
+                <Key>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Alderaan_Site" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Alderaan_CM" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Scan_Start_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Scan_End_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Area" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Image_FileName" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Image_FileId" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Origin_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Origin_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Scale_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Scale_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Orientation_X" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Orientation_Y" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Line" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ImageWidth" Type="Edm.Int32"/>
+                <Property Name="ImageHeight" Type="Edm.Int32"/>
+                <Property Name="Last_Active_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Last_Active_User" Type="Edm.String"/>
+                <Property Name="Lock" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+            </EntityType>
+            <EntityType Name="GetShapes">
+                <Key>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Shape_Guid"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Shape_Type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Color" Type="Edm.String" MaxLength="20"/>
+                <Property Name="rfidMoved" Type="Edm.Boolean"/>
+                <Property Name="ConfirmedBy" Type="Edm.String"/>
+                <Property Name="ConfirmedOn" Type="Edm.DateTimeOffset"/>
+                <Property Name="ConfirmedRequired" Type="Edm.Boolean"/>
+                <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+                <NavigationProperty Name="Shape_Vertices" Relationship="Annotation3DV.GetShapes_Shape_Vertices" FromRole="GetShapes" ToRole="GetVertices"/>
+            </EntityType>
+            <EntityType Name="GetVertices">
+                <Key>
+                    <PropertyRef Name="Shape_Guid"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="Vertices_X"/>
+                    <PropertyRef Name="Vertices_Y"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Vertices_X" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Vertices_Y" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Sequence_No" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="AnnotationDetails">
+                <Key>
+                    <PropertyRef Name="Rfid"/>
+                    <PropertyRef Name="Sernr"/>
+                    <PropertyRef Name="ZZVModel"/>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Zaldr_Site"/>
+                    <PropertyRef Name="Alderaan_Site"/>
+                    <PropertyRef Name="Alderaan_CM"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Equip_Manf"/>
+                    <PropertyRef Name="Equip_Status"/>
+                    <PropertyRef Name="Equip_CM"/>
+                    <PropertyRef Name="Equip_Site"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="LineType"/>
+                    <PropertyRef Name="LineId"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="Comments"/>
+                    <PropertyRef Name="Scan_Start_Date"/>
+                    <PropertyRef Name="Scan_End_Date"/>
+                    <PropertyRef Name="Shape_Guid"/>
+                    <PropertyRef Name="Rfid_XAxis"/>
+                    <PropertyRef Name="Rfid_YAxis"/>
+                    <PropertyRef Name="CarryOverAqid"/>
+                    <PropertyRef Name="CarryOverOldProgram"/>
+                    <PropertyRef Name="CarryOverEqName"/>
+                    <PropertyRef Name="EquipName"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="Override_LineId"/>
+                    <PropertyRef Name="Shape_Color"/>
+                    <PropertyRef Name="Asset_id"/>
+                </Key>
+                <Property Name="Rfid" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="Sernr" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="ZZVModel" Type="Edm.String" MaxLength="150" Nullable="false"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Zaldr_Site" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="Alderaan_Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Alderaan_CM" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Equip_Manf" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Equip_Status" Type="Edm.String" MaxLength="5" Nullable="false"/>
+                <Property Name="Equip_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Equip_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="150" Nullable="false"/>
+                <Property Name="Scan_Start_Date" Type="Edm.String" Nullable="false"/>
+                <Property Name="Scan_End_Date" Type="Edm.String" Nullable="false"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Rfid_XAxis" Type="Edm.Decimal" Precision="34" Nullable="false"/>
+                <Property Name="Rfid_YAxis" Type="Edm.Decimal" Precision="34" Nullable="false"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="EquipName" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Shape_Color" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Asset_id" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="ErrorMsg" Type="Edm.String" MaxLength="130"/>
+                <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+            </EntityType>
+            <EntityType Name="HeaderAnnotation">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineType" Type="Edm.String"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ModifiedAt" Type="Edm.DateTimeOffset"/>
+                <Property Name="ModifiedBy" Type="Edm.String"/>
+                <Property Name="craetedBy"  Type="Edm.String"/>
+                <Property Name="SAP_CM_Site" Type="Edm.String"/>
+                <Property Name="Area" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Image_FileName" Type="Edm.String"/>
+                <Property Name="Line" Type="Edm.String"/>
+                <Property Name="Image_FileId" Type="Edm.String"/>
+                <Property Name="Origin_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Origin_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Lock" Type="Edm.String"/>
+                <Property Name="Alderaan_CM" Type="Edm.String"/>
+                <Property Name="Alderaan_Site" Type="Edm.String"/>
+                <Property Name="Scan_Start_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Scan_End_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Scale_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Scale_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </EntityType>
+            <EntityType Name="F4help">
+                <Key>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Area"/>
+                    <PropertyRef Name="LineType"/>
+                    <PropertyRef Name="LineId"/>
+                    <PropertyRef Name="Alderaan_CM"/>
+                    <PropertyRef Name="Alderaan_Site"/>
+                </Key>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Area" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Alderaan_CM" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Alderaan_Site" Type="Edm.String" MaxLength="20" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="DropDown">
+                <Key>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Value"/>
+                    <PropertyRef Name="FilterNameValue"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Id" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Value" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="FilterNameValue" Type="Edm.String" MaxLength="50" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="guidGenerator">
+                <Key>
+                    <PropertyRef Name="guid"/>
+                </Key>
+                <Property Name="guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+            </EntityType>
+            <ComplexType Name="data">
+                <Property Name="GUID" Type="Edm.String"/>
+                <Property Name="ImageWidth" Type="Edm.String"/>
+                <Property Name="ImageHeight" Type="Edm.String"/>
+                <Property Name="JSON" Type="Annotation3DV.data_JSON"/>
+                <Property Name="CSV" Type="Annotation3DV.data_CSV"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData">
+                <Property Name="Building" Type="Edm.String"/>
+                <Property Name="Floor" Type="Edm.String"/>
+                <Property Name="Site" Type="Edm.String"/>
+                <Property Name="CM" Type="Edm.String"/>
+                <Property Name="line" Type="Edm.String"/>
+                <Property Name="Status" Type="Edm.String"/>
+                <Property Name="Shape_Guid" Type="Edm.String"/>
+                <Property Name="canvasDim" Type="Annotation3DV.ShapeData_canvasDim"/>
+                <Property Name="scale" Type="Annotation3DV.ShapeData_scale"/>
+                <Property Name="origin" Type="Annotation3DV.ShapeData_origin"/>
+                <Property Name="Shape_Vertices" Type="Collection(Annotation3DV.ShapeData_Shape_Vertices)" Nullable="false"/>
+                <Property Name="otherShapes" Type="Collection(Annotation3DV.ShapeData_otherShapes)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="publishdata">
+                <Property Name="header" Type="Annotation3DV.publishdata_header"/>
+                <Property Name="shapes" Type="Annotation3DV.publishdata_shapes"/>
+                <Property Name="rfid" Type="Collection(Annotation3DV.publishdata_rfid)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="headerkey">
+                <Property Name="Lock" Type="Edm.Boolean"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+            </ComplexType>
+            <ComplexType Name="data_JSON">
+                <Property Name="Data" Type="Annotation3DV.data_JSON_Data"/>
+            </ComplexType>
+            <ComplexType Name="data_JSON_Data">
+                <Property Name="building" Type="Edm.String"/>
+                <Property Name="floor" Type="Edm.String"/>
+                <Property Name="area" Type="Edm.String"/>
+                <Property Name="cm" Type="Edm.String"/>
+                <Property Name="site" Type="Edm.String"/>
+                <Property Name="image" Type="Edm.String"/>
+                <Property Name="startDate" Type="Edm.DateTimeOffset"/>
+                <Property Name="endDate" Type="Edm.DateTimeOffset"/>
+                <Property Name="line" Type="Edm.String"/>
+                <Property Name="tags" Type="Edm.String"/>
+                <Property Name="sapCode" Type="Edm.String"/>
+                <Property Name="origin" Type="Annotation3DV.data_JSON_Data_origin"/>
+                <Property Name="scale" Type="Annotation3DV.data_JSON_Data_scale"/>
+                <Property Name="orientation" Type="Annotation3DV.data_JSON_Data_orientation"/>
+            </ComplexType>
+            <ComplexType Name="data_JSON_Data_origin">
+                <Property Name="x" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="y" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </ComplexType>
+            <ComplexType Name="data_JSON_Data_scale">
+                <Property Name="x" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="y" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </ComplexType>
+            <ComplexType Name="data_JSON_Data_orientation">
+                <Property Name="x" Type="Edm.String"/>
+                <Property Name="y" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="data_CSV">
+                <Property Name="Data" Type="Collection(Annotation3DV.data_CSV_Data)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="data_CSV_Data">
+                <Property Name="epc" Type="Edm.String"/>
+                <Property Name="asset_id" Type="Edm.String"/>
+                <Property Name="x_m" Type="Edm.String"/>
+                <Property Name="y_m" Type="Edm.String"/>
+                <Property Name="err_m" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_canvasDim">
+                <Property Name="width" Type="Edm.Int32"/>
+                <Property Name="height" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_scale">
+                <Property Name="X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_origin">
+                <Property Name="X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_Shape_Vertices">
+                <Property Name="Vertices_X" Type="Edm.Int32"/>
+                <Property Name="Vertices_Y" Type="Edm.Int32"/>
+                <Property Name="Sequence_No" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_otherShapes">
+                <Property Name="data" Type="Collection(Annotation3DV.ShapeData_otherShapes_data)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="ShapeData_otherShapes_data">
+                <Property Name="Vertices_X" Type="Edm.Int32"/>
+                <Property Name="Vertices_Y" Type="Edm.Int32"/>
+                <Property Name="Sequence_No" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_header">
+                <Property Name="Floor" Type="Edm.String"/>
+                <Property Name="Site" Type="Edm.String"/>
+                <Property Name="CM" Type="Edm.String"/>
+                <Property Name="Building" Type="Edm.String"/>
+                <Property Name="Status" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_shapes">
+                <Property Name="new_shapes" Type="Collection(Annotation3DV.publishdata_shapes_new_shapes)" Nullable="false"/>
+                <Property Name="upd_shapes" Type="Collection(Annotation3DV.publishdata_shapes_upd_shapes)" Nullable="false"/>
+                <Property Name="del_shapes" Type="Collection(Edm.String)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_shapes_new_shapes">
+                <Property Name="Shape_Guid" Type="Edm.String"/>
+                <Property Name="Shape_Color" Type="Edm.String"/>
+                <Property Name="Shape_Type" Type="Edm.String"/>
+                <Property Name="Shape_Name" Type="Edm.String"/>
+                <Property Name="LineId" Type="Edm.String"/>
+                <Property Name="LineType" Type="Edm.String"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="Shape_Vertices" Type="Annotation3DV.publishdata_shapes_new_shapes_Shape_Vertices"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_shapes_new_shapes_Shape_Vertices">
+                <Property Name="results" Type="Collection(Annotation3DV.publishdata_shapes_new_shapes_Shape_Vertices_results)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_shapes_new_shapes_Shape_Vertices_results">
+                <Property Name="Vertices_X" Type="Edm.Int32"/>
+                <Property Name="Vertices_Y" Type="Edm.Int32"/>
+                <Property Name="Sequence_No" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_shapes_upd_shapes">
+                <Property Name="Shape_Guid" Type="Edm.String"/>
+                <Property Name="Shape_Color" Type="Edm.String"/>
+                <Property Name="Shape_Type" Type="Edm.String"/>
+                <Property Name="Shape_Name" Type="Edm.String"/>
+                <Property Name="LineId" Type="Edm.String"/>
+                <Property Name="LineType" Type="Edm.String"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="ConfirmedBy" Type="Edm.String"/>
+                <Property Name="ConfirmedOn" Type="Edm.String"/>
+                <Property Name="ConfirmedRequired" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="publishdata_rfid">
+                <Property Name="Rfid" Type="Edm.String"/>
+                <Property Name="Comments" Type="Edm.String"/>
+                <Property Name="Shape_Guid" Type="Edm.String"/>
+                <Property Name="LineId" Type="Edm.String"/>
+                <Property Name="LineType" Type="Edm.String"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Shape_Color" Type="Edm.String" MaxLength="20"/>
+            </ComplexType>
+            <Association Name="GetShapes_Shape_Vertices">
+                <End Role="GetShapes" Type="Annotation3DV.GetShapes" Multiplicity="1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Role="GetVertices" Type="Annotation3DV.GetVertices" Multiplicity="*"/>
+            </Association>
+            <Annotations Target="Annotation3DV.EntityContainer/GetRFIDAnnotation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetRFIDAnnotation/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetRFIDAnnotation/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetRFIDAnnotation/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetRFIDAnnotation/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetRFIDAnnotation/ErrorMsg" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.EntityContainer/Get3DVHeader" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.Get3DVHeader/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.Get3DVHeader/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.Get3DVHeader/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.Get3DVHeader/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.EntityContainer/GetShapes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetShapes/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetShapes/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetShapes/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetShapes/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.EntityContainer/GetVertices" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetVertices/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetVertices/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetVertices/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.GetVertices/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFIDs"/>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Asset_id"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="9rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Rfid"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="16rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Sernr"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="10rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ZZVModel"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="10rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Aqid"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="EquipName"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="16rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Equip_Status"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="8rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Equip_CM"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Equip_Site"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Program"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Equip_Manf"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="8rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryOverAqid"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="8rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryOverEqName"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="16rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryOverOldProgram"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LineId"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="8rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Override_LineId"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="8rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LineType"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="9rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Uph"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="6rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Comments"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="15rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ErrorMsg"/>
+                            <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
+                            <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="35rem"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.EntityContainer/AnnotationDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Rfid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Rfid"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Sernr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Serial No"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/ZZVModel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Eq. Model No"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SAP Site Code"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Alderaan Site"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Zaldr_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="LOB"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Alderaan_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ALDERAAN_SITE: ALDERAAN_SITE"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Alderaan_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ALDERAAN_CM: ALDERAAN_CM"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Floor" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Floor"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Building" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Building"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Equip_Manf" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Vendor"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Equip_Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Eq. Status"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Equip_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Eq. CM"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Equip_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Eq. Site"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Status"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Line Type"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Line Id"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="UPH"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Comments"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Scan_Start_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Scan Start Date"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Scan_End_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Scan End Date"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Shape_Guid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SHAPE_GUID: SHAPE_GUID"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Rfid_XAxis" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID_XAXIS: RFID_XAXIS"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Rfid_YAxis" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID_YAXIS: RFID_YAXIS"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/CarryOverAqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO AQID"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/CarryOverOldProgram" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO Prgm"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/CarryOverEqName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO Eq. Name"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/EquipName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Eq. Name"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Program"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Override_LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Override LineId"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Shape_Color" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Shape_Color: Shape Color"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/Asset_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Asset Id"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.AnnotationDetails/ErrorMsg" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Validation Errors"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Alderaan_Site</PropertyPath>
+                        <PropertyPath>Alderaan_CM</PropertyPath>
+                        <PropertyPath>Building</PropertyPath>
+                        <PropertyPath>Floor</PropertyPath>
+                        <PropertyPath>Status</PropertyPath>
+                        <PropertyPath>Scan_Start_Date</PropertyPath>
+                        <PropertyPath>Scan_End_Date</PropertyPath>
+                        <PropertyPath>LineId</PropertyPath>
+                        <PropertyPath>LineType</PropertyPath>
+                        <PropertyPath>Area</PropertyPath>
+                        <PropertyPath>ModifiedAt</PropertyPath>
+                        <PropertyPath>ModifiedBy</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.EntityContainer/HeaderAnnotation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record Type="Capabilities.FilterRestrictionsType">
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>Alderaan_Site</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Site"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Building" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Building"/>
+                                    <PropertyValue Property="ValueListProperty" String="Building"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Building"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Floor" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Floor"/>
+                                    <PropertyValue Property="ValueListProperty" String="Floor"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Floor"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LineType"/>
+                                    <PropertyValue Property="ValueListProperty" String="LineType"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Line Type"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LineId"/>
+                                    <PropertyValue Property="ValueListProperty" String="LineId"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Line ID"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/ModifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Modified At"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/ModifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Modified By"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="From CM"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Area" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Area"/>
+                                    <PropertyValue Property="ValueListProperty" String="Area"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Area"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Image_FileName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Line" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Alderaan Line"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Image_FileId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Origin_X" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Origin_Y" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Lock" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Lock"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Alderaan_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Alderaan_CM"/>
+                                    <PropertyValue Property="ValueListProperty" String="Alderaan_CM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Alderaan CM"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Alderaan_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Alderaan_Site"/>
+                                    <PropertyValue Property="ValueListProperty" String="Alderaan_Site"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Alderaan Site"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Scan_Start_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Scan Start Date"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Scan_End_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Scan End Date"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Scale_X" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.HeaderAnnotation/Scale_Y" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Search Help"/>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/Building" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Building"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/Floor" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Floor"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/Area" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Area"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Line Type"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Line ID"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/Alderaan_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Alderaan CM"/>
+            </Annotations>
+            <Annotations Target="Annotation3DV.F4help/Alderaan_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Label" String="Alderaan Site"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,121 @@
+<mvc:View
+    controllerName="coamainlineui.controller.MainLine"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:u="sap.ui.unified"
+     xmlns:table="sap.ui.table"
+>
+    <f:DynamicPage id="MainPageDynamic" preserveHeaderStateOnScroll="true" headerExpanded="true" class="zDynamicPage">
+        <f:header>
+            <f:DynamicPageHeader id='DPH' class="zDynamicPageHeader ">
+                <Title id="Title" text="COA - MainLine Plan" />
+                <f:content>
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        showGoOnFB="true"
+                        useToolbar="false"
+                        entitySet="CarryoverMainline"
+                        showClearOnFB="true"
+                        initialise="onFilterBarInit"
+                        enableBasicSearch="false"
+                        class="contrastTextSF appleSFPrimaryBtn appleSFSecondaryBtn"
+                        search="onSearch"
+                    >
+                        <smartFilterBar:groupConfiguration>
+                            <smartFilterBar:GroupConfiguration id='GC' index="1" key="CarryoverMainline" label="Input Parameters" />
+                        </smartFilterBar:groupConfiguration>
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration
+                                id="chgAt"
+                                key="modifiedAt"
+                                index="5"
+                                conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                                         operations: { 
+                                                            filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                                        {path: 'key', contains: 'TIME',exclude:true},
+                                                                        {path: 'key', contains: 'DATE'}
+                                                                        ] } }"
+                                visibleInAdvancedArea="true"
+                            />
+                        </smartFilterBar:controlConfiguration>
+                        <smartFilterBar:customData>
+                            <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                        </smartFilterBar:customData>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData id='smartLayout' shrinkFactor="0" baseSize="0%" />
+                        </smartFilterBar:layoutData>
+                    </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox id="VboxContent" height="100%">
+                <items>
+                    <FlexBox id="table" alignItems="Center" justifyContent="Center" height="100%">
+                        <smartTable:SmartTable
+                            xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                            id="MainLineTab"
+                            tableBindingPath="coa>/MainLine"
+                            header="MainLine"
+                            headerLevel="H1"
+                            fitContainer="true"
+                            enableAutoBinding="false"
+                            enableAutoColumnWidth="true"
+                            width="100%"
+                            direction="Column"
+                            requestAtLeastFields="CM,Site,Program,modifiedBy_mail,Edit"
+                            height="100%"
+                            entitySet="CarryoverMainline"
+                            class="sapUiSmallMarginBeginEnd zTable zTableTrEdit zMultiSelectEdit buttonWithIconOnly"
+                            app:p13nDialogSettings="{group:{visible:false}}"
+                            showRowCount="true"
+                            initiallyVisibleFields="Program,Uph,BoH,Fatp_Sustaining_Qty,Working_Hrs,Efficiency_Field,Comment,modifiedAt,modifiedBy_Name,createdAt,createdBy_Name,Error"
+                            ignoredFields="Date,Upload_By_User,SAP_CM_Site"
+                            placeToolbarInTable="true"
+                            showFullScreenButton="true"
+                            visible="true"
+                            app:useSmartToggle="true"
+                            app:useSmartField="false"
+                            editToggled="onEditToggle"
+                            editTogglable="{coa>/EditRole}"
+                            useVariantManagement="false"  showVariantManagement="false"
+                            useTablePersonalisation="true"
+                            enableExport="true"
+                            beforeExport="onBeforeExportMainLine"
+                            beforeRebindTable="onSmartTableInit"
+                            fieldChange="OnFieldChange"
+                        >
+                            <sap.ui.comp.smarttable:customData>
+                                <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                            </sap.ui.comp.smarttable:customData>
+                            <smartTable:customToolbar>
+                                <OverflowToolbar id="OTT" design="Transparent">
+                                    <ToolbarSpacer id='TS' />
+                                    <Button id='OTBRefresh'  icon="sap-icon://refresh" tooltip="Refresh" press="onRefresh" class="buttonWithIconOnly" enabled="{coa>/RefreshEnable}"  />
+                                    <Button id='OTBSave' text="Save" enabled="{coa>/BtnEnable}" tooltip="Save Changes" visible="{coa>/EditRole}" press="onTableDataSave" class="applePrimaryBtn"/>
+                                    <Button id='OTBADD' text="Create" enabled="{coa>/BtnEnable}" visible="{coa>/EditRole}" tooltip="Add New Entry" press="onAddRec" class="appleAlternateBtn" />
+                                    <Button id='OTBCopy'  text="Copy" enabled="{coa>/BtnEnable}" visible="{coa>/EditRole}" tooltip="Copy and Create Entry" press="onCopyRec" class="appleAlternateBtn" />
+                                    <Button id='OTBMUpload' text="Mass Update" enabled="{coa>/BtnEnable}" tooltip="Mass Upload" visible="{coa>/EditRole}" press="onMassUpdate" class="applePrimaryBtn" />
+                                    <Button id="OTBDownloadTemplate" text="Download Template" visible="{coa>/EditRole}" press=".onTemplateDownload" tooltip="Download Template for FileUpload" class="appleAlternateBtn" />
+                                    <u:FileUploader id="fileUploader" sameFilenameAllowed="true"  name="myFileUpload" tooltip="Upload your file"  buttonOnly="true" buttonText="Upload" class="appleAlternateBtn" visible="{coa>/EditRole}" change="handleUploadPress" />
+                                    <Button id='OTBHistory' text="Change Log" tooltip="Change Log" press="onPressHistory" class="appleSecondaryBtn" />
+                                    <Button id='OTBDelete' text="Delete" tooltip="Delete Entry" visible="{coa>/EditRole}" press="onDelete" class="appleDangerBtn" />
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <table:Table id="idMPTab" selectionBehavior="RowSelector" selectionMode="MultiToggle"  visibleRowCountMode="Interactive" visibleRowCount="17">
+                           
+                                 </table:Table>
+                                
+                        </smartTable:SmartTable>
+                    </FlexBox>
+                </items>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

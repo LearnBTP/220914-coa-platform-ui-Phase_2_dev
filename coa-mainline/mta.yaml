@@ -1,0 +1,104 @@
+_schema-version: '3.2'
+ID: coa-mainline
+version: 0.0.1
+modules:
+  - name: coa-mainline-approuter
+    type: approuter.nodejs
+    path: coa-mainline-approuter
+    requires:
+      - name: coa-mainline_html_repo_runtime
+      - name: uaa_coa-mainline
+      - name: coa-destination
+      - name: coa-logs
+    parameters:
+      stack: cflinuxfs4
+      disk-quota: 4096M
+      memory: 4096M
+      instances: 2
+      keep-existing-routes: true
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: "[{\"Content-Security-Policy\": \"frame-src 'self' *.apple.com\"}]"
+  - name: coa-mainline-ext-approuter
+    type: approuter.nodejs
+    path: coa-mainline-approuter
+    requires:
+      - name: coa-mainline_html_repo_runtime
+      - name: uaa_coa_ext-mainline
+      - name: coa-destination
+      - name: coa-logs
+    parameters:
+      disk-quota: 4096M
+      memory: 4096M
+      keep-existing-routes: true
+      instances: 2
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: "[{\"Content-Security-Policy\": \"frame-src 'self' *.apple.com\"}]"
+  - name: coa-mainline_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: coa-mainline_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - coamainlineui.zip
+          name: coamainlineui
+          target-path: resources/
+  - name: coamainlineui
+    type: html5
+    path: coa-mainline-ui
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - 'npm run build:cf'
+      supported-platforms: []
+resources:
+  - name: coa-mainline_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_coa-mainline
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-service
+      service-plan: application
+  - name: uaa_coa_ext-mainline
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security-ext.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-ext-service
+      service-plan: application
+  - name: coa-mainline_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: coa-destination
+    type: org.cloudfoundry.existing-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        version: 1.0.0
+      service: destination
+      service-name: coa-destination
+      service-plan: lite
+  - name: coa-logs
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: Application Logging Service
+      service-plan: large
+parameters:
+  deploy_mode: html5-repo

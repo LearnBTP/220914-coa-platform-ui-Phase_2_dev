@@ -1,0 +1,1334 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="rfid_tt" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="T_COA_LINEPLAN" EntityType="rfid_tt.T_COA_LINEPLAN"/>
+                <EntitySet Name="T_COA_OUTPUT" EntityType="rfid_tt.T_COA_OUTPUT"/>
+                <EntitySet Name="T_COA_RFID_TT" EntityType="rfid_tt.T_COA_RFID_TT"/>
+                <EntitySet Name="rfidTableStructure" EntityType="rfid_tt.rfidTableStructure"/>
+                <EntitySet Name="rfid_tt_action" EntityType="rfid_tt.rfid_tt_action"/>
+                <EntitySet Name="RFIDDetails" EntityType="rfid_tt.RFIDDetails"/>
+                <EntitySet Name="RFIDJPREPRE" EntityType="rfid_tt.RFIDJPREPRE"/>
+                <EntitySet Name="RFIDPRE" EntityType="rfid_tt.RFIDPRE"/>
+                <EntitySet Name="VIEW_RFIDJ" EntityType="rfid_tt.VIEW_RFIDJ"/>
+                <AssociationSet Name="rfid_tt_action_RfidData" Association="rfid_tt.rfid_tt_action_RfidData">
+                    <End Role="rfid_tt_action" EntitySet="rfid_tt_action"/>
+                    <End Role="rfidTableStructure" EntitySet="rfidTableStructure"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="T_COA_LINEPLAN">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="Sub_Line_Name"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="1" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="boH_Qty" Type="Edm.Int32"/>
+                <Property Name="Working_Hrs" Type="Edm.String"/>
+                <Property Name="Remote_Site_Cap_Demand" Type="Edm.Int32"/>
+                <Property Name="Fatp_Sustaining_Qty" Type="Edm.Int32"/>
+                <Property Name="SublineUPH" Type="Edm.String"/>
+                <Property Name="Efficiency_Field" Type="Edm.Int32"/>
+                <Property Name="CO_line_Qty" Type="Edm.Int32"/>
+                <Property Name="Actural_line_chooses" Type="Edm.Int32"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Date" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Upload_By_User" Type="Edm.String" MaxLength="150"/>
+                <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+            </EntityType>
+            <EntityType Name="T_COA_OUTPUT">
+                <Key>
+                    <PropertyRef Name="From_CM"/>
+                    <PropertyRef Name="From_Site"/>
+                    <PropertyRef Name="From_Product"/>
+                    <PropertyRef Name="AQID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="From_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="From_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="From_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50"/>
+                <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+                <Property Name="To_Product" Type="Edm.String" MaxLength="40"/>
+                <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50"/>
+                <Property Name="EQ_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="MFR" Type="Edm.String" MaxLength="225"/>
+                <Property Name="Quantity" Type="Edm.Int32"/>
+                <Property Name="CM_Balance_Qty" Type="Edm.Int32"/>
+                <Property Name="Update_By" Type="Edm.String"/>
+                <Property Name="Approved_By" Type="Edm.String"/>
+                <Property Name="Review_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Comment" Type="Edm.String" MaxLength="80"/>
+            </EntityType>
+            <EntityType Name="T_COA_RFID_TT">
+                <Key>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM_Program"/>
+                    <PropertyRef Name="Rfid"/>
+                    <PropertyRef Name="Line_Id"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CM_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Rfid" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="Line_Id" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Serial_Number" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+                <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+                <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+                <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Tp_Business_Grp" Type="Edm.String"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Approval_Status" Type="Edm.String"/>
+                <Property Name="Submit_Dte" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="Submit_By" Type="Edm.String"/>
+                <Property Name="Review_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="Reviewed_By" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="rfidTableStructure">
+                <Key>
+                    <PropertyRef Name="RFID"/>
+                    <PropertyRef Name="AQID"/>
+                </Key>
+                <Property Name="RFID_Timestamp" Type="Edm.String"/>
+                <Property Name="Asset_Id" Type="Edm.String"/>
+                <Property Name="RFID" Type="Edm.String" Nullable="false"/>
+                <Property Name="AQID" Type="Edm.String" Nullable="false"/>
+                <Property Name="Raw_AQID" Type="Edm.String"/>
+                <Property Name="Mapped_AQID" Type="Edm.String"/>
+                <Property Name="Short_Name" Type="Edm.String"/>
+                <Property Name="Serial_Number" Type="Edm.String"/>
+                <Property Name="EQ_Name" Type="Edm.String"/>
+                <Property Name="Asset_Own" Type="Edm.String"/>
+                <Property Name="CM" Type="Edm.String"/>
+                <Property Name="Site" Type="Edm.String"/>
+                <Property Name="CM_Program" Type="Edm.String"/>
+                <Property Name="Asset_Status" Type="Edm.String"/>
+                <Property Name="Timestamp_3DV" Type="Edm.String"/>
+                <Property Name="Line_ID" Type="Edm.String"/>
+                <Property Name="Override_lineId" Type="Edm.String"/>
+                <Property Name="Line_Type" Type="Edm.String"/>
+                <Property Name="UPH" Type="Edm.Int32"/>
+                <Property Name="Version" Type="Edm.String"/>
+                <Property Name="Transfer_Flag" Type="Edm.String"/>
+                <Property Name="To_CM" Type="Edm.String"/>
+                <Property Name="To_Site" Type="Edm.String"/>
+                <Property Name="To_Program" Type="Edm.String"/>
+                <Property Name="To_Business_Grp" Type="Edm.String"/>
+                <Property Name="Comments" Type="Edm.String"/>
+                <Property Name="Approval_Status" Type="Edm.String"/>
+                <Property Name="Submit_Date" Type="Edm.String"/>
+                <Property Name="Submit_By" Type="Edm.String"/>
+                <Property Name="Review_Date" Type="Edm.String"/>
+                <Property Name="Reviewed_By" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="rfid_tt_action">
+                <NavigationProperty Name="RfidData" Relationship="rfid_tt.rfid_tt_action_RfidData" FromRole="rfid_tt_action" ToRole="rfidTableStructure"/>
+                <Property Name="RfidData_RFID" Type="Edm.String"/>
+                <Property Name="RfidData_AQID" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="RFIDDetails">
+                <Key>
+                    <PropertyRef Name="Raw_Aqid"/>
+                    <PropertyRef Name="Mapped_Aqid"/>
+                    <PropertyRef Name="Short_Name"/>
+                    <PropertyRef Name="AQID"/>
+                    <PropertyRef Name="TIMESTAMP"/>
+                    <PropertyRef Name="RFID"/>
+                    <PropertyRef Name="ASSETNO"/>
+                    <PropertyRef Name="SERNR"/>
+                    <PropertyRef Name="ASSETOWN"/>
+                    <PropertyRef Name="EQUIP_MANF"/>
+                    <PropertyRef Name="SITE"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="ZALDR_CMPROGRAM"/>
+                    <PropertyRef Name="ZALDR_CM"/>
+                    <PropertyRef Name="ZALDR_SITE"/>
+                    <PropertyRef Name="STATUS"/>
+                    <PropertyRef Name="createdAt"/>
+                    <PropertyRef Name="Override_LineId"/>
+                    <PropertyRef Name="CarryOverAqid"/>
+                    <PropertyRef Name="CarryOverEqName"/>
+                    <PropertyRef Name="CarryOverOldProgram"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="LineType"/>
+                    <PropertyRef Name="LineId"/>
+                    <PropertyRef Name="Version_Id"/>
+                    <PropertyRef Name="Transfer_Flag"/>
+                    <PropertyRef Name="To_CM"/>
+                    <PropertyRef Name="To_Site"/>
+                    <PropertyRef Name="To_Program"/>
+                    <PropertyRef Name="Tp_Business_Grp"/>
+                    <PropertyRef Name="Comments"/>
+                    <PropertyRef Name="Approval_Status"/>
+                    <PropertyRef Name="Submit_Dte"/>
+                    <PropertyRef Name="Submit_By"/>
+                    <PropertyRef Name="Review_Date"/>
+                    <PropertyRef Name="Reviewed_By"/>
+                    <PropertyRef Name="To_GHSite"/>
+                    <PropertyRef Name="modifiedAt"/>
+                </Key>
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Short_Name" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="RFID" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="ASSETNO" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="SERNR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="EQUIP_MANF" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="ZALDR_CM" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="ZALDR_SITE" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="5" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Version_Id" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1" Nullable="false"/>
+                <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="To_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Tp_Business_Grp" Type="Edm.String" Nullable="false"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="Approval_Status" Type="Edm.String" Nullable="false"/>
+                <Property Name="Submit_Dte" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+                <Property Name="Submit_By" Type="Edm.String" Nullable="false"/>
+                <Property Name="Review_Date" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+                <Property Name="Reviewed_By" Type="Edm.String" Nullable="false"/>  
+                <Property Name="ErrorMsg" Type="Edm.String" MaxLength="600"/>
+                <Property Name="To_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Edit" Type="Edm.Int32"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="RFIDJPREPRE">
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Short_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18"/>
+                <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="14"/>
+                <Property Name="RFID" Type="Edm.String" MaxLength="25"/>
+                <Property Name="ASSETNO" Type="Edm.String" MaxLength="12"/>
+                <Property Name="SERNR" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30"/>
+                <Property Name="EQUIP_MANF" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SITE" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ZALDR_CM" Type="Edm.String" MaxLength="32"/>
+                <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="5"/>
+            </EntityType>
+            <EntityType Name="RFIDPRE">
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Short_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18"/>
+                <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="14"/>
+                <Property Name="RFID" Type="Edm.String" MaxLength="25"/>
+                <Property Name="ASSETNO" Type="Edm.String" MaxLength="12"/>
+                <Property Name="SERNR" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30"/>
+                <Property Name="EQUIP_MANF" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SITE" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="5"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Version_Id" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="VIEW_RFIDJ">
+                <Key>
+                    <PropertyRef Name="Raw_Aqid"/>
+                    <PropertyRef Name="Mapped_Aqid"/>
+                    <PropertyRef Name="Short_Name"/>
+                    <PropertyRef Name="AQID"/>
+                    <PropertyRef Name="TIMESTAMP"/>
+                    <PropertyRef Name="RFID"/>
+                    <PropertyRef Name="ASSETNO"/>
+                    <PropertyRef Name="SERNR"/>
+                    <PropertyRef Name="ASSETOWN"/>
+                    <PropertyRef Name="EQUIP_MANF"/>
+                    <PropertyRef Name="SITE"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="ZALDR_CMPROGRAM"/>
+                    <PropertyRef Name="STATUS"/>
+                    <PropertyRef Name="createdAt"/>
+                    <PropertyRef Name="Override_LineId"/>
+                    <PropertyRef Name="CarryOverEqName"/>
+                    <PropertyRef Name="CarryOverAqid"/>
+                    <PropertyRef Name="CarryOverOldProgram"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="LineType"/>
+                    <PropertyRef Name="LineId"/>
+                    <PropertyRef Name="Version_Id"/>
+                    <PropertyRef Name="Transfer_Flag"/>
+                    <PropertyRef Name="To_CM"/>
+                    <PropertyRef Name="To_Site"/>
+                    <PropertyRef Name="To_Program"/>
+                    <PropertyRef Name="Tp_Business_Grp"/>
+                    <PropertyRef Name="Comments"/>
+                    <PropertyRef Name="Approval_Status"/>
+                    <PropertyRef Name="Submit_Dte"/>
+                    <PropertyRef Name="Submit_By"/>
+                    <PropertyRef Name="Review_Date"/>
+                    <PropertyRef Name="Reviewed_By"/>
+                </Key>
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Short_Name" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="RFID" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="ASSETNO" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="SERNR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="EQUIP_MANF" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="5" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Version_Id" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1" Nullable="false"/>
+                <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="To_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Tp_Business_Grp" Type="Edm.String" Nullable="false"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="Approval_Status" Type="Edm.String" Nullable="false"/>
+                <Property Name="Submit_Dte" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+                <Property Name="Submit_By" Type="Edm.String" Nullable="false"/>
+                <Property Name="Review_Date" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+                <Property Name="Reviewed_By" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <Association Name="rfid_tt_action_RfidData">
+                <End Role="rfid_tt_action" Type="rfid_tt.rfid_tt_action" Multiplicity="1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Role="rfidTableStructure" Type="rfid_tt.rfidTableStructure" Multiplicity="*"/>
+            </Association>
+            <Annotations Target="rfid_tt.T_COA_LINEPLAN/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_LINEPLAN/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_LINEPLAN/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_LINEPLAN/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_OUTPUT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_OUTPUT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_OUTPUT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_OUTPUT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_OUTPUT/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Pending"/>
+                            <PropertyValue Property="Value" String="P"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Success"/>
+                            <PropertyValue Property="Value" String="S"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Rejected"/>
+                            <PropertyValue Property="Value" String="R"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/CM_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Rfid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Version" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Serial_Number" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.T_COA_RFID_TT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFIDDetails"/>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CM</PropertyPath>
+                        <PropertyPath>SITE</PropertyPath>
+                        <PropertyPath>ZALDR_CMPROGRAM</PropertyPath>
+                        <PropertyPath>To_CM</PropertyPath>
+                        <PropertyPath>To_Site</PropertyPath>
+                        <PropertyPath>To_Program</PropertyPath>
+                        <PropertyPath>LineId</PropertyPath>
+                        <PropertyPath>RFID</PropertyPath>
+                        <PropertyPath>AQID</PropertyPath>
+                        <PropertyPath>Approval_Status</PropertyPath>
+                        <PropertyPath>SERNR</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.EntityContainer/RFIDDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Raw Aqid"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Mapped Aqid"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+                <Annotation Term="Common.Label" String="Short Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="AQID"/>
+                                    <PropertyValue Property="ValueListProperty" String="AQID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AQID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TIMESTAMP"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="RFID"/>
+                                    <PropertyValue Property="ValueListProperty" String="RFID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="RFID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="RFID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/ASSETNO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Asset Number"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SERNR"/>
+                                    <PropertyValue Property="ValueListProperty" String="SERNR"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SERNR"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Serial Number"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Asset Ownership"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/EQUIP_MANF" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Equipment Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SITE"/>
+                                    <PropertyValue Property="ValueListProperty" String="SITE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SITE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Site"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ZALDR_CMPROGRAM"/>
+                                    <PropertyValue Property="ValueListProperty" String="ZALDR_CMPROGRAM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ZALDR_CMPROGRAM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="ZALDR_CMPROGRAM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Status"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="created at"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Override_LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Override Line Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/CarryOverAqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/CarryOverEqName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO EQ Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/CarryOverOldProgram" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO Program"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Uph"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Line Type"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LineId"/>
+                                    <PropertyValue Property="ValueListProperty" String="LineId"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LineId"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Line Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Version_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Version Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+                <Annotation Term="Common.Label" String="Transfer Flag"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_CM"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_CM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_CM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To CM"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_Site"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_Site"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_Site"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To Site"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_Program"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_Program"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_Program"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To Program"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Approval_Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="RFIDDetails"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Approval_Status"/>
+                                    <PropertyValue Property="ValueListProperty" String="Approval_Status"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Approval_Status"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Approval Status"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Submit date"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Submit by"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Review date"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDDetails/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Reviewed by"/>
+            </Annotations>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"  Target="rfid_tt.RFIDDetails/ErrorMsg">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.EntityContainer/RFIDJPREPRE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TIMESTAMP"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/ASSETNO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETNO"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SERNR"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETOWN"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/EQUIP_MANF" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="EQUIP_MANF"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SITE"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/ZALDR_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_CM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_CMPROGRAM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDJPREPRE/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="STATUS"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.EntityContainer/RFIDPRE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TIMESTAMP"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/ASSETNO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETNO"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SERNR"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETOWN"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/EQUIP_MANF" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="EQUIP_MANF"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SITE"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_CMPROGRAM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="STATUS"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.RFIDPRE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="VIEW_RFIDJ"/>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CM</PropertyPath>
+                        <PropertyPath>SITE</PropertyPath>
+                        <PropertyPath>ZALDR_CMPROGRAM</PropertyPath>
+                        <PropertyPath>To_CM</PropertyPath>
+                        <PropertyPath>To_Site</PropertyPath>
+                        <PropertyPath>To_Program</PropertyPath>
+                        <PropertyPath>LineId</PropertyPath>
+                        <PropertyPath>RFID</PropertyPath>
+                        <PropertyPath>AQID</PropertyPath>
+                        <PropertyPath>Approval_Status</PropertyPath>
+                        <PropertyPath>SERNR</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.EntityContainer/VIEW_RFIDJ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Raw Aqid"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Mapped Aqid"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+                <Annotation Term="Common.Label" String="Short Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="AQID"/>
+                                    <PropertyValue Property="ValueListProperty" String="AQID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AQID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TIMESTAMP"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="RFID"/>
+                                    <PropertyValue Property="ValueListProperty" String="RFID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="RFID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="RFID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/ASSETNO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Asset Number"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SERNR"/>
+                                    <PropertyValue Property="ValueListProperty" String="SERNR"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SERNR"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Serial Number"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Asset Ownership"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/EQUIP_MANF" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Equipment Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SITE"/>
+                                    <PropertyValue Property="ValueListProperty" String="SITE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SITE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Site"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ZALDR_CMPROGRAM"/>
+                                    <PropertyValue Property="ValueListProperty" String="ZALDR_CMPROGRAM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ZALDR_CMPROGRAM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="ZALDR_CMPROGRAM"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Status"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="created at"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Override_LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Override Line Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/CarryOverEqName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO EQ Name"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/CarryOverAqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO AQID"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/CarryOverOldProgram" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CO Program"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Uph"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Line Type"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LineId"/>
+                                    <PropertyValue Property="ValueListProperty" String="LineId"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LineId"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Line Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Version_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Version Id"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+                <Annotation Term="Common.Label" String="Transfer Flag"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_CM"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_CM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_CM"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To CM"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_Site"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_Site"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_Site"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To Site"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="To_Program"/>
+                                    <PropertyValue Property="ValueListProperty" String="To_Program"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="To_Program"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="To Program"/>
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Approval_Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="VIEW_RFIDJ"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Approval_Status"/>
+                                    <PropertyValue Property="ValueListProperty" String="Approval_Status"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Approval_Status"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Approval Status"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Submit date"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Submit by"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Review date"/>
+            </Annotations>
+            <Annotations Target="rfid_tt.VIEW_RFIDJ/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Reviewed by"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
+

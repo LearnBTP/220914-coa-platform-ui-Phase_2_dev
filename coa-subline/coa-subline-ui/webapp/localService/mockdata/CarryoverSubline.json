@@ -1,0 +1,156 @@
+{
+    "d": {
+        "results": [
+            {
+                "createdAt": "/Date(1662709369689+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662709369689+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "ELKGROVE",
+                "Program": "D42",
+                "Sub_Line_Name": "1",
+                "CM": "CM",
+                "Uph": 0,
+                "boH_Qty": 0,
+                "Working_Hrs": 0,
+                "Remote_Site_Cap_Demand": 0,
+                "Version": "",
+                "Comment": "",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+       
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            },
+            {
+                "createdAt": "/Date(1662709013811+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662709013811+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "ElkGrove",
+                "Program": "D4A",
+                "Sub_Line_Name": "1",
+                "CM": "CM",
+                "Uph": 1,
+                "boH_Qty": null,
+                "Working_Hrs": 0,
+                "Remote_Site_Cap_Demand": null,
+                "Version": "",
+                "Comment": "",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+   
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            },
+            {
+                "createdAt": "/Date(1662548349850+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662548349850+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "NEWS",
+                "Program": "J137 FATP TOOLING",
+                "Sub_Line_Name": "1",
+                "CM": "BD01",
+                "Uph": 1,
+                "boH_Qty": 1,
+                "Working_Hrs": 1,
+                "Remote_Site_Cap_Demand": 1,
+                "Version": "1",
+                "Comment": "",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+   
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            },
+            {
+                "createdAt": "/Date(1662547664209+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662547664209+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "NEWS",
+                "Program": "J137 FATP TOOLING",
+                "Sub_Line_Name": "1",
+                "CM": "BD02",
+                "Uph": 1,
+                "boH_Qty": 1,
+                "Working_Hrs": 1,
+                "Remote_Site_Cap_Demand": 1,
+                "Version": "1",
+                "Comment": "",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+            
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            },
+            {
+                "createdAt": "/Date(1662562249569+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662562249569+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "NEWS",
+                "Program": "J137 FATP TOOLING",
+                "Sub_Line_Name": "1",
+                "CM": "BD03",
+                "Uph": 1,
+                "boH_Qty": 1,
+                "Working_Hrs": 1,
+                "Remote_Site_Cap_Demand": 1,
+                "Version": "1",
+                "Comment": "",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+         
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            },
+            {
+                "createdAt": "/Date(1662637067404+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1662637067404+0000)/",
+                "modifiedBy": "anonymous",
+                 "GH_Site": "kkhh",
+                "Site": "NEWS",
+                "Program": "J137 FATP TOOLING",
+                "Sub_Line_Name": "10",
+                "CM": "BD03",
+                "Uph": 0,
+                "boH_Qty": 0,
+                "Working_Hrs": 0,
+                "Remote_Site_Cap_Demand": 0,
+                "Version": "",
+                "Comment": "test",
+                "Error": null,
+                "Subline_GH_Site":"kkhh",
+                "Edit": 7,
+                "Sub_Line_Name_org":"kkhh",
+        
+                "__metadata": {
+                    "type": "lineplan.T_COA_SUBLINE"
+                }
+            }        
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:c="sap.ui.core"
+	xmlns:smarttable="sap.ui.comp.smarttable"
+	xmlns:table="sap.ui.table"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <Dialog title="Publish Error" contentHeight="50%"
+         contentWidth="50%" class="sapUiSizeCompact" draggable="true" resizable="true"
+         beforeOpen="" afterClose="onAfterErrorClose">
+         <content>
+		 <table:Table
+			id="tabRFID" rows="{Drawings>/noAssetErrorRecords}"
+			class="uiTableColumnHead sapUiSizeCompact"
+			visibleRowCountMode="Interactive"
+			visibleRowCount="15"
+			fixedColumnCount="1"
+		>
+<table:columns>
+			
+			 <table:Column
+				width="15rem"
+				filterProperty="Rfid"
+				sortProperty="Rfid"
+				
+			>
+				<Label text="RFID"/>
+				<table:template>
+					<Text text="{Drawings>Rfid}"/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="15rem"
+				filterProperty="ErrorMsg"
+				sortProperty="ErrorMsg"
+				
+			>
+				<Label text="Error"/>
+				<table:template>
+					<Text
+						text="{Drawings>ErrorMsg}" wrapping="false"
+					/>
+				</table:template>
+			</table:Column>
+			</table:columns>
+	</table:Table>
+            
+          </content>
+         <buttons>
+
+             <Button text="Proceed" press=".proceedToPublish" type="Emphasized"
+                  class="applePrimaryBtn" />
+            <Button text="Cancel" press=".noAssetDialogClose" type="Default"></Button>
+         </buttons>
+     </Dialog>
+        </core:FragmentDefinition>

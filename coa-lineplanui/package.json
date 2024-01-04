@@ -1,0 +1,21 @@
+{
+    "name": "mta-project",
+    "version": "0.0.1",
+    "description": "Build and deployment scripts",
+    "engines": {
+        "node": " ^18.0.0 || ^20.0.0  "
+    },
+    "scripts": {
+        "clean": "rimraf resources mta_archives mta-op*",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "undeploy": "cf undeploy coa-lineplanui --delete-services --delete-service-keys --delete-service-brokers"
+    },
+    "devDependencies": {
+        "karma": "^6.4.1",
+        "karma-chrome-launcher": "^3.1.1",
+        "karma-ui5": "^2.4.0",
+        "mbt": "^1.0.15",
+        "rimraf": "^3.0.0"
+    }
+}

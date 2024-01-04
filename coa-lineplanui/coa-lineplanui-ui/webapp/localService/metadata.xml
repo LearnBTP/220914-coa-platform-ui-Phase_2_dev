@@ -1,0 +1,820 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="lineplan" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="T_COA_MAIN_LINE" EntityType="lineplan.T_COA_MAIN_LINE"/>
+        <EntitySet Name="T_COA_SUBLINE" EntityType="lineplan.T_COA_SUBLINE"/>
+        <EntitySet Name="T_COA_RFID_TT" EntityType="lineplan.T_COA_RFID_TT"/>
+        <EntitySet Name="CarryoverLineplan" EntityType="lineplan.CarryoverLineplan"/>
+        <EntitySet Name="Upload_MainLine" EntityType="lineplan.Upload_MainLine"/>
+        <EntitySet Name="Upload_SubLine" EntityType="lineplan.Upload_SubLine"/>
+        <EntitySet Name="Lineplan" EntityType="lineplan.Lineplan"/>
+        <EntitySet Name="F4help" EntityType="lineplan.F4help"/>
+      </EntityContainer>
+      <EntityType Name="T_COA_MAIN_LINE">
+        <Key>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="CM"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32"/>
+        <Property Name="BoH" Type="Edm.Int32"/>
+        <Property Name="Fatp_Sustaining_Qty" Type="Edm.Int32"/>
+        <Property Name="Working_Hrs" Type="Edm.Int32"/>
+        <Property Name="Efficiency_Field" Type="Edm.Int32"/>
+        <Property Name="Version" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+      </EntityType>
+      <EntityType Name="T_COA_SUBLINE">
+        <Key>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Sub_Line_Name"/>
+          <PropertyRef Name="CM"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Yield" Type="Edm.Decimal" Scale="4" Precision="5"/>
+        <Property Name="Uph" Type="Edm.Int32"/>
+        <Property Name="boH_Qty" Type="Edm.Int32"/>
+        <Property Name="Working_Hrs" Type="Edm.Int32"/>
+        <Property Name="Remote_Site_Cap_Demand" Type="Edm.Int32"/>
+        <Property Name="Version" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+      </EntityType>
+      <EntityType Name="T_COA_RFID_TT">
+        <Key>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="CM_Program"/>
+          <PropertyRef Name="Rfid"/>
+          <PropertyRef Name="Line_Id"/>
+          <PropertyRef Name="Uph"/>
+          <PropertyRef Name="Version"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Rfid" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Line_Id" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Version" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Serial_Number" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Tp_Business_Grp" Type="Edm.String"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Approval_Status" Type="Edm.String"/>
+        <Property Name="Submit_Dte" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Submit_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Reviewed_By" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="CarryoverLineplan">
+        <Key>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Sub_Line_Name"/>
+          <PropertyRef Name="UPH"/>
+          <PropertyRef Name="boH_Qty"/>
+          <PropertyRef Name="Working_Hrs"/>
+          <PropertyRef Name="Remote_Site_Cap_Demand"/>
+          <PropertyRef Name="Fatp_Sustaining_Qty"/>
+          <PropertyRef Name="SubLine_UPH"/>
+          <PropertyRef Name="Efficiency_Field"/>
+          <PropertyRef Name="CO_LINE_QTY"/>
+          <PropertyRef Name="RFID"/>
+          <PropertyRef Name="Date_Mainline"/>
+          <PropertyRef Name="Upload_By_User_Mainline"/>
+          <PropertyRef Name="Comment_Mainline"/>
+          <PropertyRef Name="Date_Subline"/>
+          <PropertyRef Name="Upload_By_User_Subline"/>
+          <PropertyRef Name="Comment_Subline"/>
+        </Key>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="UPH" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="boH_Qty" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Working_Hrs" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Remote_Site_Cap_Demand" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Fatp_Sustaining_Qty" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="SubLine_UPH" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Efficiency_Field" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="CO_LINE_QTY" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="RFID" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Date_Mainline" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="Upload_By_User_Mainline" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Comment_Mainline" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Date_Subline" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="Upload_By_User_Subline" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Comment_Subline" Type="Edm.String" MaxLength="18" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="Upload_MainLine" m:HasStream="true">
+        <Property Name="msg" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Upload_SubLine" m:HasStream="true"/>
+      <EntityType Name="Lineplan">
+        <Key>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Sub_Line_Name"/>
+        </Key>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="boH_Qty" Type="Edm.Int32"/>
+        <Property Name="Uph" Type="Edm.Int32"/>
+        <Property Name="Working_Hrs" Type="Edm.Int32"/>
+        <Property Name="Remote_Site_Cap_Demand" Type="Edm.Int32"/>
+        <Property Name="Fatp_Sustaining_Qty" Type="Edm.Int32"/>
+        <Property Name="Mainline_Uph" Type="Edm.Int32"/>
+        <Property Name="Yield" Type="Edm.Decimal" Scale="4" Precision="5"/>
+        <Property Name="Actual_Line_Chooses" Type="Edm.Int32"/>
+        <Property Name="Date_Mainline" Type="Edm.DateTimeOffset"/>
+        <Property Name="Upload_By_User_Mainline" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Comment_Mainline" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Date_Subline" Type="Edm.DateTimeOffset"/>
+        <Property Name="Upload_By_User_Subline" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Comment_Subline" Type="Edm.String" MaxLength="18"/>
+      </EntityType>
+      <EntityType Name="F4help">
+        <Key>
+          <PropertyRef Name="Mainline_CM"/>
+          <PropertyRef Name="Mainline_Site"/>
+          <PropertyRef Name="Mainline_Program"/>
+          <PropertyRef Name="Subline_CM"/>
+          <PropertyRef Name="Subline_Site"/>
+          <PropertyRef Name="Subline_Program"/>
+          <PropertyRef Name="Sub_Line_Name"/>
+          <PropertyRef Name="Lineplan_CM"/>
+          <PropertyRef Name="Lineplan_Site"/>
+          <PropertyRef Name="Lineplan_Program"/>
+          <PropertyRef Name="Lineplan_Sub_Line_Name"/>
+        </Key>
+        <Property Name="Mainline_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Mainline_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Mainline_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Subline_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Subline_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Subline_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Lineplan_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Lineplan_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Lineplan_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Lineplan_Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+      </EntityType>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="T_COA_MAIN_LINE"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>CM</PropertyPath>
+            <PropertyPath>Site</PropertyPath>
+            <PropertyPath>Program</PropertyPath>
+            <PropertyPath>modifiedAt</PropertyPath>
+            <PropertyPath>modifiedBy</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.EntityContainer/T_COA_MAIN_LINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>CM</PropertyPath>
+                <PropertyPath>Site</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="FilterExpressionRestrictions">
+              <Collection>
+                <Record Type="Capabilities.FilterExpressionRestrictionType">
+                  <PropertyValue Property="Property" PropertyPath="modifiedAt"/>
+                  <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Modified Date"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Upload By User"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Site"/>
+                  <PropertyValue Property="ValueListProperty" String="Mainline_Site"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Program"/>
+                  <PropertyValue Property="ValueListProperty" String="Mainline_Program"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Program"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                  <PropertyValue Property="ValueListProperty" String="Mainline_CM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="UPH"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/BoH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="BOH"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Fatp_Sustaining_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="FATP Sustaining Qty"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Working_Hrs" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Working Hours"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Efficiency_Field" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Efficiency/Yield %"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Version" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Version"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Comment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Comment"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_MAIN_LINE/Error" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Error"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="T_COA_SUBLINE"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>CM</PropertyPath>
+            <PropertyPath>Site</PropertyPath>
+            <PropertyPath>Program</PropertyPath>
+            <PropertyPath>Sub_Line_Name</PropertyPath>
+            <PropertyPath>modifiedAt</PropertyPath>
+            <PropertyPath>modifiedBy</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.EntityContainer/T_COA_SUBLINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>CM</PropertyPath>
+                <PropertyPath>Site</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="FilterExpressionRestrictions">
+              <Collection>
+                <Record Type="Capabilities.FilterExpressionRestrictionType">
+                  <PropertyValue Property="Property" PropertyPath="modifiedAt"/>
+                  <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Modified Date"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Upload By User"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Site"/>
+                  <PropertyValue Property="ValueListProperty" String="Subline_Site"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Program"/>
+                  <PropertyValue Property="ValueListProperty" String="Subline_Program"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Program"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/Sub_Line_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Sub_Line_Name"/>
+                  <PropertyValue Property="ValueListProperty" String="Sub_Line_Name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Sub-Line Name"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_SUBLINE/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                  <PropertyValue Property="ValueListProperty" String="Subline_CM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/CM_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Rfid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Version" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Serial_Number" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.T_COA_RFID_TT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CarryoverLineplan"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>CM</PropertyPath>
+            <PropertyPath>Site</PropertyPath>
+            <PropertyPath>Program</PropertyPath>
+            <PropertyPath>Sub_Line_Name</PropertyPath>
+            <PropertyPath>Date_Subline</PropertyPath>
+            <PropertyPath>Upload_By_User_Subline</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+
+      <Annotations Target="lineplan.CarryoverLineplan/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                  <PropertyValue Property="ValueListProperty" String="Lineplan_CM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Site"/>
+                  <PropertyValue Property="ValueListProperty" String="Lineplan_Site"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Program"/>
+                  <PropertyValue Property="ValueListProperty" String="Lineplan_Program"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Program"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Sub_Line_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Sub_Line_Name"/>
+                  <PropertyValue Property="ValueListProperty" String="Lineplan_Sub_Line_Name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Sub-Line Name"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/UPH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="UPH"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/boH_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="BOH QTY"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Working_Hrs" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Working Hours"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Remote_Site_Cap_Demand" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Remote Site Capacity Demand"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Fatp_Sustaining_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="FATP Sustaining Qty"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/SubLine_UPH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Subline UPH"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Efficiency_Field" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Efficiency/Yield %"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/CO_LINE_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CO Line Qty"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Actual Line Chooses"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Date_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Date Mainline"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Upload_By_User_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Upload By USer Mainline"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Comment_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Comment Mainline"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Date_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Modified Date Subline"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Upload_By_User_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Upload By User Subline"/>
+      </Annotations>
+      <Annotations Target="lineplan.CarryoverLineplan/Comment_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Comment Subline"/>
+      </Annotations>
+      <Annotations Target="lineplan.Upload_MainLine" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="text/csv"/>
+      </Annotations>
+      <Annotations Target="lineplan.Upload_SubLine" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="text/csv"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="T_COA_SUBLINE"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>CM</PropertyPath>
+            <PropertyPath>Site</PropertyPath>
+            <PropertyPath>Program</PropertyPath>
+            <PropertyPath>Sub_Line_Name</PropertyPath>
+            <PropertyPath>modifiedAt</PropertyPath>
+            <PropertyPath>modifiedBy</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.EntityContainer/Lineplan" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>CM</PropertyPath>
+                <PropertyPath>Site</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="FilterExpressionRestrictions">
+              <Collection>
+                <Record Type="Capabilities.FilterExpressionRestrictionType">
+                  <PropertyValue Property="Property" PropertyPath="modifiedAt"/>
+                  <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/boH_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Working_Hrs" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Remote_Site_Cap_Demand" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Fatp_Sustaining_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Mainline_Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Yield" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Actual_Line_Chooses" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Date_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Upload_By_User_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Comment_Mainline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Date_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Upload_By_User_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.Lineplan/Comment_Subline" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Mainline_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Mainline_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Mainline_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Program"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Subline_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Subline_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Subline_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Program"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Sub_Line_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Sub-Line Name"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Lineplan_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Lineplan_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Lineplan_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Program"/>
+      </Annotations>
+      <Annotations Target="lineplan.F4help/Lineplan_Sub_Line_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Sub-Line Name"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

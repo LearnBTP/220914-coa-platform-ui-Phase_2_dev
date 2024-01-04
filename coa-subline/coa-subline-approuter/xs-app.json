@@ -1,0 +1,28 @@
+{
+  "authenticationMethod": "route",
+  "routes": [
+    {
+        "source": "^/coa-api/(.*)$",
+        "target": "$1",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "destination": "COA_APIM",
+        "scope": [
+            "$XSAPPNAME.SubLineReadOnly",
+            "$XSAPPNAME.SubLineModify"
+        ]
+    },
+    {
+      "source": "^/coa-api-ext/(.*)$",
+      "target": "$1",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "destination": "COA_APIM_EXT",
+      "scope": [
+        "$XSAPPNAME.SubLineReadOnly",
+        "$XSAPPNAME.SubLineModify"
+      ]
+    }
+    ],
+  "welcomeFile": "/coasublineui"
+}

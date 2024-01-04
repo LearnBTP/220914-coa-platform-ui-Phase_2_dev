@@ -1,0 +1,101 @@
+_schema-version: "3.2"
+ID: Non-RFID-Projection
+version: 0.0.1
+modules:
+  - name: non-rfid-projection-approuter
+    type: approuter.nodejs
+    path: non-rfid-projection-approuter
+    requires:
+      - name: Non-RFID-Projection_html_repo_runtime
+      - name: uaa_Non-RFID-Projection
+      - name: coa-destination
+      - name: coa-logs
+    parameters:
+      disk-quota: 4096M
+      memory: 4096M
+      keep-existing-routes: true
+      instances: 2
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: '[{"Content-Security-Policy": "frame-src ''self'' *.apple.com"}]'
+  - name: non-rfid-projection-ext-approuter
+    type: approuter.nodejs
+    path: non-rfid-projection-approuter
+    requires:
+      - name: Non-RFID-Projection_html_repo_runtime
+      - name: coa-destination
+      - name: uaa_Non-RFID_ext-Projection
+      - name: coa-logs
+    parameters:
+      disk-quota: 4096M
+      memory: 4096M
+      keep-existing-routes: true
+      instances: 2
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: '[{"Content-Security-Policy": "frame-src ''self'' *.apple.com"}]'
+  - name: Non-RFID-Projection_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: Non-RFID-Projection_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - comapplecoanonrfidprojectionui.zip
+          name: comapplecoanonrfidprojectionui
+          target-path: resources/
+  - name: comapplecoanonrfidprojectionui
+    type: html5
+    path: non-rfid-projection-ui
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - "npm run build:cf"
+      supported-platforms: []
+resources:
+  - name: Non-RFID-Projection_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_Non-RFID-Projection
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-service
+      service-plan: application
+  - name: uaa_Non-RFID_ext-Projection
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security-ext.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-ext-service
+      service-plan: application
+  - name: Non-RFID-Projection_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: coa-destination
+    type: org.cloudfoundry.existing-service
+    parameters:
+      config: ComplexType
+      service: destination
+      service-name: coa-destination
+      service-plan: lite
+  - name: coa-logs
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: Application Logging Service
+      service-plan: large
+parameters:
+  deploy_mode: html5-repo

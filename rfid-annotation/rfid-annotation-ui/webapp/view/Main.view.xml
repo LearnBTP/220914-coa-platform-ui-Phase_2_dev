@@ -1,0 +1,212 @@
+<mvc:View
+	controllerName="coa.annotation.rfidannotationui.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:c="sap.ui.core"
+>
+	<Page
+		showHeader="false"
+		backgroundDesign="Transparent"
+		id="pageSelection"
+		showFooter="false"
+		enableScrolling="false"
+	>
+		<content>
+			<semantic:SemanticPage
+				id="pageDrawingSearch"
+				fitContent="false"
+				class="dPageHeader"
+				headerExpanded="true"
+				headerPinnable="true"
+				preserveHeaderStateOnScroll="false"
+				showFooter="false"
+				toggleHeaderOnTitleClick="false"			
+			>
+				<semantic:headerContent>
+					<Title
+						level="H1"
+						text="Annotations"
+						class="pageTitleContrast sapUiSmallMarginBottom"
+					/>
+					<smartFilterBar:SmartFilterBar
+						id="smartFilterBar"
+						useToolbar="false"
+						header="Annotations"
+						showClearOnFB="true"
+						entitySet="HeaderAnnotation"
+						class="contrastTextSF applePrimaryBtn appleSecondaryBtn"
+						enableBasicSearch="false"
+						initialized="afterSmartControlPending"
+					>
+						<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration
+								key="Scan_Start_Date"
+								conditionType="{
+									module: 'sap.ui.comp.config.condition.DateRangeType',
+									operations: {
+										filter: [{
+											path: 'key',
+											contains: 'YEAR',
+											exclude: true
+										}, {
+											path: 'key',
+											contains: 'TIME',
+											exclude: true
+										}, {
+											path: 'key',
+											contains: 'DATE'
+										}]
+									}
+								}"
+								visibleInAdvancedArea="true"
+							/>
+							<smartFilterBar:ControlConfiguration
+								key="Scan_End_Date"
+								conditionType="{
+									module: 'sap.ui.comp.config.condition.DateRangeType',
+									operations: {
+										filter: [{
+											path: 'key',
+											contains: 'YEAR',
+											exclude: true
+										}, {
+											path: 'key',
+											contains: 'TIME',
+											exclude: true
+										}, {
+											path: 'key',
+											contains: 'DATE'
+										}]
+									}
+								}"
+								visibleInAdvancedArea="true"
+							/>
+						</smartFilterBar:controlConfiguration>
+					</smartFilterBar:SmartFilterBar>
+				</semantic:headerContent>
+				<semantic:content>
+					<ScrollContainer
+						height="100%"
+						horizontal="true"
+						width="100%"
+						vertical="true">
+					<smartTable:SmartTable
+						id="tabDrawingSearch"
+						entitySet="HeaderAnnotation"
+						smartFilterId="smartFilterBar"
+						tableType="ResponsiveTable"
+						useVariantManagement="false"
+						header="Drawings"
+						enableAutoBinding="true"
+						class="sapUiResponsiveContentPadding buttonWithIconOnly"
+						initiallyVisibleFields="Alderaan_Site,Alderaan_CM,Area,Building,Floor,Status,Scan_End_Date,Line,Lock,ModifiedAt"
+						ignoredFields="LineId,LineType"
+						ignoreFromPersonalisation="Image_FileId,Origin_X,Origin_Y,Scale_X,Scale_Y,Image_FileName,Last_Active_User,Last_Active_Date"
+						requestAtLeastFields="Image_FileId,Building,Floor,CM,Site,Alderaan_Site,Alderaan_CM,Scan_Start_Date,Scan_End_Date,Area,Image_FileName,Origin_X,Origin_Y,Scale_X,Scale_Y,Line,Status,Last_Active_Date,Last_Active_User,Lock,ModifiedAt,ModifiedBy,createdBy"
+					>
+						<Table growingThreshold="5000"
+							fixedLayout="false"
+							class="mTableHeader"
+							growing="true"
+							growingScrollToLoad="true"
+						>
+							<columns>
+								<Column width="2rem">
+									<customData>
+										<c:CustomData
+											key="p13nData"
+											value='\{"columnKey": "Lock","columnIndex":"0","leadingProperty": "Lock"}'
+										/>
+									</customData>
+									<Text
+										text="Lock Icon"
+										visible="false"
+									/>
+								</Column>
+								<Column>
+									<customData>
+										<c:CustomData
+											key="p13nData"
+											value='\{"columnKey": "Status","columnIndex":"6","leadingProperty": "Status"}'
+										/>
+									</customData>
+									<Text text="Status"/>
+								</Column>
+								<Column>
+									<customData>
+										<c:CustomData
+											key="p13nData"
+											value='\{"columnKey": "Scan_Start_Date","columnIndex":"7","leadingProperty": "Scan_Start_Date"}'
+										/>
+									</customData>
+									<Text text="Scan Start Date"/>
+								</Column>
+								<Column>
+									<customData>
+										<c:CustomData
+											key="p13nData"
+											value='\{"columnKey": "Scan_End_Date","columnIndex":"8","leadingProperty": "Scan_End_Date"}'
+										/>
+									</customData>
+									<Text text="Scan End Date"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem
+									type="Navigation"
+									press="getItemData"
+								>
+									<cells>
+										<c:Icon
+											color="red"
+											size="1.3rem"
+											src="sap-icon://locked"
+											visible="{=${Lock} === 'X' ? true: false}"
+											tooltip="Locked by {Last_Active_User} on {Last_Active_Date}"
+										/>
+
+
+										<ObjectStatus
+											
+											class="boldStatus"
+											text="{
+												parts: ['Status'],
+												formatter: '.formatter.statusText'
+											}"
+											state="{
+												parts: ['Status'],
+												formatter: '.formatter.statusColor'
+											}"
+											icon="{
+												parts: ['Status'],
+												formatter: '.formatter.statusIcon'
+											}"
+											title="{
+												parts: ['Status','createdBy'],
+												formatter: 'coa.annotation.rfidannotationui.utils.Formatter.addNewText'
+											}"
+										/>
+										<Text text="{
+											parts: ['Scan_Start_Date'],
+											formatter: '.formatter.formatScanDate'
+										}"/>		
+										<Text text="{
+											parts: ['Scan_End_Date'],
+											formatter: '.formatter.formatScanDate'
+										}"/>
+									
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</smartTable:SmartTable>
+					</ScrollContainer>
+				</semantic:content>
+			</semantic:SemanticPage>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,97 @@
+_schema-version: '3.2'
+ID: coa-logon
+version: 0.0.1
+modules:
+  - name: coa-logon-approuter
+    type: approuter.nodejs
+    path: coa-logon-approuter
+    requires:
+      - name: coa-logon_html_repo_runtime
+      - name: uaa_coa-logon
+      - name: coa-destination
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+      keep-existing-routes: true
+      instances: 2
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: "[{\"Content-Security-Policy\": \"frame-src 'self' *.apple.com\"}]"
+  - name: coa-logon-ext-approuter
+    type: approuter.nodejs
+    path: coa-logon-approuter
+    requires:
+      - name: coa-logon_html_repo_runtime
+      - name: uaa_coa_ext-logon
+      - name: coa-destination
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+      keep-existing-routes: true
+      instances: 2
+    properties:
+      SESSION_TIMEOUT: 30
+      SEND_XFRAMEOPTIONS: false
+      httpHeaders: "[{\"Content-Security-Policy\": \"frame-src 'self' *.apple.com\"}]"
+  - name: coa-logon_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: coa-logon_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - logoncoalogonui.zip
+          name: logoncoalogonui
+          target-path: resources/
+  - name: logoncoalogonui
+    type: html5
+    path: coa-logon-ui
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - 'npm run build:cf'
+      supported-platforms: []
+resources:
+  - name: coa-logon_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_coa-logon
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-service
+      service-plan: application
+  - name: uaa_coa_ext-logon
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security-ext.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-ext-service
+      service-plan: application
+  - name: coa-logon_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: coa-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        version: 1.0.0
+      service: destination
+      service-name: coa-destination
+      service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  keep-existing-routes: true

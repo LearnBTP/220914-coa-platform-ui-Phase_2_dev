@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+		title=""
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email"
+        contentWidth="30%">
+        <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormDisplay354"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Last Sync Data"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="User" />
+				<Text id="nameText" text="{AqidModel>/lastSyncBy}" />
+				<Label text="Log Id" />
+				<Text text="{AqidModel>/lastSyncLogId}" />
+
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+    		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+			<Button text="Close" press="handleCloseButton"  />
+            	</OverflowToolbar>
+		</footer>
+		
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog contentWidth="100%" contentHeight="100%" draggable="true" title="Change Log for Annotations" showHeader="true" resizable="true" >
+        <content>
+            <smartFilterBar:SmartFilterBar id="smartFilterLog" useToolbar="false" showClearOnFB="true" entitySet="changHistory" class="applePrimaryBtn appleAlternateBtn" enableBasicSearch="false">
+            
+                                    <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration 
+                                key="modifiedAt"
+                                conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                                         operations: { 
+                                                            filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                                        {path: 'key', contains: 'TIME',exclude:true},
+                                                                        {path: 'key', contains: 'DATE'}
+                                                                        ] } }"
+                                visibleInAdvancedArea="true"/>
+                        </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+
+            <smartTable:SmartTable
+                id="tabChangeLog"
+                entitySet="changHistory"
+                tableType="Table"
+                useVariantManagement="false"
+                initialNoDataText="No Logs Found"
+                header="RFID Logs"
+                showRowCount="true"
+                smartFilterId="smartFilterLog"
+                beforeRebindTable="applyTableLogFilter"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding buttonWithIconOnly"
+                initiallyVisibleFields="Table,Key_Fields,Field_Name,Action_Type,Old_Value,New_Value,modifiedAt,modifiedBy"
+            >
+                <table:Table selectionMode="None" visibleRowCount="15" visibleRowCountMode="Interactive" class="uiTableColumnHead"/>
+            </smartTable:SmartTable>
+        </content>
+
+        <endButton>
+            <Button id="btnCloseAppServer" class="appleSecondaryBtn" text="Close" press="closeChangeLog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

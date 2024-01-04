@@ -1,0 +1,266 @@
+<mvc:View controllerName="com.apple.coa.coanonrfidtrackerui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+     xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:u="sap.ui.unified"
+    xmlns:table="sap.ui.table"
+>
+    <f:DynamicPage id="MainPageDynamic" preserveHeaderStateOnScroll="true" headerExpanded="true" class="zDynamicPage">
+        <f:header>
+            <f:DynamicPageHeader id='DPH' class="zDynamicPageHeader ">
+                <Title id="Title" text="COA - Non RFID TT" />
+                <f:content>
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        showGoOnFB="true"
+                        useToolbar="false"
+                        entitySet="nonRfidTT"
+                        showClearOnFB="true"
+                        initialise="onFilterBarInit"
+                        enableBasicSearch="false"
+                        class="contrastTextSF appleSFPrimaryBtn appleSFSecondaryBtn"
+                        search=".onSFBSearch"
+                    >
+                        <smartFilterBar:groupConfiguration>
+                            <smartFilterBar:GroupConfiguration id='GC' index="1" key="nonRfid" label="Input Parameters" />
+                        </smartFilterBar:groupConfiguration>
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration
+                                id="chgAt"
+                                key="modifiedAt"
+                                index="2"
+                                conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                                         operations: { 
+                                                            filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                                        {path: 'key', contains: 'TIME',exclude:true},
+                                                                        {path: 'key', contains: 'DATE'}
+                                                                        ] } }"
+                                visibleInAdvancedArea="true"
+                            />
+                        </smartFilterBar:controlConfiguration>
+                        <smartFilterBar:customData>
+                            <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                        </smartFilterBar:customData>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData id='smartLayout' shrinkFactor="0" baseSize="0%" />
+
+                        </smartFilterBar:layoutData>
+                    </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox id="VboxContent" height="100%">
+                <items>
+                    <FlexBox id="table" alignItems="Center" justifyContent="Center" height="100%">
+                        <smartTable:SmartTable
+                            xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"           
+                            id="MainTab"
+                            header="Non RFID TT"
+                            fitContainer="true"
+                            enableAutoBinding="false"
+                            width="100%"
+                            direction="Column"
+                            requestAtLeastFields="GH_Site,Program,Aqid,To_Program,To_Business_Grp,Line_Id,Line_Type,Status,Group_Priority,Dept,Submit_By_Name,RFID_Scope,Station,Alt_Station,Parent_Item,Group_ID,Line_Priority,Equipment_Type,Equipment_Name,confLevel,Mfr,BusinessGrp,Uph,Comments,Submit_Date,Review_Date,Submit_By_Name,modifiedBy_Name,Reviewed_By_Name,SAP_To_CM_Site,SAP_CM_Site,Projected_Qty,Override_Qty,Transfer_Qty,Sequence_No,To_CM,To_Site"
+                            height="100%"
+                            entitySet="nonRfidTT"
+                            class="sapUiSmallMarginBeginEnd zTable zTableTrEdit zMultiSelectEdit buttonWithIconOnly"
+                            customData:p13nDialogSettings="{group:{visible:false}}"
+                            showRowCount="true"
+                            initiallyVisibleFields="Program,Aqid,GH_Site,To_Program,To_Business_Grp,Line_Id,Line_Type,Status,Group_Priority,Dept,Submit_By_Name,RFID_Scope,Station,Alt_Station,Parent_Item,Group_ID,Line_Priority,Equipment_Type,Equipment_Name,confLevel,Mfr,BusinessGrp,Uph,Comments,Sequence_No,Submit_Date,Review_Date,Submit_By_Name,modifiedBy_Name,Reviewed_By_Name,Projected_Qty,Override_Qty,Transfer_Qty,Error"
+                            placeToolbarInTable="true"
+                            showFullScreenButton="true"
+                            visible="true"
+                            customData:useSmartToggle="false"
+                            customData:useSmartField="true"
+                            editToggled="onEditToggle"
+                             editTogglable="{mAuthorizedModel>/modify}"
+                            useVariantManagement="false"  showVariantManagement="false"
+                            useTablePersonalisation="true"
+                            beforeExport=".onBeforeExportRFIDTT"
+                            beforeRebindTable="onDataReceived"
+                            fieldChange="OnFieldChange"
+                            initialise="onSmartTableInit"
+                            smartFilterId="smartFilterBar"
+                           
+                        >
+                            <sap.ui.comp.smarttable:customData>
+                                <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                            </sap.ui.comp.smarttable:customData>
+                            <smartTable:customToolbar>
+                                <OverflowToolbar id="OTT" design="Transparent">
+                                    <ToolbarSpacer id='TS' />
+                                     <Button id='OTBRefresh'  icon="sap-icon://refresh" tooltip="Refresh" press="onRefresh" class="buttonWithIconOnly" enabled="true"  />
+                                    <Button id='OTBSynBtn' text="Sync Non-RFID Projection" enabled="{= ${sm4rtM0d3l>/editable}}" tooltip="Sync Non-RFID Projection"  visible="{mAuthorizedModel>/Sync}" press="onOpenSyncDialog" class="applePrimaryBtn" />
+                                    <Button id='OTBSave' text="Save" enabled="{= ${sm4rtM0d3l>/editable}}" tooltip="Save Changes"  visible="{mAuthorizedModel>/modify}" press="onTableDataSave" class="applePrimaryBtn"/>
+                                     <Button id='OTBDelete'  icon="sap-icon://delete"  tooltip="Delete Entry"  visible="{mAuthorizedModel>/modify}" enabled="{= ${sm4rtM0d3l>/editable}}"  press="onDelete" class="appleDangerBtn" />
+                                     <Button id = 'OTBApprove'  tooltip="Approve" press=".onSmartTbleApprove" visible="{mAuthorizedModel>/Approve}"  text="Approve" enabled="{= ${sm4rtM0d3l>/editable}}" class="applePrimaryBtn"  type="Emphasized"/>
+                                     <Button id = 'OTBReject'   tooltip="Reject" press=".onSmartTbleReject" visible="{mAuthorizedModel>/Approve}"  text="Reject" enabled="{= ${sm4rtM0d3l>/editable}}" class="appleDangerBtn"/>
+                                      <Button id='OTBMUpload' text="Mass Update" enabled="{= ${sm4rtM0d3l>/editable}}" tooltip="Mass Upload"  visible="{mAuthorizedModel>/modify}" press="onOpenUploadDialog" class="applePrimaryBtn" />
+                            
+                                     <MenuButton id='idCancelMenuBtn' text="Cancel" class="appleDangerBtn" visible="{mAuthorizedModel>/modify}"  enabled="{= ${sm4rtM0d3l>/editable}}">
+                                        <menu>
+                                            <Menu id="idCancelMenu" itemSelected="onMenuDownloadAct">
+                                                <MenuItem id='OTBCancelRequest' class="appleDangerBtn" key="cancel" text="Cancel Request" press=".onCancel"  />
+                                                <MenuItem id='OTBReset' class="appleDangerBtn" key="reset" text="Reset Approval" press=".onCancel" />
+                                            </Menu>
+                                        </menu>
+                                    </MenuButton>
+                                    <u:FileUploader
+                                        id="fileUploader"
+                                         visible="{mAuthorizedModel>/modify}"
+                                        sameFilenameAllowed="true"
+                                        name="myFileUpload"
+                                        tooltip="Upload your file"
+                                        fileType="csv"
+                                        buttonOnly="true"
+                                        buttonText="Upload"
+                                        class="appleAlternateBtn"
+                                        change="handleUploadPress"
+                                         enabled="{= ${sm4rtM0d3l>/editable}}"
+                                    />
+                                
+                                    <Button id='OTBHistory' text="Change Log" tooltip="Change Log" press="onPressHistory" class="appleSecondaryBtn" />
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <table:Table id="idMPTab" visibleRowCountMode="Interactive" visibleRowCount = "17"  rowSelectionChange=".TableRowSelectionChange" >
+
+                                  
+
+                            
+                                    <table:Column id="idtochsiteclumn" hAlign="Begin" width="12rem" filterProperty="To_GHSite" sortProperty="To_GHSite">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "To_GHSite", "leadingProperty": "To_GHSite",  "columnIndex": "16"}' />
+                                        </table:customData>
+                                        <Label id="idtochsitelbl" text="To GH Site" required="true" />
+                                        <table:template>
+                                        <HBox id="hboxTO_GHSITE" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtsite" text="{To_GHSite}"  visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="ghSiteInputcmb" value="{To_GHSite}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  class="zCoreTextColumn"/>
+
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+
+                                 <table:Column id="idtoprogramclumn" hAlign="Begin" width="12rem" filterProperty="To_Program" sortProperty="To_Program">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "To_Program", "leadingProperty": "To_Program",  "columnIndex": "17"}' />
+                                        </table:customData>
+                                        <Label id="idtoprogramelbl" text="To Program" required="true"  />
+                                        <table:template>
+                                        <HBox id="hboxTO_Program" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txttoprogram" text="{To_Program}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="toprogramSiteInputcmb" value="{To_Program}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  class="zCoreTextColumn"/>
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+
+                                 <table:Column id="idtobussgrpclumn" hAlign="Begin" width="12rem" filterProperty="To_Business_Grp" sortProperty="To_Business_Grp">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "To_Business_Grp", "leadingProperty": "To_Business_Grp",  "columnIndex": "18"}' />
+                                        </table:customData>
+                                        <Label id="idtobussgrplbl" text="To Business Group" required="true" />
+                                        <table:template>
+                                        <HBox id="hboxobussgrp" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                             <Text id="txtTO_BUSINESS_GRP" text="{To_Business_Grp}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpTO_BUSINESS_GRP" value="{To_Business_Grp}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                       
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+                            <table:Column id="idOverQtyclumn" hAlign="Begin" width="12rem" filterProperty="Override_Qty" sortProperty="Override_Qty">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Override_Qty", "leadingProperty": "Override_Qty",  "columnIndex": "15"}' />
+                                        </table:customData>
+                                        <Label id="idOverQtylbl" text="Override Quantity" />
+                                        <table:template>
+                                        <HBox id="hboxOverQtygrp" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                             <Text id="txtOverQty" text="{path:'Override_Qty', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:2,maxFractionDigits:2}, constraints:{precision:13,scale:3}}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpOverQty" value="{path:'Override_Qty', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:2,maxFractionDigits:2}, constraints:{precision:13,scale:3}}"    visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"
+                                                                                           editable="{=${Sequence_No} ===0}" change="onChanRFSmartbleQty" />
+                                       
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+                             <table:Column id="idquantityclumn" hAlign="Begin" width="12rem" filterProperty="Transfer_Qty" sortProperty="Transfer_Qty">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Transfer_Qty", "leadingProperty": "Transfer_Qty",  "columnIndex": "19"}' />
+                                        </table:customData>
+                                        <Label id="idquantitylbl" text="Transfer Quantity" required="false" />
+                                        <table:template>
+                                        <HBox id="hboxquantitygrp" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                             <Text id="txtTransfer_Qty" text="{path:'Transfer_Qty', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:2,maxFractionDigits:2},constraints:{precision:13,scale:3}}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpTransfer_Qty" value="{path:'Transfer_Qty', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:2,maxFractionDigits:2},constraints:{precision:13,scale:3}}"  visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"
+                                                             change="onChanRFSmartbleQty"/>
+                                       
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                     <table:Column id="idtransferFlgclmn"
+                                        filterProperty="Transfer_Flag"
+                                        width="10rem"
+                                        sortProperty="Transfer_Flag"
+                                        customData:p13nData='\{"columnKey": "Transfer_Flag", "columnIndex":"20", "leadingProperty":"Transfer_Flag", "additionalProperty":"Transfer_Flag", "sortProperty": "Transfer_Flag", "filterProperty": "Transfer_Flag", "type":"string", "maxLength":"1"}'
+                                    >
+                                        <Label id="idtransferflaglevel" text="Transfer Flag"/>
+                                        <table:template>
+                                            <HBox id="idtfHbx" class="zCoreSelectColumns">
+                                                <items>
+                                                     
+                                                      <Text id="txtcarryover" text="{Transfer_Flag}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                                       <Input id="idtfinput" value="{Transfer_Flag}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  class="zCoreTextColumn"  liveChange="onChanRFSmartble"/>
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                            <table:Column id="idcommentclumn" hAlign="Begin" width="12rem" filterProperty="Comments" sortProperty="Comments">
+                                        <table:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Comments", "leadingProperty": "Comments",  "columnIndex": "21"}' />
+                                        </table:customData>
+                                        <Label id="idommentlbl" text="Comments" required="true"/>
+                                        <table:template>
+                                        <HBox id="hboxommentygrp" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                             <Text id="txtComments" text="{Comments}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpComments" value="{Comments}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                
+                          
+          
+                            <table:Column
+                              customData:p13nData='\{"columnKey": "Split", "columnIndex":"22", "leadingProperty":"Split", "additionalProperty":"Split"}'
+                             id="idSplitColumn" tooltip="Split" autoResizable="true"  hAlign="Center" width="100px" >
+                                <Label id="_IDGenLabel2" text="Split"></Label>
+                                <table:template>
+                                    <core:Icon id="idSplitIcon" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  src="sap-icon://split" press="onTableSplit"  />
+                                </table:template>
+                                <table:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Property3", "columnIndex":"22", "leadingProperty": "Property"}' />
+                                </table:customData>
+                            </table:Column>
+                            </table:Table>
+                        </smartTable:SmartTable>
+                    </FlexBox>
+                </items>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

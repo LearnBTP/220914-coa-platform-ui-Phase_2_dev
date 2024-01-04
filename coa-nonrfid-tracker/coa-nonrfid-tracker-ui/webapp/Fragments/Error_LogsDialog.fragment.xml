@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog id="idErrorLogDia" title="Error Log" resizable="true"  draggable="true"  contentHeight="60%"
+        contentWidth="60%" class="sapUiSizeCompact" afterClose="onAfterErrorClose" afterOpen=""
+        beforeOpen="">
+        <content>
+        <smartTable:SmartTable
+                id="tabOutputError"
+                tableBindingPath="NonRFIDTTModel>/ErrorLogsOp"
+                entitySet="nonRfidTT"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Errors"
+                initialise="errorTabInit"
+                enableExport="true"
+                showRowCount="true"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                initiallyVisibleFields="GH_Site,CM,Program,Uph,Line_Type,Line_Id,Projected_Qty,To_GHSite,To_Program,To_Business_Grp,Transfer_Qty,Override_Qty,Transfer_Flag,Transfer_Flag"
+                ignoredFields="Status,Group_Priority,Dept,Submit_By_Name,RFID_Scope,Station,Alt_Station,Parent_Item,Group_ID,Line_Priority,Equipment_Type,Equipment_Name,confLevel,Mfr,Comments,Submit_By_Name,modifiedBy_Name,Reviewed_By_Name,SAP_CM_Site,SAP_To_CM_Site,Submit_Date,modifiedAt,LastSyncDate,LastSyncBy,LastSyncStatus"
+            >
+                <t:Table id="ErrCOTable" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+      <endButton>
+    
+            <Button id="idErrorLogbtn" text="Ok" press="fnOutput_frag_CloseLog"
+                 class="applePrimaryBtn" />
+     </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,119 @@
+<mvc:View
+    controllerName="coa.coalineplanui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    <f:DynamicPage id="PageDynamic" headerExpanded="true" class="zDynamicPage">
+        <f:header>
+            <f:DynamicPageHeader id='DPH' class="zDynamicPageHeader">
+                <Title id="Title" text="COA - Line Plan" />
+                <f:content>
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        showGoOnFB="true"
+                        useToolbar="false"
+                        entitySet="CarryoverLineplan"
+                        showClearOnFB="true"
+                        enableBasicSearch="false"
+                        class="contrastTextSF applePrimaryBtn appleSecondaryBtn"
+                        search="onSearch"
+                    >
+                        <smartFilterBar:groupConfiguration>
+                            <smartFilterBar:GroupConfiguration id='GC' index="1" key="CarryoverLineplan" label="Input Parameters" />
+                        </smartFilterBar:groupConfiguration>
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration id='CC' key="Site" />
+                        </smartFilterBar:controlConfiguration>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData id='smartLayout' shrinkFactor="0" baseSize="0%" />
+                        </smartFilterBar:layoutData>
+                    </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox id="VboxContent" class="sapUiNoMarginBottom" height="100%">
+                <items>
+                    <FlexBox id="table" alignItems="Center" justifyContent="Center" height="100%" class="sapUiNoMarginBottom">
+                        <smartTable:SmartTable
+                            xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                            id="LinePlanTab"
+                            smartFilterId="smartFilterBar"
+                            header="Line Plan"
+                            fitContainer="true"
+                            enableAutoBinding="false"
+                            enableAutoColumnWidth="true"
+                            width="100%"
+                            direction="Column"
+                            requestAtLeastFields="CM,Site,Program"
+                            height="100%"
+                            class="sapUiResponsiveContentPadding  zTable buttonWithIconOnly"
+                            app:p13nDialogSettings="{group:{visible:false}}"
+                            showRowCount="true"
+                            entitySet="CarryoverLineplan"
+                            initiallyVisibleFields="Program,Uph,boH_Qty,Working_Hrs,Sub_Line_Name,Remote_Site_Cap_Demand,
+                                                             SubLine_UPH,Efficiency_Field,CO_LINE_QTY,Actual_Lines_Chosen,RFID,Comment_Mainline,Comment_Subline,Date_Mainline,Upload_By_User_Mainline_Name,
+                                                             Date_Subline,Upload_By_User_Subline_Name"
+                            ignoredFields="SAP_CM_Site "
+                            placeToolbarInTable="true"
+                            showFullScreenButton="true"
+                            visible="true"
+                            headerLevel="H1"
+                            useVariantManagement="false"
+                            showVariantManagement="false"
+                            useTablePersonalisation="true"
+                            enableExport="true"
+                            initialise="onSmartTableInit"
+                            beforeRebindTable="onDataReceived"
+                            beforeExport=".onBeforeExportLinePlan"
+                        >
+                            <sap.ui.comp.smarttable:customData>
+                                <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                            </sap.ui.comp.smarttable:customData>
+                            <smartTable:customToolbar>
+                                <OverflowToolbar design="Transparent">
+                                    <Button icon="sap-icon://clear-filter" press="clearRfidFilter" class="buttonWithIconOnly"/>
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <t:Table id="idMPTab" visibleRowCountMode="Interactive" visibleRowCount = "16">
+                                <t:Column id="main_date" width="14rem" hAlign="Center" filterProperty="Date_Mainline" sortProperty="Date_Mainline">
+                                    <t:customData>
+                                        <core:CustomData key="p13nData" value='\{"columnKey": "Date_Mainline", "leadingProperty": "Date_Mainline", "columnIndex": "17"}' />
+                                    </t:customData>
+                                    <Label id="lblMainDate" text="Mainline Created On" />
+                                    <t:template>
+                                        <HBox id="hboxMainDate" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <Text id="TxtMainDate" text="{path:'Date_Mainline',formatter:'.formatDate'}" />
+                                            </items>
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column id="SubDate" width="14rem" hAlign="Center" filterProperty="Date_Subline" sortProperty="Date_Subline">
+                                    <t:customData>
+                                        <core:CustomData key="p13nData" value='\{"columnKey": "Date_Subline", "leadingProperty": "Date_Subline", "columnIndex": "16"}' />
+                                    </t:customData>
+                                    <Label id="lblSublineDate" text="Subline Created On" />
+                                    <t:template>
+                                        <HBox id="hboxSublineDate" class="zCoreSelectColumns" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <Text id="SublineDate" text="{path:'Date_Subline',formatter:'.formatDate'}" />
+                                            </items>
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                            </t:Table>
+                        </smartTable:SmartTable>
+                    </FlexBox>
+                </items>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

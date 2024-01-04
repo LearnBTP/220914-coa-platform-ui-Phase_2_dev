@@ -1,0 +1,8 @@
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc"
+ displayBlock="true"
+    xmlns="sap.m">
+
+    <MessagePage id="_IDGenMessagePage2" showHeader="false" text="COA - No Authorization to access this page " icon="sap-icon://message-warning" description="Please contact your system adminstrator"/>
+
+</mvc:View>

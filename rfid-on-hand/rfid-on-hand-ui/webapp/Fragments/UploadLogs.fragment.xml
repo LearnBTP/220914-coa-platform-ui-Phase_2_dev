@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+     xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:m="sap.m">
+     <Dialog title="Error Logs" contentHeight="70%"
+         contentWidth="80%" class="sapUiSizeCompact" afterClose="onAfterErrorClose" afterOpen="" draggable="true" resizable="true"
+         beforeOpen="">
+         <content>
+         <f:SimpleForm id="" editable="true"
+                 visible="true" layout="ResponsiveGridLayout" labelSpanXL="4"
+                 labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                 emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                 singleContainerFullSize="false">
+             </f:SimpleForm>
+             <ScrollContainer width="auto" horizontal="false"
+                 vertical="true">
+                 <content>
+                 <VBox>
+                 <HBox alignItems="Start"
+				justifyContent="End">
+       <core:Icon class="size5 sapUiSmallMarginEnd" 
+			src="sap-icon://excel-attachment"
+			press="handleErrorlogDownload" >
+		</core:Icon>
+         </HBox>
+       
+                 <t:Table id="tabError"
+				rows="{RfidModel>/RfidLogs}"
+				selectionMode="None"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:columns>
+					<t:Column width="6rem" hAlign="Begin">
+						<m:Label text="Asset ID" />
+						<t:template>
+							<m:Text text="{RfidModel>Asset_Id}" />
+						</t:template>
+					</t:Column>
+					<t:Column width="15rem">
+						<m:Label text="RFID" />
+						<t:template>
+							<m:Text text="{RfidModel>RFID}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+					<t:Column width="11rem">
+						<m:Label text="AQID" />
+						<t:template>
+							<m:Text text="{RfidModel>AQID}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<m:Label text="Raw AQID" />
+						<t:template>
+							<m:Text text="{RfidModel>Raw_AQID}" />
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<m:Label text="Mapped AQID" />
+						<t:template>
+							<Text text="{RfidModel>Mapped_AQID}" />
+						</t:template>
+					</t:Column>
+					<t:Column width="12rem">
+						<m:Label text="CM" />
+						<t:template>
+							<Text text="{RfidModel>CM}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<m:Label text="Site" />
+						<t:template>
+							<Text text="{RfidModel>Site}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="20rem">
+						<m:Label text="Validation Errors" />
+						<t:template>
+							<Text text="{RfidModel>ErrorMsg}"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+           
+            </VBox>
+
+                
+
+                	
+                 </content>
+
+             </ScrollContainer>
+         </content>
+         <buttons>
+
+             <Button text="Ok" press="fnOutput_frag_CloseLog"
+                  class="applePrimaryBtn" />
+         </buttons>
+     </Dialog>
+ </core:FragmentDefinition>

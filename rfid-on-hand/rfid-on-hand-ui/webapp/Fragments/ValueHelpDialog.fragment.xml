@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+    xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog id="valuehelpdialog"
+		title="Select Selection Data"
+		ok=".onValueHelpOkPress"
+		cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose"
+		supportRanges="true"
+		maxExcludeRanges="0"
+		maxIncludeRanges="4"
+	>
+    <filterBar>
+	<fb:FilterBar advancedMode="true" search=".onFilterBar" id="filterbar">
+	</fb:FilterBar>
+	</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition> 

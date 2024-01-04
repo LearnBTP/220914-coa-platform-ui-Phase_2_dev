@@ -1,0 +1,335 @@
+{
+    "d": {
+        "results": [
+            {
+                "Shape_Name": null,
+                "Shape_Color": "gold",
+                "Shape_Guid": "58e2ce48-c3b8-4b55-b63f-1668534765691",
+                "Shape_Type": "R",
+                "LineId": "1",
+                "Line_Priority": 0,
+                "LineType": "FATP||CG||2683",
+                "Uph": 650,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "DRAFT",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "58e2ce48-c3b8-4b55-b63f-1668534765691",
+                            "Status": "DRAFT",
+                            "Vertices_X": 2583,
+                            "Vertices_Y": 473,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/GetVertices(Shape_Guid='58e2ce48-c3b8-4b55-b63f-1668534765691',Status='DRAFT',Vertices_X=2583,Vertices_Y=473)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "58e2ce48-c3b8-4b55-b63f-1668534765691",
+                            "Status": "DRAFT",
+                            "Vertices_X": 250,
+                            "Vertices_Y": 1075,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/GetVertices(Shape_Guid='58e2ce48-c3b8-4b55-b63f-1668534765691',Status='DRAFT',Vertices_X=250,Vertices_Y=1075)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='58e2ce48-c3b8-4b55-b63f-1668534765691',Status='DRAFT')"
+                }
+            },
+            {
+                "Shape_Name": null,
+                "Shape_Color": "red",
+                "Shape_Guid": "7d861bda-a588-4377-8ec3-1668534759233",
+                "Shape_Type": "R",
+                "LineId": "2",
+                "Line_Priority": 0,
+                "LineType": "FATP||Burn-in||2683",
+                "Uph": 590,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "DRAFT",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "7d861bda-a588-4377-8ec3-1668534759233",
+                            "Status": "DRAFT",
+                            "Vertices_X": 100,
+                            "Vertices_Y": 318,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/GetVertices(Shape_Guid='7d861bda-a588-4377-8ec3-1668534759233',Status='DRAFT',Vertices_X=100,Vertices_Y=318)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "7d861bda-a588-4377-8ec3-1668534759233",
+                            "Status": "DRAFT",
+                            "Vertices_X": 2470,
+                            "Vertices_Y": 1260,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/GetVertices(Shape_Guid='7d861bda-a588-4377-8ec3-1668534759233',Status='DRAFT',Vertices_X=2470,Vertices_Y=1260)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='7d861bda-a588-4377-8ec3-1668534759233',Status='DRAFT')"
+                }
+            },
+            {
+                "Shape_Name": null,
+                "Shape_Color": "gold",
+                "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                "Shape_Type": "L",
+                "LineId": null,
+                "Line_Priority": 0,
+                "LineType": null,
+                "Uph": null,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "DRAFT",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                            "Status": "DRAFT",
+                            "Vertices_X": 507,
+                            "Vertices_Y": 228,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT',Vertices_X=507,Vertices_Y=228)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                            "Status": "DRAFT",
+                            "Vertices_X": 387,
+                            "Vertices_Y": 334,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT',Vertices_X=387,Vertices_Y=334)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                            "Status": "DRAFT",
+                            "Vertices_X": 557,
+                            "Vertices_Y": 449,
+                            "Sequence_No": 3,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT',Vertices_X=557,Vertices_Y=449)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                            "Status": "DRAFT",
+                            "Vertices_X": 681,
+                            "Vertices_Y": 401,
+                            "Sequence_No": 4,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT',Vertices_X=681,Vertices_Y=401)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "333e2e66-b583-4a62-b994-1669147308910",
+                            "Status": "DRAFT",
+                            "Vertices_X": 753,
+                            "Vertices_Y": 317,
+                            "Sequence_No": 5,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT',Vertices_X=753,Vertices_Y=317)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/coa/3dv-line-services/annotation3-dv/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='333e2e66-b583-4a62-b994-1669147308910',Status='DRAFT')"
+                }
+            },
+            {
+                "Shape_Name": "Test",
+                "Shape_Color": "indianred",
+                "Shape_Guid": "2155e777-cb3b-4a05-85c1-1669095227614",
+                "Shape_Type": "R",
+                "LineId": "L77",
+                "Line_Priority": 0,
+                "LineType": "CSA||Cyclone flex-UIC||2683",
+                "Uph": 1298,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "PUBLISH",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "2155e777-cb3b-4a05-85c1-1669095227614",
+                            "Status": "PUBLISH",
+                            "Vertices_X": 885,
+                            "Vertices_Y": 1343,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='2155e777-cb3b-4a05-85c1-1669095227614',Status='PUBLISH',Vertices_X=885,Vertices_Y=1343)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "2155e777-cb3b-4a05-85c1-1669095227614",
+                            "Status": "PUBLISH",
+                            "Vertices_X": -740,
+                            "Vertices_Y": -768,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='2155e777-cb3b-4a05-85c1-1669095227614',Status='PUBLISH',Vertices_X=-740,Vertices_Y=-768)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/coa/3dv-line-services/annotation3-dv/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='2155e777-cb3b-4a05-85c1-1669095227614',Status='PUBLISH')"
+                }
+            },
+            {
+                "Shape_Name": "MS_TEST",
+                "Shape_Color": "azure",
+                "Shape_Guid": "5abc028c-e665-4e6e-9118-1669094944589",
+                "Shape_Type": "R",
+                "LineId": "l3",
+                "Line_Priority": 0,
+                "LineType": "CSA||Cyclone flex-UIC||2683",
+                "Uph": 1298,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "PUBLISH",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "5abc028c-e665-4e6e-9118-1669094944589",
+                            "Status": "PUBLISH",
+                            "Vertices_X": 2675,
+                            "Vertices_Y": 1390,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='5abc028c-e665-4e6e-9118-1669094944589',Status='PUBLISH',Vertices_X=2675,Vertices_Y=1390)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "5abc028c-e665-4e6e-9118-1669094944589",
+                            "Status": "PUBLISH",
+                            "Vertices_X": -1775,
+                            "Vertices_Y": -1060,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='5abc028c-e665-4e6e-9118-1669094944589',Status='PUBLISH',Vertices_X=-1775,Vertices_Y=-1060)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/coa/3dv-line-services/annotation3-dv/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='5abc028c-e665-4e6e-9118-1669094944589',Status='PUBLISH')"
+                }
+            },
+            {
+                "Shape_Name": "Test",
+                "Shape_Color": "gold",
+                "Shape_Guid": "f492c258-fa16-4173-a96b-1669095218514",
+                "Shape_Type": "R",
+                "LineId": "L66",
+                "Line_Priority": 0,
+                "LineType": "FATP||Burn-in||2683",
+                "Uph": 395,
+                "ConfirmedBy": null,
+                "ConfirmedOn": null,
+                "ConfirmedRequired": null,
+                "Floor": "1F",
+                "Site": "PBPH",
+                "CM": "HHZZ",
+                "Building": "K03",
+                "Status": "PUBLISH",
+                "createdAt": null,
+                "Shape_Vertices": {
+                    "results": [
+                        {
+                            "Shape_Guid": "f492c258-fa16-4173-a96b-1669095218514",
+                            "Status": "PUBLISH",
+                            "Vertices_X": 2688,
+                            "Vertices_Y": 678,
+                            "Sequence_No": 1,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='f492c258-fa16-4173-a96b-1669095218514',Status='PUBLISH',Vertices_X=2688,Vertices_Y=678)"
+                            }
+                        },
+                        {
+                            "Shape_Guid": "f492c258-fa16-4173-a96b-1669095218514",
+                            "Status": "PUBLISH",
+                            "Vertices_X": 152,
+                            "Vertices_Y": 627,
+                            "Sequence_No": 2,
+                            "__metadata": {
+                                "type": "Annotation3DV.GetVertices",
+                                "uri": "/coa/3dv-line-services/annotation3-dv/GetVertices(Shape_Guid='f492c258-fa16-4173-a96b-1669095218514',Status='PUBLISH',Vertices_X=152,Vertices_Y=627)"
+                            }
+                        }
+                    ]
+                },
+                "__metadata": {
+                    "type": "Annotation3DV.GetShapes",
+                    "uri": "/coa/3dv-line-services/annotation3-dv/GetShapes(Floor='1F',Site='PBPH',CM='HHZZ',Building='K03',Shape_Guid='f492c258-fa16-4173-a96b-1669095218514',Status='PUBLISH')"
+                }
+            }
+        ]
+    }
+}
+
+

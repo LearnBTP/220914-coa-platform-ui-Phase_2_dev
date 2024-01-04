@@ -1,0 +1,7 @@
+/mta_archives/
+/node_modules/
+/resources/
+coverage/
+/coa-nonrfid-tracker-ui/coverage/
+/coa-nonrfid-tracker-ui/coverage/reports
+/coa-nonrfid-tracker-ui/package-lock.json

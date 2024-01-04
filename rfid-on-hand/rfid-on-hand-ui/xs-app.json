@@ -1,0 +1,19 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+        "source": "^/coa-api/(.*)$",
+        "target": "$1",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "destination": "COA_APIM"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

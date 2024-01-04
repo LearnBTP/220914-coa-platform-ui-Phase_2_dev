@@ -1,0 +1,44 @@
+{
+    "d": {
+        "results": [
+            {
+                "Simulation_name": "Simulation_3",
+                "From_GHSite": "iPhone_FXCN",
+                "CM": "PBPH",
+                "Site": "",
+                "Program": "D53G",
+                "Line_ID": "Burn-in",
+                "Line_Type": "",
+                "To_GHSite": "iPhone_FXZZ",
+                "To_CM":"HHYY",
+                "To_Site":"HGGH",
+                "To_Program":"D42",
+                "To_Business_Grp": "MAC",
+                "createdAt": "",
+                "createdBy": "",
+                "modifiedAt": "",
+                "modifiedBy": ""
+
+            },
+
+            {
+                "Simulation_name": "S2",
+                "From_GHSite": "iPhone_FXCN",
+                "CM": "HHZZ",
+                "Site": "",
+                "Program": "",
+                "Line_ID": "",
+                "Line_Type": "",
+                "To_GHSite": "",
+                "To_CM":"HHZZ",
+                "To_Site":"FXTY",
+                "To_Program":"",
+                "To_Business_Grp": "",
+                "createdAt": "",
+                "createdBy": "",
+                "modifiedAt": "",
+                "modifiedBy": ""
+            }
+        ]
+    }
+}

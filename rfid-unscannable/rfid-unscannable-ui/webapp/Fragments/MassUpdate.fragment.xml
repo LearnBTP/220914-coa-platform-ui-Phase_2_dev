@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:table="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:common="sap.suite.ui.commons">
+   <Dialog id="massupdate" contentHeight="30%" contentWidth="30%" draggable="true" class="zFileUpld sapUiSizeCompact" 
+      title="Mass Update" horizontalScrolling="true" resizable="true" showHeader="true" type="Standard" verticalScrolling="true" afterClose=".onAfterDilogClose">
+
+<content>
+			<smartForm:SmartForm id="smartUpdateForm" entityType="" editable="true"
+				class="sapUiResponsiveMargin zBorder zMassUpdateForm">
+				<smartForm:Group >
+                    <smartForm:GroupElement id="TO_GHSITE" label="To Site(GH)">
+						 <Input xmlns="sap.m" id="inptosite" required="false"/>
+					</smartForm:GroupElement>
+                    <smartForm:GroupElement id="TO_PROGRAM" label="To Program">
+						<Input xmlns="sap.m" id="inptoprogram" liveChange=".toCapital" required="false"/>
+					</smartForm:GroupElement>
+                    <smartForm:GroupElement id="TO_BUSINESS_GRP" label="To Business Group">
+						<Input xmlns="sap.m" id="inptobusiness" liveChange=".toCapital" required="false"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="FLEX_KITS" label="Flex Kits">
+						<Input id="inpflexkits"  maxLength="1"></Input>
+					</smartForm:GroupElement>
+
+					<smartForm:GroupElement id="QTY" label="Transfer Quantity">
+						<Input id="inpqty"  type="Number" liveChange="onChangeTQSmartble" required="false"></Input>
+					</smartForm:GroupElement>
+
+					<smartForm:GroupElement id="TRANSFER_FLAG" label="Transfer Flag">
+						<Input id="inptransferflg"  maxLength="1"></Input>
+					</smartForm:GroupElement>
+
+					<smartForm:GroupElement id="COMMENT" label="Comments">
+						<TextArea id="inpComments"  required="false"></TextArea>
+					</smartForm:GroupElement>
+
+					
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+
+        <beginButton>
+			<Button xmlns="sap.m" text="Save" id="btnOK" press=".onMassUpdateAccept" class="applePrimaryBtn" type="Emphasized"/>
+		</beginButton>
+
+      <endButton>
+      <Button id="btndialogclose" text="Cancel" press="onCloseDialog" class="appleSecondaryBtn" />
+      </endButton>
+   </Dialog>
+</core:FragmentDefinition>

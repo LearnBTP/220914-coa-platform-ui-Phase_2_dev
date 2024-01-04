@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:table="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform" 
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:common="sap.suite.ui.commons" xmlns:customselect="com.apple.coa.control">
+	<Dialog id="SynchDialog" afterOpen="chkSynchDropdownData" title="Sync Non-RFID Projection" resizable="true" draggable="true"  contentWidth="30%" contentHeight="35%" class="zDialog" afterClose=".onAfterSyncDilogClose">
+		<content>
+			<smartForm:SmartForm id="smartSynchForm" editable="true"
+				class="sapUiSizeCompact">
+				<smartForm:Group id="CoreGroupSync">
+					
+					<smartForm:GroupElement id="GH_SITE"  label="GH SITE">
+			 			<MultiComboBox  showClearIcon="true"   showSelectAll="true" required="true" id="ghSiteInput" loadItems=".getGhSiteDD($event,true,'GH_Site_Org')"
+							items="{
+								path: 'NonRFIDTTModel>/GH_Site', templateShareable:false
+							}" selectedKeys="{NonRFIDTTModel>/selGHSite}" >
+							<core:Item id="_IDGenItem1"  key="{NonRFIDTTModel>GH_Site_Org}" text="{NonRFIDTTModel>GH_Site_Org}"
+							  />
+							</MultiComboBox>
+                    </smartForm:GroupElement>
+					<smartForm:GroupElement id="Program" label="Program">
+			 			<MultiComboBox 	id="programInput" showClearIcon="true"  showSelectAll="true" loadItems=".getProgramDD($event,true,'Program_Org')"
+							items="{
+								path: 'NonRFIDTTModel>/Program', templateShareable:false
+							}" selectedKeys="{NonRFIDTTModel>/selprogram}">
+							<core:Item key="{NonRFIDTTModel>Program_Org}" text="{NonRFIDTTModel>Program_Org}" id="programinput"/>
+							</MultiComboBox>
+                    </smartForm:GroupElement>
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+		<beginButton>
+			<Button xmlns="sap.m" text="Start Sync" id="synOK" press=".onSyncAccept" class="applePrimaryBtn" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button xmlns="sap.m" text="Cancel" id="btnCancelSync" press="onSyncDialofClose" class="appleAlternateBtn" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,299 @@
+<mvc:View controllerName="com.apple.coa.rfidunscannableui.controller.Main"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+ 
+>
+    <Page id="page" showHeader="false" backgroundDesign="Transparent" showFooter="false" enableScrolling="true">
+        <content>
+            <semantic:SemanticPage id="pageDrawingSearch" fitContent="false" class="dPageHeader" headerExpanded="true" headerPinnable="true" preserveHeaderStateOnScroll="false" showFooter="false" toggleHeaderOnTitleClick="false">
+                <semantic:headerContent>
+                    <Title id="title" level="H1" text="RFID UnScannable" class="pageTitleContrast sapUiSmallMarginBottom" />
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        showGoOnFB="true"
+                        entitySet="Carryover_rfid_unscannable"
+                        enableBasicSearch="false"
+                        class="contrastTextSF applePrimaryBtn appleSecondaryBtn"
+                        useToolbar="false"
+                        search=".onSFBSearch"
+                        initialise=".onSFBInitialise"
+                        showClearOnFB="true"
+                        basicSearchFieldName="GH_Site"
+                    >
+                        <smartFilterBar:layoutData>
+                            <FlexItemData shrinkFactor="0" id="fid2" />
+                        </smartFilterBar:layoutData>
+                        <smartFilterBar:controlConfiguration>
+                        <smartFilterBar:ControlConfiguration 
+                        key="CREATEDAT"
+                        conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                        operations: { 
+                                        filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                    {path: 'key', contains: 'TIME',exclude:true},
+                                                    {path: 'key', contains: 'DATE'}
+                                                    ] } }"
+                        visibleInAdvancedArea="false"/>
+                        <smartFilterBar:ControlConfiguration 
+                        key="MODIFIEDAT"
+                        conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                        operations: { 
+                                        filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                    {path: 'key', contains: 'TIME',exclude:true},
+                                                    {path: 'key', contains: 'DATE'}
+                                                    ] } }"
+                        visibleInAdvancedArea="false"/>
+                        <smartFilterBar:ControlConfiguration 
+                        key="REVIEW_DATE"
+                        conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType', 
+                                        operations: { 
+                                        filter: [ {path: 'key', contains: 'YEAR',exclude:true},
+                                                    {path: 'key', contains: 'TIME',exclude:true},
+                                                    {path: 'key', contains: 'DATE'}
+                                                    ] } }"
+                        visibleInAdvancedArea="false"/>
+                            <smartFilterBar:ControlConfiguration key="GH_Site" conditionPanelDefaultOperation="LT" id="cconfig" />
+                        </smartFilterBar:controlConfiguration>
+                    </smartFilterBar:SmartFilterBar>
+                </semantic:headerContent>
+
+                <semantic:content>
+                            <sap.ui.comp.smarttable:SmartTable
+                                xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                                id="rfidunscannabletable"
+                                smartFilterId="smartFilterBar"
+                                customData:useSmartToggle="false"
+                                customData:useSmartField="true"
+                                enableExport="true"
+                                beforeExport=".onBeforeExportRFIDUS"
+                                useVariantManagement="false"
+                                useTablePersonalisation="true"
+                                enableAutoBinding="false"
+                                editable="false"
+                                enableAutoColumnWidth="true"
+                                class="zTable buttonWithIconOnly zSTTitle zTableTrEdit zMultiSelectEdit"
+                                width="100%"
+                                direction="Column"
+                                entitySet="Carryover_rfid_unscannable"
+                                header="RFID UnScannable"
+                                editToggled="onEditToggle"
+                                showFullScreenButton="true"
+                                visible="true"
+                                height="100%"
+                                initialise="onRFIDUSSTInitialise"
+                                fieldChange=".onAgmtFieldChange"
+                                beforeRebindTable="onDataReceived"
+                                editTogglable="{authModel>/modifiy}"
+                                showRowCount="true"
+                                headerLevel="H1"
+                                ignoreFromPersonalisation="GUID,ID"
+                                requestAtLeastFields="GH_SITE,PROGRAM,FROM_BUSINESS_GRP,SEQUENCE_NO,TO_GHSITE,TO_PROGRAM,TO_BUSINESS_GRP,FLEX_KITS,QTY,SAP_CM_SITE,SAP_TO_CM_SITE,Edit"
+                                initiallyVisibleFields="GH_SITE,PROGRAM,FROM_BUSINESS_GRP,AQID,EQUIPMENT_NAME,PO_TYPE,SCOPE,CONSUMABLES,PROJECTED_QTY,COMMENT,NPI_INDICATOR,MAPPED_AQID,STATUS,SYNC_STATUS,CREATEDAT,REVIEW_DATE,REVIEWED_BY_NAME,ERROR,Parent,SEQUENCE_NO">
+                                <smartTable:customToolbar>
+                                    <OverflowToolbar id="OTT" design="Transparent">
+                                        <ToolbarSpacer id='TS' />
+                                        <Button id='OTBRefresh' icon="sap-icon://refresh" tooltip="Refresh" press=".onTableRefresh"  class="buttonWithIconOnly" />
+                                        <Button id="OTBSyncRFIDProj" text="Sync RFID Projection" class="applePrimaryBtnSmartTable sapUiTinyMarginEnd" press=".onSyncRFIDProjection" type="Emphasized" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{= ${authModel>/SyncActionAll}}"/>
+                                        <Button id='OTBSave' text="Save"  press=".onTableDataSave"   class="applePrimaryBtnSmartTable" type="Emphasized" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/modifiy}"/>
+                                        <Button id='OTBMassUpdate' text="Mass Update"  press=".onMassUpdatePress"  class="applePrimaryBtnSmartTable"  type="Emphasized" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/modifiy}"/>
+                                        <Button id = 'OTBApprove'  tooltip="Approve" press=".onCOSmartTbleApprove"  text="Approve"  class="applePrimaryBtnSmartTable"  type="Emphasized" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/approve}"/>
+                                        <Button id = 'OTBReject'   tooltip="Reject" press=".onCOSmartTbleReject"  text="Reject"  class="appleDangerBtnSmartTable" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/approve}"/>
+                                        <MenuButton id='idCancelMenuBtn' text="Cancel" class="appleDangerBtnSmartTable"  enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/modifiy}">
+                                        <menu>
+                                            <Menu id="idCancelMenu" itemSelected="onMenuDownloadAct">
+                                                <MenuItem id='OTBCancelRequest' class="appleDangerBtnSmartTable" key="cancel" text="Cancel Request" press=".onCancel"  />
+                                                <MenuItem id='OTBReset' class="appleDangerBtnSmartTable" key="reset" text="Reset Approval" press=".onCancel" />
+                                            </Menu>
+                                        </menu>
+                                        </MenuButton>
+                                        <Button id="OTBDelete" text="Delete" type="Default" press=".onDelete" class="appleDangerBtnSmartTable sapUiTinyMarginEnd" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/modifiy}"/>
+                                        <u:FileUploader id="fileUploader" sameFilenameAllowed="true"  name="myFileUpload" tooltip="Upload your file" buttonOnly="true" buttonText="Upload" class="appleAlternateBtn sapUiTinyMarginEnd"  change="handleUploadPress" enabled="{= ${sm4rtM0d3l>/editable}}" visible="{authModel>/modifiy}"/>
+                                        <Button id="OTBHistory" icon="sap-icon://history" text="Change Log" press="showChangeLog" class="appleAlternateBtn" />
+                                    </OverflowToolbar>
+                                </smartTable:customToolbar>
+                                <t:Table id="idMPTab" visibleRowCountMode="Interactive" visibleRowCount="12" rowSelectionChange=".tableSelChange">
+
+                                <t:columns >
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="TO_GHSITE" sortProperty="TO_GHSITE">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "TO_GHSITE", "leadingProperty": "TO_GHSITE",  "columnIndex": "8"}' />
+                                        </t:customData>
+                                        <Label text="To GH Site" required="true"/>
+                                        <t:template>
+                                        <HBox id="hboxTO_GHSITE" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtsite" text="{TO_GHSITE}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inptosite" value="{TO_GHSITE}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="TO_PROGRAM" sortProperty="TO_PROGRAM">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "TO_PROGRAM", "leadingProperty": "TO_PROGRAM",  "columnIndex": "9"}' />
+                                        </t:customData>
+                                        <Label text="To Product" required="true"/>
+                                        <t:template>
+                                        <HBox id="hboxTO_PROGRAM" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtTO_PROGRAM" text="{TO_PROGRAM}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                             <Input id="inpTO_PROGRAM" value="{TO_PROGRAM}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="TO_BUSINESS_GRP" sortProperty="TO_BUSINESS_GRP">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "TO_BUSINESS_GRP", "leadingProperty": "TO_BUSINESS_GRP",  "columnIndex": "10"}' />
+                                        </t:customData>
+                                        <Label text="To Business Group" required="true" labelFor="inpTO_BUSINESS_GRP"/>
+                                        <t:template>
+                                        <HBox id="hboxTO_BUSINESS_GRP" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtTO_BUSINESS_GRP" text="{TO_BUSINESS_GRP}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                            <Input id="inpTO_BUSINESS_GRP" value="{TO_BUSINESS_GRP}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" liveChange=".toCapital"/>
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="FLEX_KITS" sortProperty="FLEX_KITS">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "FLEX_KITS", "leadingProperty": "FLEX_KITS",  "columnIndex": "11"}' />
+                                        </t:customData>
+                                        <Label text="Flex Kits" />
+                                        <t:template>
+                                        <HBox id="hboxCm_FLEX_KITS" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtFLEX_KITS" text="{FLEX_KITS}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpFLEX_KITS" maxLength="1" value="{FLEX_KITS}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="COMMENT" sortProperty="COMMENT">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "COMMENT", "leadingProperty": "COMMENT",  "columnIndex": "12"}' />
+                                        </t:customData>
+                                        <Label text="Comment" required="true"/>
+                                        <t:template>
+                                        <HBox id="hboxCOMMENT" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtCOMMENT" text="{COMMENT}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpCOMMENT" value="{COMMENT}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="TRANSFER_FLAG" sortProperty="TRANSFER_FLAG">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "TRANSFER_FLAG", "leadingProperty": "TRANSFER_FLAG",  "columnIndex": "13"}' />
+                                        </t:customData>
+                                        <Label text="Transfer Flag" />
+                                        <t:template>
+                                        <HBox id="hbox_TRANSFER_FLAG" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtTRANSFER_FLAG" text="{TRANSFER_FLAG}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                            <Input id="inpTRANSFER_FLAG" maxLength="1" value="{TRANSFER_FLAG}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="QTY" sortProperty="QTY">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "QTY", "leadingProperty": "QTY",  "columnIndex": "15"}' />
+                                        </t:customData>
+                                        <Label text="Transfer Quantity"/>
+                                        <t:template>
+                                        <HBox id="hboxQTY" class="zCoreSelectColumns" alignItems="Center" justifyContent="Start">
+                                        <items>
+                                            <Text id="txtQTY" text="{QTY}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                            <Input id="inpQTY" value="{QTY}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" type="Number" liveChange="onChangeTQSmartble"/>
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+
+                                    <t:Column hAlign="Center" width="12rem" >
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "SPLIT", "leadingProperty": "SPLIT",  "columnIndex": "17"}' />
+                                        </t:customData>
+                                        <Label text="Split" />
+                                        <t:template>
+                                        <HBox id="hboxSplit" class="zCoreSelectColumns" alignItems="Center" justifyContent="Center">
+                                        <items>
+                                        <core:Icon id="_IDGenIcon3" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" src="sap-icon://split" press="onSplit"  />
+                                           
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="CREATEDAT" sortProperty="CREATEDAT" >
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "CREATEDAT", "leadingProperty": "CREATEDAT",  "columnIndex": "21"}' />
+                                        </t:customData>
+                                        <Label text="Created On" />
+                                        <t:template>
+                                        <HBox id="hboxCREATEDAT" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                        <Text id="txtCREATEDAT" text="{path: 'CREATEDAT',formatter: '.formatDate'}"/>
+                                           
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="MODIFIEDAT" sortProperty="MODIFIEDAT">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "MODIFIEDAT", "leadingProperty": "MODIFIEDAT",  "columnIndex": "23"}' />
+                                        </t:customData>
+                                        <Label text="Submitted on" />
+                                        <t:template>
+                                        <HBox id="hboxCm_Recommendation" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                           <Text id="txtMODIFIEDAT" text="{path: 'MODIFIEDAT',formatter: '.formatDate'}"/>    
+                                        </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column hAlign="Begin" width="12rem" filterProperty="REVIEW_DATE" sortProperty="REVIEW_DATE">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "REVIEW_DATE", "leadingProperty": "REVIEW_DATE",  "columnIndex": "25"}' />
+                                        </t:customData>
+                                        <Label text="Reviewed On" />
+                                        <t:template>
+                                        <HBox id="hboxREVIEW_DATE" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                        <Text id="txtREVIEW_DATE"  text="{path: 'REVIEW_DATE',formatter: '.formatDate'}"/>
+                                            </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+                                    </t:columns >
+
+                                </t:Table>
+                            </sap.ui.comp.smarttable:SmartTable>
+                </semantic:content>
+            </semantic:SemanticPage>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,163 @@
+<mvc:View
+    controllerName="com.apple.coa.nonrfidprojectionui.controller.main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+       xmlns:u="sap.ui.unified"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Page id="main" showHeader="false" backgroundDesign="Transparent" showFooter="false" enableScrolling="false">
+        <content>
+            <semantic:SemanticPage id="pageDrawingSearch" fitContent="false" class="dPageHeader" headerExpanded="true" headerPinnable="true" preserveHeaderStateOnScroll="false" showFooter="false" toggleHeaderOnTitleClick="false">
+               
+                <semantic:headerContent>
+                        <Title id="titl" level="H1" text="Non-RFID-Projection" class="pageTitleContrast sapUiSmallMarginBottom" />
+                    <smartFilterBar:SmartFilterBar
+                        id="idNonRfidFilBar"
+                        showGoOnFB="true"
+                        useToolbar="false"
+                        entitySet="NonRFIDProjectionDetails"
+                        class="contrastTextSF applePrimaryBtn appleSecondaryBtn"
+                        search="onCOTbleSearch"
+                         showClearOnFB="true"
+                       initialise=".onSFBInitialise"
+                      
+                    >
+                      
+                    </smartFilterBar:SmartFilterBar>
+                </semantic:headerContent>
+                <semantic:content>
+                        <sap.ui.comp.smarttable:SmartTable
+                            xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                            id="idnonrfidSmartTble"
+                            customData:useSmartToggle="true"
+                            customData:useSmartField="true"
+                            editable="true"
+                            visible="true"
+                            enableExport="true"
+                            beforeExport="onBeforeExportNonRfid"
+                            enableAutoColumnWidth="true"
+                            header="Non RFID Projection"
+                             fitContainer="true"
+                            placeToolbarInTable="true"
+                            showFullScreenButton="true"
+                            useVariantManagement="false"
+                            editTogglable="{mAuthorizedModel>/modify}"
+                            showRowCount="true"
+                            useTablePersonalisation="true"
+                            enableAutoBinding="false"
+                            class="zTable sapUiResponsiveContentPadding buttonWithIconOnly zTableTrEdit zMultiSelectEdit"
+                            width="100%"
+                            direction="Column"
+                            entitySet="NonRFIDProjectionDetails"
+                            beforeRebindTable="onDataReceived"
+                            requestAtLeastFields="GH_SITE,PROGRAM,AQID,SHORT_NAME,PARENT_ITEM,PO_TYPE,EQUIPMENT_NAME,MFR,STATION,DISPLAY_NAME,GROUP,LEVEL,ALT_STATION,GROUP_PRIORITY,SCOPE,DEPT,EQUIPMENT_TYPE,CATEGORY,SPARE_QTY,SPARE_RATE,LINE,UPH,SPL,MP_INTENT_QTY,CONSUMABLES,RELEASE_QTY,RFID_SCOPE,QPL,CARRY_OVER,BOH,CREATEDAT,CREATEDBY_NAME,CREATEDBY_MAIL,MODIFIEDAT,MODIFIEDBY_NAME,MODIFIEDBY_MAIL,ErrorMsg,CM,SITE,Balance_Qty"
+                           
+                            smartFilterId="idNonRfidFilBar"
+                            initialise="onSmartTableInit"
+                            ignoredFields="Edit"
+                            initiallyVisibleFields="GH_SITE,PROGRAM,UPH,LINE,AREA,AQID,SHORT_NAME,PARENT_ITEM,SCOPE,ALT_STATION,STATION,GROUP_PRIORITY,EQUIPMENT_TYPE,RFID_SCOPE,QPL,BOH,Balance_Qty,CARRY_OVER,RELEASE_QTY,SPL,MP_INTENT_QTY,SPARE_RATE,SPARE_QTY,CONSUMABLES,PO_TYPE,EQUIPMENT_NAME,MFR,DISPLAY_NAME,GROUP,LEVEL,DEPT,CATEGORY,CREATEDAT,CREATEDBY_NAME,CREATEDBY_MAIL,MODIFIEDAT,MODIFIEDBY_NAME,MODIFIEDBY_MAIL,ErrorMsg,CM,SITE"
+                        >
+                            <sap.ui.comp.smarttable:customToolbar>
+                                <OverflowToolbar id="idnonrfidTbleToolBar" design="Transparent">
+                                 <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+                                    <OverflowToolbarButton id='OTBRefresh' icon="sap-icon://refresh" tooltip="Refresh" press="onCOTbleSearch" class="buttonWithIconOnly" />
+                                     <Button id='idCOOQplReset'   text="QPL Reset"  visible="{mAuthorizedModel>/modify}" enabled="{= ${sm4rtM0d3l>/editable}}"  tooltip="QPL Reset" type="Emphasized"  press="onQplReset" class="applePrimaryBtn" />
+                                    <Button id='idCOOSave'   text="Save"  visible="{mAuthorizedModel>/modify}" enabled="{= ${sm4rtM0d3l>/editable}}"  tooltip="Save Changes" type="Emphasized"  press="onSave" class="applePrimaryBtn" />
+                                    <Button id='idCOUpdate' text="Mass Update"  visible="{mAuthorizedModel>/modify}" enabled="{= ${sm4rtM0d3l>/editable}}"  tooltip="Mass Update" type="Emphasized"  press="onOpenUploadDialog" class="applePrimaryBtn" />
+                                      <MenuButton id='idDownloadTemplate' text="Download Template" class="appleDangerBtnSmartTable"  enabled="true" visible="true">
+                                        <menu>
+                                            <Menu id="idDownloadMenu" itemSelected="onMenuDownloadAct">
+                                                <MenuItem id='OTBNOQPL' class="appleDangerBtnSmartTable" key="noqpl" text="{i18n>noqpl}" press=".onTemplateDownload"  />
+                                                <MenuItem id='OTBQPL' class="appleDangerBtnSmartTable" key="qpl" text="{i18n>qpl}" press=".onTemplateDownload" />
+                                            </Menu>
+                                        </menu>
+                                        </MenuButton>
+                                      <u:FileUploader
+                                        id="fileUploader"
+                                         visible="{mAuthorizedModel>/modify}"
+                                        sameFilenameAllowed="true"
+                                        name="myFileUpload"
+                                        tooltip="Upload your file"
+                                        fileType="csv"
+                                        buttonOnly="true"
+                                        buttonText="Upload"
+                                        class="appleAlternateBtn"
+                                        change="handleUploadPress"
+                                         enabled="{= ${sm4rtM0d3l>/editable}}"
+                                    />
+                                    <Button id='idCOHistory' text="Change Log" tooltip="Change Logs" press="onPressHistory" class="appleAlternateBtn" />
+
+                                </OverflowToolbar>
+                            </sap.ui.comp.smarttable:customToolbar>
+                           <table:Table id="idNonRfidtble" selectionBehavior="RowSelector" selectionMode="MultiToggle" rowSelectionChange=".TableRowSelectionChange" visibleRowCountMode="Interactive" visibleRowCount="16" >
+                                <table:columns>
+                                <table:Column id="idrfidscope"
+                                        filterProperty="RFID_SCOPE"
+                                        width="10rem"
+                                        sortProperty="RFID_SCOPE"
+                                        customData:p13nData='\{"columnKey": "RFID_SCOPE", "columnIndex":"12", "leadingProperty":"RFID_SCOPE", "additionalProperty":"RFID_SCOPE", "sortProperty": "RFID_SCOPE", "filterProperty": "RFID_SCOPE", "type":"string", "maxLength":"20"}'
+                                    >
+                                        <Label id="idrfidscopelabel" text="RFID Scope" />
+                                        <table:template>
+                                            <HBox id="drfidHBox" class="zCoreSelectColumns">
+                                                <items>
+                                                    <Text id="idrfidscopetxt" text="{RFID_SCOPE}" class="zCoreTextColumn"  visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}" />
+                                                     <Input  id="idrfidscopeinpt"  value="{RFID_SCOPE}" liveChange="onChancarOverSmrtble" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" />
+                                                     
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column id="idcarryoverclmn"
+                                        filterProperty="CARRY_OVER"
+                                        width="10rem"
+                                        sortProperty="CARRY_OVER"
+                                        customData:p13nData='\{"columnKey": "CARRY_OVER", "columnIndex":"16", "leadingProperty":"CARRY_OVER", "additionalProperty":"CARRY_OVER", "sortProperty": "CARRY_OVER", "filterProperty": "CARRY_OVER", "type":"string", "maxLength":"20"}'
+                                    >
+                                        <Label id="idrcarryoverlabel" text="Carry Over Qty" />
+                                        <table:template>
+                                            <HBox id="drcarryoverHbx" class="zCoreSelectColumns">
+                                                <items>
+                                                       <Text id="txtcarryover" text="{CARRY_OVER}"  visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                                      <Input id="idcarryoveripput" value="{CARRY_OVER}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}" class="zCoreTextColumn"  liveChange="onChancarOverSmrtble"/>
+                                                     
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                     <table:Column id="idqplclmn"
+                                        filterProperty="QPL"
+                                        width="10rem"
+                                        sortProperty="QPL"
+                                        customData:p13nData='\{"columnKey": "QPL", "columnIndex":"13", "leadingProperty":"QPL", "additionalProperty":"QPL", "sortProperty": "QPL", "filterProperty": "QPL", "type":"string", "maxLength":"20"}'
+                                    >
+                                        <Label id="idqpllabel" text="QPL" />
+                                        <table:template>
+                                            <HBox id="idqplHbx" class="zCoreSelectColumns">
+                                                <items>
+                                                       <Text id="txtqpl" text="{QPL}"  visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                                      <Input id="idqplipput" value="{QPL}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"  class="zCoreTextColumn"  liveChange="onChancarOverSmrtble"/>
+                                                     
+                                                </items>
+                                            </HBox>
+                                        </table:template>
+                                    </table:Column>
+                                    
+                                </table:columns>
+                            </table:Table> 
+                           
+                        </sap.ui.comp.smarttable:SmartTable>
+                    <!-- </FlexBox>
+                    </Panel> -->
+                </semantic:content> 
+            </semantic:SemanticPage>
+        </content>
+    </Page>
+</mvc:View>

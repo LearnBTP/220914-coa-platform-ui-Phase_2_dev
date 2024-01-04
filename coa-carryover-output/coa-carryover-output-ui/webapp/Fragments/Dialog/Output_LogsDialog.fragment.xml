@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog title="Error Log" contentHeight="60%"
+        contentWidth="60%" class="sapUiSizeCompact" afterClose="onAfterErrorClose" afterOpen=""
+        beforeOpen="">
+        <content>
+        <smartTable:SmartTable
+                id="tabOutputError"
+                tableBindingPath="OutputErrorModel>/CarryoverOutput"
+                entitySet="CO_Output"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Errors"
+                initialise="errorTabInit"
+                enableExport="true"
+                showRowCount="true"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                initiallyVisibleFields="From_Product,AQID,To_Product,From_GHSite,To_GHSite,Quantity,CM_Balance_Qty,Comment,CO_Type,BeError"
+                ignoredFields="From_Business_Grp,SHORT_NAME,To_Business_Grp,EQ_Name,MFR,Status,Approved_By,Review_Date,modifiedBy,modifiedAt,createdAt,createdBy"
+            >
+                <t:Table id="ErrCOTable" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+      <endButton>
+    
+            <Button text="Ok" press="fnOutput_frag_CloseLog"
+                 class="applePrimaryBtn" />
+     </endButton>
+    </Dialog>
+</core:FragmentDefinition>

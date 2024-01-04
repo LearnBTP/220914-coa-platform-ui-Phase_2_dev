@@ -1,0 +1,5 @@
+/mta_archives/
+/node_modules/
+/resources/
+/rfid-unscannable-ui/coverage/
+/rfid-unscannable-ui/package-lock.json

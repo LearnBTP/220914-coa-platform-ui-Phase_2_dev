@@ -1,0 +1,49 @@
+{
+    "name": "rfidonhand",
+    "version": "0.0.1",
+    "private": true,
+    "description": "A COA Fiori application.",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html",
+    "devDependencies": {
+        "@sap/ui5-builder-webide-extension": "^1.1.8",
+        "@sap/ux-ui5-tooling": "^1.0.0",
+        "@ui5/cli": "^3.4.0",
+        "@ui5/fs": "^2.0.6",
+        "@ui5/logger": "^2.0.1",
+        "karma": "^6.4.0",
+        "karma-chrome-launcher": "^3.1.1",
+        "karma-coverage": "^2.1.0",
+        "karma-ui5": "^3.0.3",
+        "mbt": "^0.2.8",
+        "rimraf": "3.0.2",
+        "ui5-task-zipper": "^0.5.0"
+    },
+    "scripts": {
+        "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#coarfidonhand-display\"",
+        "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#coarfidonhand-display\"",
+        "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+        "deploy": "fiori verify",
+        "deploy-config": "fiori add deploy-config",
+        "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
+        "start-mock": "fiori run --open \"test/mockServer.html?sap-ui-xx-viewCache=false&responderOn=true\"",
+        "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
+        "unit-tests": "fiori run --open 'test/unit/unitTests.qunit.html'",
+        "int-tests": "fiori run --open 'test/integration/opaTests.qunit.html'",
+        "suite-tests": "fiori run --open 'test/testsuite.qunit.html'",
+        "build:cf": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateManifestBundle generateCachebusterInfo"
+    },
+    "ui5": {
+        "dependencies": [
+            "@sap/ux-ui5-tooling",
+            "@sap/ui5-builder-webide-extension",
+            "ui5-task-zipper",
+            "mbt"
+        ]
+    },
+    "sapuxLayer": "CUSTOMER_BASE"
+}

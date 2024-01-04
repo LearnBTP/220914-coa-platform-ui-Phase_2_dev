@@ -1,0 +1,136 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "com.apple.coa.coalinesimulationui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "dataSources": {
+      "GhSite_dd": {
+        "uri": "localService/mockdata/gh_site_dd.json",
+        "type": "JSON"
+      },
+      "LineId_DD": {
+        "uri": "localService/mockdata/lineid_dd.json",
+        "type": "JSON"
+      },
+      "Program_DD": {
+        "uri": "localService/mockdata/program_dd.json",
+        "type": "JSON"
+      }
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.9.3",
+      "toolsId": "1823730b-90c9-4b7c-ad97-704f6352ed15"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.108",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.apple.coa.coalinesimulationui.i18n.i18n"
+        }
+      },
+      "GhSiteDD": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "GhSite_dd"
+      },
+      "LineIdDD": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "LineId_DD"
+      },
+      "ProgramDD": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "Program_DD"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.apple.coa.coalinesimulationui.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "TargetNoAuth":{
+          "viewId": "NoAuthoriation",
+          "viewName": "NoAuthoriation",
+          "transition":"fade"
+      }
+      }
+    },
+    "rootView": {
+      "viewName": "com.apple.coa.coalinesimulationui.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

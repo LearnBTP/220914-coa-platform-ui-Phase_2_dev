@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="output" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="CarryoverOutput" EntityType="output.CarryoverOutput"/>
+        <EntitySet Name="CO_Output" EntityType="output.CO_Output"/>
+        <EntitySet Name="F4help" EntityType="output.F4help"/>
+        <EntitySet Name="Upload_Output" EntityType="output.Upload_Output"/>
+        <EntitySet Name="output_action" EntityType="output.output_action"/>
+      </EntityContainer>
+      <EntityType Name="CarryoverOutput">
+        <Key>
+          <PropertyRef Name="From_CM"/>
+          <PropertyRef Name="From_Site"/>
+          <PropertyRef Name="From_Product"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="To_CM"/>
+          <PropertyRef Name="To_Site"/>
+          <PropertyRef Name="To_Product"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="From_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="EQ_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="225"/>
+        <Property Name="Quantity" Type="Edm.Int32"/>
+        <Property Name="CM_Balance_Qty" Type="Edm.Int32"/>
+        <Property Name="Approved_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="150"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Approved_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Approved_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CO_Type" Type="Edm.String" MaxLength="10"/>
+        <Property Name="BeError" Type="Edm.String" MaxLength="150"/>
+      </EntityType>
+      <EntityType Name="CO_Output">
+        <Key>
+          <PropertyRef Name="createdAt"/>
+          <PropertyRef Name="createdBy"/>
+          <PropertyRef Name="modifiedAt"/>
+          <PropertyRef Name="modifiedBy"/>
+          <PropertyRef Name="From_CM"/>
+          <PropertyRef Name="From_Site"/>
+          <PropertyRef Name="From_Product"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="To_CM"/>
+          <PropertyRef Name="To_Site"/>
+          <PropertyRef Name="To_Product"/>
+          <PropertyRef Name="From_GHSite"/>
+          <PropertyRef Name="To_GHSite"/>
+          <PropertyRef Name="From_Business_Grp"/>
+          <PropertyRef Name="To_Business_Grp"/>
+          <PropertyRef Name="EQ_Name"/>
+          <PropertyRef Name="MFR"/>
+          <PropertyRef Name="Quantity"/>
+          <PropertyRef Name="CM_Balance_Qty"/>
+          <PropertyRef Name="Approved_By"/>
+          <PropertyRef Name="Review_Date"/>
+          <PropertyRef Name="Status"/>
+          <PropertyRef Name="Comment"/>
+          <PropertyRef Name="SAP_CM_Site"/>
+          <PropertyRef Name="SAP_To_CM_Site"/>
+          <PropertyRef Name="SHORT_NAME"/>
+          <PropertyRef Name="modifiedBy_Name"/>
+          <PropertyRef Name="modifiedBy_mail"/>
+          <PropertyRef Name="createdBy_Name"/>
+          <PropertyRef Name="createdBy_mail"/>
+          <PropertyRef Name="Approved_By_Name"/>
+          <PropertyRef Name="Approved_By_mail"/>
+          <PropertyRef Name="CO_Type"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="From_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="EQ_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Quantity" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="CM_Balance_Qty" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Approved_By" Type="Edm.String" Nullable="false"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="SHORT_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Approved_By_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Approved_By_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="CO_Type" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="BeError" Type="Edm.String" MaxLength="150"/>
+      </EntityType>
+      <EntityType Name="F4help">
+        <Key>
+          <PropertyRef Name="To_GHSite"/>
+          <PropertyRef Name="To_Product"/>
+          <PropertyRef Name="To_Business_Grp"/>
+          <PropertyRef Name="From_GHSite"/>
+          <PropertyRef Name="From_Product"/>
+          <PropertyRef Name="From_Business_Grp"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="MFR"/>
+          <PropertyRef Name="SHORT_NAME"/>
+          <PropertyRef Name="EQ_Name"/>
+          <PropertyRef Name="Status"/>
+        </Key>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="225" Nullable="false"/>
+        <Property Name="SHORT_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="EQ_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="Upload_Output" m:HasStream="true">
+        <Property Name="msg" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="output_action">
+        <Property Name="OutputData" Type="Collection(output.data)" Nullable="false"/>
+        <Property Name="URL" Type="Edm.String"/>
+        <Property Name="CM_Balance_Qty" Type="Edm.Int32"/>
+        <Property Name="Action" Type="Edm.String" MaxLength="20"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="80"/>
+      </EntityType>
+      <ComplexType Name="data">
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="From_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="From_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="From_Product" Type="Edm.String" MaxLength="40"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Product" Type="Edm.String" MaxLength="40"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="EQ_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Quantity" Type="Edm.Int32"/>
+        <Property Name="CM_Balance_Qty" Type="Edm.Int32"/>
+        <Property Name="Approved_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="80"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Approved_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Approved_By_mail" Type="Edm.String" MaxLength="255"/>
+      </ComplexType>
+      <Annotations Target="output.CarryoverOutput/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/From_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/From_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/From_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/To_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/From_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/From_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/EQ_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/Quantity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/CM_Balance_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="New"/>
+              <PropertyValue Property="Value" String="New"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="Pending"/>
+              <PropertyValue Property="Value" String="Pending"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="Approved"/>
+              <PropertyValue Property="Value" String="Approved"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="Rejected"/>
+              <PropertyValue Property="Value" String="Rejected"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/Comment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/SAP_To_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/CO_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CarryoverOutput/BeError" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>To_GHSite</PropertyPath>
+            <PropertyPath>To_Product</PropertyPath>
+            <PropertyPath>To_Business_Grp</PropertyPath>
+            <PropertyPath>From_GHSite</PropertyPath>
+            <PropertyPath>From_Product</PropertyPath>
+            <PropertyPath>From_Business_Grp</PropertyPath>
+            <PropertyPath>AQID</PropertyPath>
+            <PropertyPath>MFR</PropertyPath>
+            <PropertyPath>SHORT_NAME</PropertyPath>
+            <PropertyPath>EQ_Name</PropertyPath>
+            <PropertyPath>Status</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="From_GHSite"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="From_Product"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="From_Business_Grp"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="AQID"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_GHSite"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_Product"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_Business_Grp"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="MFR"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="EQ_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="SHORT_NAME"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Quantity"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="CM_Balance_Qty"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Comment"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Status"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="35rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Review_Date"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="30rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="createdBy_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="createdAt"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="modifiedBy_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="modifiedAt"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="BeError"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="output.EntityContainer/CO_Output" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>To_GHSite</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="output.CO_Output/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Common.Label" String="Created By ID"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Common.Label" String="Updated On"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Common.Label" String="Updated By ID"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/From_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="From CM"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/From_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="From Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/From_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="From_Product"/>
+                  <PropertyValue Property="ValueListProperty" String="From_Product"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From Product"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="AQID"/>
+                  <PropertyValue Property="ValueListProperty" String="AQID"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="AppleID"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="To CM"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="To Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/To_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_Product"/>
+                  <PropertyValue Property="ValueListProperty" String="To_Product"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="To Product"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/From_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="From_GHSite"/>
+                  <PropertyValue Property="ValueListProperty" String="From_GHSite"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From GH Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_GHSite"/>
+                  <PropertyValue Property="ValueListProperty" String="To_GHSite"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="To GH Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/From_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="From_Business_Grp"/>
+                  <PropertyValue Property="ValueListProperty" String="From_Business_Grp"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From Business Group"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_Business_Grp"/>
+                  <PropertyValue Property="ValueListProperty" String="To_Business_Grp"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="To Business Group"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/EQ_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="EQ_Name"/>
+                  <PropertyValue Property="ValueListProperty" String="EQ_Name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="EQ Name"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="MFR"/>
+                  <PropertyValue Property="ValueListProperty" String="MFR"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="MFR"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Quantity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Quantity"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/CM_Balance_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM Balance Qty"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Approved_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CO Balance Approved By ID"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Approved/Rejected Date"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Status"/>
+                  <PropertyValue Property="ValueListProperty" String="Status"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CO Balance Approval Status"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Comment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Comment"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="SAP From CM Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/SAP_To_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="SAP To CM Site"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/SHORT_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="SHORT_NAME"/>
+                  <PropertyValue Property="ValueListProperty" String="SHORT_NAME"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Short Name"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/modifiedBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Updated By"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/modifiedBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Updated By Mail"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/createdBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/createdBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Created By Mail"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Approved_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CO Balance Approved By"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/Approved_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CO Balance Approved By Mail"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/CO_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CO Type"/>
+      </Annotations>
+      <Annotations Target="output.CO_Output/BeError" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Validation Errors"/>
+      </Annotations>
+      <Annotations Target="output.F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+      </Annotations>
+      <Annotations Target="output.EntityContainer/F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="output.F4help/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To GH Site"/>
+      </Annotations>
+      <Annotations Target="output.F4help/To_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To Product"/>
+      </Annotations>
+      <Annotations Target="output.F4help/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To Business Group"/>
+      </Annotations>
+      <Annotations Target="output.F4help/From_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="From GH Site"/>
+      </Annotations>
+      <Annotations Target="output.F4help/From_Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="From Product"/>
+      </Annotations>
+      <Annotations Target="output.F4help/From_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="From Business Group"/>
+      </Annotations>
+      <Annotations Target="output.F4help/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="AppleID"/>
+      </Annotations>
+      <Annotations Target="output.F4help/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="MFR"/>
+      </Annotations>
+      <Annotations Target="output.F4help/SHORT_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="Short Name"/>
+      </Annotations>
+      <Annotations Target="output.F4help/EQ_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="EQ Name"/>
+      </Annotations>
+      <Annotations Target="output.F4help/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="output.Upload_Output" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="text/csv"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

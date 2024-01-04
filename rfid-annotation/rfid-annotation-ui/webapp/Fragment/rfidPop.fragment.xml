@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Popover id="myPopover"
+        placement="Bottom" 
+        afterClose="hideProxyButton"
+        title="RFID Details"
+        contentWidth="60%"
+        >
+        <content>
+
+            <Table items="{Drawings>/SelectedRfid}" inset="true" fixedLayout="false"
+           >
+                <columns>
+                    <Column>
+                        <Label text="Asset Id"/>
+                    </Column>
+                    <Column>
+                        <Label text="Rfid"/>
+                    </Column>
+                    <Column>
+                        <Label text="Equipment Name"/>
+                    </Column>
+                    <Column>
+                        <Label text="Model"/>
+                    </Column>
+                    <Column>
+                        <Label text="Serial Number"/>
+                    </Column>
+                    <Column>
+                        <Label text="AQID"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                    >
+                        <cells>
+                           <Text text="{Drawings>Asset_id}"/>
+                           <Text text="{Drawings>Rfid}"/>
+                           <Text text="{Drawings>EquipName}"/>
+                           <Text text="{Drawings>ZZVModel}"/>
+                           <Text text="{Drawings>Sernr}"/>
+                           <Text text="{Drawings>Aqid}"/>                
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+
+        </content>
+
+        <endButton>
+            <Button icon="sap-icon://decline"
+                press="hideProxyButton">
+
+            </Button>
+        </endButton>
+    </Popover>
+</core:FragmentDefinition>

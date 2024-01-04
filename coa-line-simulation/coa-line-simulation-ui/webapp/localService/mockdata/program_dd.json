@@ -1,0 +1,279 @@
+{
+    "d": {
+        "results": [
+            {
+                "Program": "N71",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N71',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "N66",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N66',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D20",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D20',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D42",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D42',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D10",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D10',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D28",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D28',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "N104",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N104',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D73",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D73',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D84",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D84',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D37",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D37',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D63",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D63',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D52",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D52',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "R228",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='R228',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D38",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D38',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D83",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D83',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D49",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D49',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D74",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D74',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D43",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D43',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D64",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D64',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D79",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D79',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D32",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D32',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "J620",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='J620',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "N69",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N69',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "N143",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N143',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D54",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D54',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D16",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D16',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D11",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D11',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D53P",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D53P',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "Z00",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='Z00',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D33",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D33',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D21",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D21',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "N84",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='N84',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "J617",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='J617',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D27",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D27',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D22",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D22',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D89",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D89',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D17",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D17',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "D53G",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='D53G',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "Program": "J407",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site=undefined,CM=undefined,Site=undefined,Program='J407',LineId=undefined,To_Business_Grp=undefined)"
+                }
+            }
+        ]
+    }
+}

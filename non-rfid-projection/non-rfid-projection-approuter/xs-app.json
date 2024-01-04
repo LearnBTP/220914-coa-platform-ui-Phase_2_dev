@@ -1,0 +1,31 @@
+{
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/coa-api/(.*)$",
+      "target": "$1",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "destination": "COA_APIM",
+      "scope": [
+        "$XSAPPNAME.ProjectionTableReadOnly",
+        "$XSAPPNAME.ProjectionTableModify"
+        
+    ]
+      
+  },
+  {
+    "source": "^/coa-api-ext/(.*)$",
+    "target": "$1",
+    "authenticationType": "xsuaa",
+    "csrfProtection": false,
+    "destination": "COA_APIM_EXT",
+    "scope": [
+      "$XSAPPNAME.ProjectionTableReadOnly",
+        "$XSAPPNAME.ProjectionTableModify"
+    ]
+  }
+  
+  ],
+  "welcomeFile": "/comapplecoanonrfidprojectionui"
+}

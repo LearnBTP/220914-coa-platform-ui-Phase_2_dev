@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="NonRfid_tt" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="nonRfidTT" EntityType="NonRfid_tt.nonRfidTT"/>
+        <EntitySet Name="F4help" EntityType="NonRfid_tt.F4help"/>
+        <EntitySet Name="nonrfid_tt_action" EntityType="NonRfid_tt.nonrfid_tt_action"/>
+        <FunctionImport Name="SyncNonRFIDTT" m:HttpMethod="POST">
+          <Parameter Name="request" Type="NonRfid_tt.data" Mode="In" Nullable="true"/>
+        </FunctionImport>
+        <FunctionImport Name="selectAllMassUpdate" m:HttpMethod="POST">
+          <Parameter Name="URL" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="To_GHSite" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="To_Program" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="To_Business_Grp" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="Comments" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="Transfer_Flag" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="Transfer_Qty" Type="Edm.Int32" Mode="In" Nullable="true"/>
+        </FunctionImport>
+      </EntityContainer>
+      <EntityType Name="nonRfidTT">
+        <Key>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Line_Type"/>
+          <PropertyRef Name="Uph"/>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="Station"/>
+          <PropertyRef Name="Scope"/>
+          <PropertyRef Name="Line_Id"/>
+          <PropertyRef Name="Group_Priority"/>
+          <PropertyRef Name="Sequence_No"/>
+          <PropertyRef Name="Mfr"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="36"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="Scope" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="Line_Id" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Parent_Item" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Alt_Station" Type="Edm.Int32"/>
+        <Property Name="Group_Priority" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Sequence_No" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Split" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="confLevel" Type="Edm.Decimal" sap:variable-scale="true"/>
+        <Property Name="Projected_Qty" Type="Edm.Int32"/>
+        <Property Name="Transfer_Qty" Type="Edm.Int32"/>
+        <Property Name="Override_Qty" Type="Edm.Int32"/>
+        <Property Name="Mfr" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="BusinessGrp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="Dept" Type="Edm.String" MaxLength="18"/>
+        <Property Name="RFID_Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="LastSyncDate" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="LastSyncBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="LastSyncStatus" Type="Edm.String" MaxLength="20"/>
+        <Property Name="Group_ID" Type="Edm.Int32"/>
+        <Property Name="Line_Priority" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Submit_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Submit_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Reviewed_By" Type="Edm.String"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+        <Property Name="Parent" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Edit" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="F4help">
+        <Key>
+          <PropertyRef Name="GH_Site"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="Uph"/>
+          <PropertyRef Name="To_GHSite"/>
+          <PropertyRef Name="To_Business_Grp"/>
+          <PropertyRef Name="To_Program"/>
+          <PropertyRef Name="Line_Id"/>
+          <PropertyRef Name="Line_Type"/>
+          <PropertyRef Name="Status"/>
+          <PropertyRef Name="Station"/>
+          <PropertyRef Name="Group_Priority"/>
+          <PropertyRef Name="Submit_By_Name"/>
+          <PropertyRef Name="GH_Site_Org"/>
+          <PropertyRef Name="GH_Site_MD"/>
+          <PropertyRef Name="Program_MD"/>
+          <PropertyRef Name="Dept"/>
+          <PropertyRef Name="Table"/>
+        </Key>
+        <Property Name="GH_Site" Type="Edm.String" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" Nullable="false"/>
+        <Property Name="Aqid" Type="Edm.String" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="To_GHSite" Type="Edm.String" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" Nullable="false"/>
+        <Property Name="To_Program" Type="Edm.String" Nullable="false"/>
+        <Property Name="Line_Id" Type="Edm.String" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" Nullable="false"/>
+        <Property Name="Station" Type="Edm.String" Nullable="false"/>
+        <Property Name="Group_Priority" Type="Edm.String" Nullable="false"/>
+        <Property Name="Submit_By_Name" Type="Edm.String" Nullable="false"/>
+        <Property Name="GH_Site_Org" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="GH_Site_MD" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program_MD" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Dept" Type="Edm.String" Nullable="false"/>
+        <Property Name="Table" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="nonrfid_tt_action">
+        <Property Name="NonRfidData" Type="Collection(NonRfid_tt.non_rf_id)" Nullable="false"/>
+        <Property Name="action" Type="Edm.String" MaxLength="10"/>
+      </EntityType>
+      <ComplexType Name="data">
+        <Property Name="SyncALL" Type="Edm.String" MaxLength="1"/>
+        <Property Name="GH_Site" Type="Collection(Edm.String)" MaxLength="30" Nullable="false"/>
+      </ComplexType>
+      <ComplexType Name="non_rf_id">
+        <Property Name="ID" Type="Edm.String" MaxLength="36"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Uph" Type="Edm.Int32"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Station" Type="Edm.String" MaxLength="128"/>
+        <Property Name="Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="Line_Id" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Parent_Item" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Alt_Station" Type="Edm.Int32"/>
+        <Property Name="Group_Priority" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Sequence_No" Type="Edm.Int32"/>
+        <Property Name="Split" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="confLevel" Type="Edm.Int32"/>
+        <Property Name="Projected_Qty" Type="Edm.Int32"/>
+        <Property Name="Override_Qty" Type="Edm.Int32"/>
+        <Property Name="Transfer_Qty" Type="Edm.Int32"/>
+        <Property Name="Mfr" Type="Edm.String" MaxLength="255"/>
+        <Property Name="BusinessGrp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Dept" Type="Edm.String" MaxLength="18"/>
+        <Property Name="RFID_Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="Group_ID" Type="Edm.Int32"/>
+        <Property Name="Line_Priority" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Submit_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Submit_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Reviewed_By" Type="Edm.String"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="LastSyncDate" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="LastSyncBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="LastSyncStatus" Type="Edm.String" MaxLength="20"/>
+        <Property Name="URL" Type="Edm.String"/>
+        <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+        <Property Name="Parent" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Edit" Type="Edm.Int32"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String"/>
+      </ComplexType>
+      <Annotations Target="NonRfid_tt.nonRfidTT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Carryover NonRFID TT"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>GH_Site</PropertyPath>
+            <PropertyPath>Program</PropertyPath>
+            <PropertyPath>Uph</PropertyPath>
+            <PropertyPath>Line_Type</PropertyPath>
+            <PropertyPath>Line_Id</PropertyPath>
+            <PropertyPath>Station</PropertyPath>
+            <PropertyPath>Aqid</PropertyPath>
+            <PropertyPath>Mapped_Aqid</PropertyPath>
+            <PropertyPath>To_GHSite</PropertyPath>
+            <PropertyPath>To_Program</PropertyPath>
+            <PropertyPath>To_Business_Grp</PropertyPath>
+            <PropertyPath>Status</PropertyPath>
+            <PropertyPath>Submit_By_Name</PropertyPath>
+            <PropertyPath>Submit_Date</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="GH_Site"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Program"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Uph"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Line_Type"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Line_Id"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Aqid"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Mapped_Aqid"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Parent_Item"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Station"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Alt_Station"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Scope"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="RFID_Scope"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Group_Priority"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="confLevel"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Projected_Qty"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Override_Qty"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_GHSite"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_Program"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="To_Business_Grp"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Transfer_Flag"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Transfer_Qty"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Comments"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Status"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Error"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="LastSyncDate"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="LastSyncBy"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="LastSyncStatus"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="BusinessGrp"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Group_ID"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Line_Priority"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Dept"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Equipment_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Equipment_Type"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Mfr"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Submit_By_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Submit_Date"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="modifiedBy_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="modifiedAt"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Reviewed_By_Name"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Review_Date"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.EntityContainer/nonRfidTT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>GH_Site</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Modified Date"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/GH_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="GH_Site"/>
+                  <PropertyValue Property="ValueListProperty" String="GH_Site"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="GH Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                  <PropertyValue Property="ValueListProperty" String="CM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Site"/>
+                  <PropertyValue Property="ValueListProperty" String="Site"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Program"/>
+                  <PropertyValue Property="ValueListProperty" String="Program"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM Program"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Line_Type"/>
+                  <PropertyValue Property="ValueListProperty" String="Line_Type"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Line Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="UPH"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Aqid"/>
+                  <PropertyValue Property="ValueListProperty" String="Aqid"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="AQID (non-RFID)"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Station"/>
+                  <PropertyValue Property="ValueListProperty" String="Station"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Projected Station (non-RFID)"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Scope" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Scope"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Line_Id"/>
+                  <PropertyValue Property="ValueListProperty" String="Line_Id"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Line ID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Parent_Item" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Parent Item"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Alt_Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Alternate Station"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Group_Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Group_Priority"/>
+                  <PropertyValue Property="ValueListProperty" String="Group_Priority"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Group Priority (non-RFID)"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Sequence_No" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Split" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="EQ Name (Non-RFID)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/confLevel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Projection (Confidence Level)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Projected_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Projected Qty"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Transfer_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Split Tranfer Qty"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Override_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Override Qty"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Mfr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="MFR"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/BusinessGrp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Business Group"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/SAP_To_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Dept" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Dept"/>
+                  <PropertyValue Property="ValueListProperty" String="Dept"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Department"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/RFID_Scope" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="RFID Scope"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/LastSyncDate" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/LastSyncBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/LastSyncStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Group_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Group ID"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Line_Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Line Priority"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Equipment_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Equipment Type"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_Program"/>
+                  <PropertyValue Property="ValueListProperty" String="To_Program"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To Program"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_Business_Grp"/>
+                  <PropertyValue Property="ValueListProperty" String="To_Business_Grp"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To Business Group"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="To_GHSite"/>
+                  <PropertyValue Property="ValueListProperty" String="To_GHSite"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To Site(GH)"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Transfer Flag"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Comments"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Status"/>
+                  <PropertyValue Property="ValueListProperty" String="Status"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Transfer Approval Status"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Submit_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Submitted Date"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Reviewed Date"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/modifiedBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Modified by Name"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/modifiedBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/createdBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/createdBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Submit_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="Submit_By_Name"/>
+                  <PropertyValue Property="ValueListProperty" String="Submit_By_Name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Submit by Name"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Submit_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Reviewed_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Reviewed by Name"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Reviewed_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Mapped Aqid"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Error" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Parent" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.nonRfidTT/Edit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.EntityContainer/F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/GH_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="From GH Site"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM Program [3DV]"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="AQID Non-RFID"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Uph (3DV)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="To Site(GH)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="To Business Group"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="To Program"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Line Id (3DV)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Line Type (3DV)"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Transfer Approval Status"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Station"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Group_Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Group Priority [Non-RFID]"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Submit_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Submited By"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/GH_Site_Org" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="GH Site"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Dept" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Department"/>
+      </Annotations>
+      <Annotations Target="NonRfid_tt.F4help/Table" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="GH Site"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

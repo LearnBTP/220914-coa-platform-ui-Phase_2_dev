@@ -1,0 +1,35 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "^/coa-api/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM",
+            "scope": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AnnotationReadOnly"
+            ]
+        },
+        {
+            "source": "^/coa-api-ext/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM_EXT",
+            "scope": [
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.RfidOnHandTTModify"
+            ]
+        },
+        {
+            "source": "^/coa-dms/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "COA_DMS",
+            "csrfProtection": false
+        }
+    ],
+    "welcomeFile": "/coaannotationrfidannotationui"
+}

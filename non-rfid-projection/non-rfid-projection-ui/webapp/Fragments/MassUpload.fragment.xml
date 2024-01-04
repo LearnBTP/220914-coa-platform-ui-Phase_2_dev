@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:table="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:common="sap.suite.ui.commons" xmlns:customselect="com.apple.coa.control">
+	<Dialog id="UploadDialog" title="Mass Update" beforeOpen="onDialogBeforeOpen" contentWidth="40%" class="zDialog" afterClose=".onAfterDilogClose" draggable="true" resizable="true">
+		<content>
+			<smartForm:SmartForm id="smartUpdateForm" entityType="MyPartsCoreBasicStatus" editable="true"
+				class="sapUiSizeCompact">
+				<smartForm:Group id="CoreGroup">
+					
+					<smartForm:GroupElement id="RFID_SCOPE" label="Rfid Scope">
+                        <TextArea id="idrfidscope" class="sapUiMediumMarginEnd" change="onFldLiveChange"  width="8rem" />
+                    </smartForm:GroupElement>
+					<smartForm:GroupElement id="CARRY_OVER" label="Carry Over">
+						<Input  id="idInputcarrypver"  class="sapUiMediumMarginEnd" change="onFldLiveChange"  width="8rem"  />
+					</smartForm:GroupElement>
+					<smartForm:GroupElement id="QPL" label="QPL">
+						<Input  id="idInputQPL"  class="sapUiMediumMarginEnd" change="onFldLiveChange"  width="8rem"  />
+					</smartForm:GroupElement>
+                    <smartForm:GroupElement id="DEPT" label="Department">
+						<Input  id="idInputDEPT"  class="sapUiMediumMarginEnd"  width="8rem"  />
+					</smartForm:GroupElement>
+
+				</smartForm:Group>
+			</smartForm:SmartForm>
+		</content>
+		<beginButton>
+			<Button xmlns="sap.m" text="Save" id="btnOK" press=".onMassUpdateAccept" class="applePrimaryBtn" type="Emphasized"/>
+		</beginButton>
+		<endButton>
+			<Button xmlns="sap.m" text="Cancel" id="btnCancel" press="onDialofClose" class="appleAlternateBtn" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

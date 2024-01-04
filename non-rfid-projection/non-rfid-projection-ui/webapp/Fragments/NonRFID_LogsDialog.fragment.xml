@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog id="iderrorlogdialog" title="Error Log" contentHeight="60%" draggable="true" resizable="true"
+        contentWidth="60%" class="sapUiSizeCompact" afterClose="onAfterErrorClose" afterOpen=""
+        beforeOpen="">
+        <content>
+        <smartTable:SmartTable
+                id="tabOutputError"
+                tableBindingPath="NonRfidErrorModel>/NonRFIdErrData"
+                entitySet="NonRFIDProjectionDetails"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Error Log"
+                initialise="errorTabInit"
+                enableExport="true"
+                showRowCount="true"
+                enableAutoBinding="true"
+                beforeRebindTable="applyErrorLog"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                requestAtLeastFields="GH_SITE,PROGRAM,AQID,RFID_SCOPE,QPL,CARRY_OVER"
+                initiallyVisibleFields="GH_SITE,PROGRAM,AQID,MFR,EQUIPMENT_NAME,PO_TYPE,STATION,GROUP_PRIORITY,SCOPE,LINE,UPH,CONSUMABLES,RFID_SCOPE,GH_SPL,MP_INTENT_QTY,QPL,RELEASE_QTY,CARRY_OVER,BOH,ErrorMsg,CM,SITE"
+                ignoredFields="modifiedBy,modifiedAt,createdAt,createdBy"
+            >
+                <t:Table id="ErrCOTable" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+      <endButton>
+    
+            <Button id="idbtnlog" text="Ok" press="fnOutput_frag_CloseLog"
+                 class="applePrimaryBtn" />
+     </endButton>
+    </Dialog>
+</core:FragmentDefinition>

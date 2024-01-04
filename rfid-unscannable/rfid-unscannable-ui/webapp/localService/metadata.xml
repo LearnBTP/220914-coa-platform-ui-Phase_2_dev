@@ -1,0 +1,957 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="rfid_unscannable" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Carryover_rfid_unscannable_tt" EntityType="rfid_unscannable.Carryover_rfid_unscannable_tt"/>
+        <EntitySet Name="Carryover_rfid_unscannable" EntityType="rfid_unscannable.Carryover_rfid_unscannable"/>
+        <EntitySet Name="F4help" EntityType="rfid_unscannable.F4help"/>
+        <EntitySet Name="Upload_Unscannable" EntityType="rfid_unscannable.Upload_Unscannable"/>
+        <EntitySet Name="Unscannable_Split" EntityType="rfid_unscannable.Unscannable_Split"/>
+        <EntitySet Name="Unscannable_action" EntityType="rfid_unscannable.Unscannable_action"/>
+        <FunctionImport Name="Generate_Unscannable" ReturnType="Collection(rfid_unscannable.syncdata)" m:HttpMethod="POST">
+          <Parameter Name="request" Type="rfid_unscannable.syncdata" Mode="In" Nullable="true"/>
+        </FunctionImport>
+      </EntityContainer>
+      <EntityType Name="Carryover_rfid_unscannable_tt">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="GH_Site"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="From_Business_Grp"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="Sequence_No"/>
+          <PropertyRef Name="NPI_Indicator"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Sequence_No" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="NPI_Indicator" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Projected_Qty" Type="Edm.Int32"/>
+        <Property Name="Flex_Kits" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Qty" Type="Edm.Int32"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Review_Date" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="Reviewed_By" Type="Edm.String"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+        <Property Name="SPLIT" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Parent" Type="Edm.String" MaxLength="10"/>
+      </EntityType>
+      <EntityType Name="Carryover_rfid_unscannable">
+        <Key>
+          <PropertyRef Name="GH_SITE"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="SITE"/>
+          <PropertyRef Name="FROM_BUSINESS_GRP"/>
+          <PropertyRef Name="PROGRAM"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="SEQUENCE_NO"/>
+          <PropertyRef Name="NPI_INDICATOR"/>
+          <PropertyRef Name="MAPPED_AQID"/>
+          <PropertyRef Name="EQUIPMENT_NAME"/>
+          <PropertyRef Name="PO_TYPE"/>
+          <PropertyRef Name="SCOPE"/>
+          <PropertyRef Name="CONSUMABLES"/>
+          <PropertyRef Name="FLEX_KITS"/>
+          <PropertyRef Name="PROJECTED_QTY"/>
+          <PropertyRef Name="TRANSFER_FLAG"/>
+          <PropertyRef Name="TO_GHSITE"/>
+          <PropertyRef Name="TO_CM"/>
+          <PropertyRef Name="TO_SITE"/>
+          <PropertyRef Name="TO_BUSINESS_GRP"/>
+          <PropertyRef Name="TO_PROGRAM"/>
+          <PropertyRef Name="QTY"/>
+          <PropertyRef Name="STATUS"/>
+          <PropertyRef Name="REVIEW_DATE"/>
+          <PropertyRef Name="REVIEWED_BY"/>
+          <PropertyRef Name="MODIFIEDAT"/>
+          <PropertyRef Name="MODIFIEDBY"/>
+          <PropertyRef Name="CREATEDAT"/>
+          <PropertyRef Name="CREATEDBY"/>
+          <PropertyRef Name="CREATEDBY_NAME"/>
+          <PropertyRef Name="CREATEDBY_MAIL"/>
+          <PropertyRef Name="MODIFIEDBY_NAME"/>
+          <PropertyRef Name="MODIFIEDBY_MAIL"/>
+          <PropertyRef Name="REVIEWED_BY_NAME"/>
+          <PropertyRef Name="REVIEWED_BY_MAIL"/>
+          <PropertyRef Name="SAP_CM_SITE"/>
+          <PropertyRef Name="SAP_TO_CM_SITE"/>
+          <PropertyRef Name="COMMENT"/>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="SYNC_STATUS"/>
+          <PropertyRef Name="ERROR"/>
+        </Key>
+        <Property Name="GH_SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="FROM_BUSINESS_GRP" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="PROGRAM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="SEQUENCE_NO" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="NPI_INDICATOR" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="MAPPED_AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="EQUIPMENT_NAME" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="PO_TYPE" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="SCOPE" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="CONSUMABLES" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="FLEX_KITS" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="PROJECTED_QTY" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="TRANSFER_FLAG" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="TO_GHSITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="TO_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="TO_SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="TO_BUSINESS_GRP" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="TO_PROGRAM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="QTY" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="STATUS" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="REVIEW_DATE" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="REVIEWED_BY" Type="Edm.String" Nullable="false"/>
+        <Property Name="MODIFIEDAT" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="MODIFIEDBY" Type="Edm.String" Nullable="false"/>
+        <Property Name="CREATEDAT" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="CREATEDBY" Type="Edm.String" Nullable="false"/>
+        <Property Name="CREATEDBY_NAME" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="CREATEDBY_MAIL" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="MODIFIEDBY_NAME" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="MODIFIEDBY_MAIL" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="REVIEWED_BY_NAME" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="REVIEWED_BY_MAIL" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="SAP_CM_SITE" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="SAP_TO_CM_SITE" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="COMMENT" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="36" Nullable="false"/>
+        <Property Name="SYNC_STATUS" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="ERROR" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="SPLIT" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Parent" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Edit" Type="Edm.Int32"/>
+        <Property Name="Apporve" Type="Edm.String" MaxLength="1"/>
+      </EntityType>
+      <EntityType Name="F4help">
+        <Key>
+          <PropertyRef Name="GH_SITE"/>
+          <PropertyRef Name="TO_GHSITE"/>
+          <PropertyRef Name="PROGRAM"/>
+          <PropertyRef Name="TO_PROGRAM"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="TO_BUSINESS_GRP"/>
+          <PropertyRef Name="FROM_BUSINESS_GRP"/>
+          <PropertyRef Name="STATUS"/>
+          <PropertyRef Name="GH_SITE_ORG"/>
+          <PropertyRef Name="GH_SITE_MD"/>
+          <PropertyRef Name="PROGRAM_MD"/>
+        </Key>
+        <Property Name="GH_SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="TO_GHSITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="PROGRAM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="TO_PROGRAM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="TO_BUSINESS_GRP" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="FROM_BUSINESS_GRP" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="STATUS" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="GH_SITE_ORG" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="GH_SITE_MD" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="PROGRAM_MD" Type="Edm.String" MaxLength="40" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="Upload_Unscannable" m:HasStream="true">
+        <Property Name="msg" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Unscannable_Split">
+        <Property Name="SplitData" Type="Collection(rfid_unscannable.split_data)" Nullable="false"/>
+        <Property Name="URL" Type="Edm.String"/>
+        <Property Name="Action" Type="Edm.String" MaxLength="20"/>
+      </EntityType>
+      <EntityType Name="Unscannable_action">
+        <Property Name="URL" Type="Edm.String"/>
+        <Property Name="UnscanData" Type="Collection(rfid_unscannable.unscannable)" Nullable="false"/>
+        <Property Name="TO_GHSITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_PROGRAM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="FLEX_KITS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="TRANSFER_FLAG" Type="Edm.String" MaxLength="1"/>
+        <Property Name="TO_BUSINESS_GRP" Type="Edm.String" MaxLength="18"/>
+        <Property Name="TO_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="QTY" Type="Edm.Int32"/>
+        <Property Name="Action" Type="Edm.String" MaxLength="20"/>
+        <Property Name="COMMENT" Type="Edm.String" MaxLength="80"/>
+      </EntityType>
+      <ComplexType Name="split_data">
+        <Property Name="GH_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="PROGRAM" Type="Edm.String" MaxLength="40"/>
+        <Property Name="FROM_BUSINESS_GRP" Type="Edm.String" MaxLength="18"/>
+        <Property Name="SEQUENCE_NO" Type="Edm.Int32"/>
+        <Property Name="NPI_INDICATOR" Type="Edm.String" MaxLength="10"/>
+        <Property Name="PROJECTED_QTY" Type="Edm.Int32"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="TO_GHSITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_PROGRAM" Type="Edm.String" MaxLength="40"/>
+      </ComplexType>
+      <ComplexType Name="unscannable">
+        <Property Name="GH_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="FROM_BUSINESS_GRP" Type="Edm.String" MaxLength="18"/>
+        <Property Name="PROGRAM" Type="Edm.String" MaxLength="40"/>
+        <Property Name="NPI_INDICATOR" Type="Edm.String" MaxLength="10"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="MAPPED_AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="EQUIPMENT_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="PO_TYPE" Type="Edm.String" MaxLength="32"/>
+        <Property Name="SCOPE" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CONSUMABLES" Type="Edm.String" MaxLength="1"/>
+        <Property Name="FLEX_KITS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="PROJECTED_QTY" Type="Edm.Int32"/>
+        <Property Name="TRANSFER_FLAG" Type="Edm.String" MaxLength="1"/>
+        <Property Name="TO_GHSITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="TO_BUSINESS_GRP" Type="Edm.String" MaxLength="18"/>
+        <Property Name="TO_PROGRAM" Type="Edm.String" MaxLength="40"/>
+        <Property Name="QTY" Type="Edm.Int32"/>
+        <Property Name="STATUS" Type="Edm.String" MaxLength="18"/>
+        <Property Name="REVIEW_DATE" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="REVIEWED_BY" Type="Edm.String"/>
+        <Property Name="MODIFIEDAT" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="MODIFIEDBY" Type="Edm.String"/>
+        <Property Name="CREATEDAT" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="CREATEDBY" Type="Edm.String"/>
+        <Property Name="CREATEDBY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CREATEDBY_MAIL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MODIFIEDBY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MODIFIEDBY_MAIL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="REVIEWED_BY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="REVIEWED_BY_MAIL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="SAP_CM_SITE" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_TO_CM_SITE" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SPLIT" Type="Edm.String" MaxLength="1"/>
+        <Property Name="SEQUENCE_NO" Type="Edm.Int32"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="36"/>
+        <Property Name="COMMENT" Type="Edm.String" MaxLength="80"/>
+        <Property Name="SYNC_STATUS" Type="Edm.String" MaxLength="20"/>
+        <Property Name="ERROR" Type="Edm.String" MaxLength="255"/>
+      </ComplexType>
+      <ComplexType Name="syncdata">
+        <Property Name="syncall" Type="Edm.String" MaxLength="1"/>
+        <Property Name="GH_SITE" Type="Collection(Edm.String)" MaxLength="30" Nullable="false"/>
+      </ComplexType>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/GH_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/From_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Sequence_No" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/NPI_Indicator" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Projected_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Flex_Kits" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Error" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/SPLIT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable_tt/Parent" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>GH_SITE</PropertyPath>
+            <PropertyPath>TO_GHSITE</PropertyPath>
+            <PropertyPath>PROGRAM</PropertyPath>
+            <PropertyPath>TO_PROGRAM</PropertyPath>
+            <PropertyPath>FROM_BUSINESS_GRP</PropertyPath>
+            <PropertyPath>TO_BUSINESS_GRP</PropertyPath>
+            <PropertyPath>AQID</PropertyPath>
+            <PropertyPath>STATUS</PropertyPath>
+            <PropertyPath>COMMENT</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="GH_SITE"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="PROGRAM"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="FROM_BUSINESS_GRP"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="AQID"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="EQUIPMENT_NAME"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="PO_TYPE"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="SCOPE"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="CONSUMABLES"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="TO_GHSITE"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="TO_PROGRAM"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="TO_BUSINESS_GRP"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="15rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="FLEX_KITS"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="COMMENT"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="TRANSFER_FLAG"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="PROJECTED_QTY"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="QTY"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="SPLIT"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="6rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="STATUS"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="CREATEDBY_NAME"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="CREATEDAT"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="MODIFIEDBY_NAME"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="MODIFIEDAT"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="REVIEWED_BY_NAME"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="REVIEW_DATE"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="SYNC_STATUS"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="10rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="ERROR"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8rem"/>
+                </Record>
+              </Annotation>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <!-- <Annotations Target="rfid_unscannable.EntityContainer/Carryover_rfid_unscannable" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>GH_SITE</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations> -->
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/GH_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="GH_SITE"/>
+                  <PropertyValue Property="ValueListProperty" String="GH_SITE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From GH Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/FROM_BUSINESS_GRP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="FROM_BUSINESS_GRP"/>
+                  <PropertyValue Property="ValueListProperty" String="FROM_BUSINESS_GRP"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From Business Group"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="PROGRAM"/>
+                  <PropertyValue Property="ValueListProperty" String="PROGRAM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="From Product"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="AQID"/>
+                  <PropertyValue Property="ValueListProperty" String="AQID"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CO AQID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SEQUENCE_NO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Sequence No."/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/NPI_INDICATOR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="NPI Indicator"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/MAPPED_AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Mapped AQID"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/EQUIPMENT_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Equipment Name"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/PO_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="PO Type"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SCOPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Scope"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CONSUMABLES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Consumables"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/FLEX_KITS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Flex Kits"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/PROJECTED_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Projected Qty"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TRANSFER_FLAG" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Transfer Flag"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TO_GHSITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="TO_GHSITE"/>
+                  <PropertyValue Property="ValueListProperty" String="TO_GHSITE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To GH Site"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TO_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="To CM"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TO_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="To Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TO_BUSINESS_GRP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="TO_BUSINESS_GRP"/>
+                  <PropertyValue Property="ValueListProperty" String="TO_BUSINESS_GRP"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To Business Group"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/TO_PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="TO_PROGRAM"/>
+                  <PropertyValue Property="ValueListProperty" String="TO_PROGRAM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="To Product"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+        <Annotation Term="Common.Label" String="Transfer Quantity"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="STATUS"/>
+                  <PropertyValue Property="ValueListProperty" String="STATUS"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Transfer Approval Status"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/REVIEW_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Reviewed On"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/REVIEWED_BY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Review By SAP ID"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/MODIFIEDAT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Submitted On"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/MODIFIEDBY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Submitted By SAP ID"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CREATEDAT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CREATEDBY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created By SAP ID"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CREATEDBY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/CREATEDBY_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created By Mail"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/MODIFIEDBY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Submitted By"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/MODIFIEDBY_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Submitted By Mail"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/REVIEWED_BY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Reviewed By"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/REVIEWED_BY_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Review By Mail"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SAP_CM_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="From SAP CM Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SAP_TO_CM_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="To SAP CM Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/COMMENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Comment"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SYNC_STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Sync Status"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/ERROR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Validation Errors"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/SPLIT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/Parent" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/Edit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Carryover_rfid_unscannable/Apporve" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.EntityContainer/F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/GH_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="GH Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/TO_GHSITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To GH Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="From Product"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/TO_PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To Product"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="CO AQID"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/TO_BUSINESS_GRP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="To Business Group"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/FROM_BUSINESS_GRP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="From Business Group"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="Transper Approval Status"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.F4help/GH_SITE_ORG" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Common.Label" String="GH Site"/>
+      </Annotations>
+      <Annotations Target="rfid_unscannable.Upload_Unscannable" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="text/csv"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

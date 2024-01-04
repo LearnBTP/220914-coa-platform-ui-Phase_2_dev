@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="selectDialog"
+		title="Simulation Names"
+		items="{/SimulationData}"
+		search=".onValueHelpSearch"
+		confirm=".onValueHelpClose"
+		cancel=".onValueHelpCancel"
+		growing="true"
+		draggable="true"
+		resizable="true"
+		growingThreshold="100">
+		<StandardListItem id="slisimname"
+			title="{Simulation_name}"
+			 />
+	</SelectDialog>
+</core:FragmentDefinition>

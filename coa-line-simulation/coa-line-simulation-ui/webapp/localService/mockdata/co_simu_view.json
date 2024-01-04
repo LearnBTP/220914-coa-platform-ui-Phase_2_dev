@@ -1,0 +1,293 @@
+{
+    "d": {
+        "results": [
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": null,
+                "TO_CM": null,
+                "TO_SITE": null,
+                "TO_BUSINESS_GRP": null,
+                "APPLE_ID": null,
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT=null,TO_CM=null,TO_SITE=null,TO_BUSINESS_GRP=null,APPLE_ID=null,QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D63",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "FXGG",
+                "APPLE_ID": "17719-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "RFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D63',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='FXGG',APPLE_ID='17719-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='RFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": null,
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID=null,QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "00021-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='00021-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "00070-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='00070-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "08392-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='08392-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "20255-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='20255-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "22259-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='22259-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "33610-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='33610-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "33611-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='33611-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "51865-02",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='51865-02',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "57738-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='57738-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            },
+            {
+                "FROM_GHSITE": "iPhone_FXZZ",
+                "FROM_PRODUCT": "D53G",
+                "FROM_BUSINESS_GRP": "",
+                "TO_PRODUCT": "D73",
+                "TO_CM": "HHZZ",
+                "TO_SITE": "PBPH",
+                "TO_BUSINESS_GRP": "ASDF",
+                "APPLE_ID": "66104-01",
+                "QUANTITY": "",
+                "COMMENT": "",
+                "MATCH_STATUS": "",
+                "MATCH_QTY": "",
+                "MISMATCH_QTY": "",
+                "SOURCE": "NONRFID_TT",
+                "LINE_ID": "Burn-in",
+                "LINE_TYPE": "FATP Burn-in 2683",
+                "__metadata": {
+                    "type": "Line_simulation.co_simu_view",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/co_simu_view(FROM_GHSITE='iPhone_FXZZ',FROM_PRODUCT='D53G',FROM_BUSINESS_GRP='',TO_PRODUCT='D73',TO_CM='HHZZ',TO_SITE='PBPH',TO_BUSINESS_GRP='ASDF',APPLE_ID='66104-01',QUANTITY='',COMMENT='',MATCH_STATUS='',MATCH_QTY=,MISMATCH_QTY=,SOURCE='NONRFID_TT',LINE_ID='Burn-in',LINE_TYPE='FATP%20Burn-in%202683')"
+                }
+            }
+        ],
+        "__count": "13"
+    }
+}

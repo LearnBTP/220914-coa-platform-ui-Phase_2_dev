@@ -1,0 +1,619 @@
+<mvc:View
+	controllerName="coa.annotation.rfidannotationui.controller.Annotation"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:smarttable="sap.ui.comp.smarttable"
+	xmlns:table="sap.ui.table"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	displayBlock="true"
+	height="100%"
+	xmlns:plugins="sap.m.plugins"
+>
+	<Page
+		id="pageAnnotation"
+		backgroundDesign="Transparent"
+		class="annotationPage"
+		enableScrolling="false"
+		floatingFooter="false"
+		navButtonTooltip=""
+		showFooter="true"
+		showHeader="true"
+	>
+		<customHeader>
+			<Bar id="barAnnotationPage" class="headContainer">
+				<contentLeft>
+					<Button
+						icon="sap-icon://nav-back"
+						press="navigateToMain"
+						class="contrastTextSF backbutton"
+					/>
+					<Title
+						id="txtAnnotate"
+						text="Annotate"
+						titleStyle="H3"
+						class="pageTitleContrast"
+					/>
+				</contentLeft>
+				<contentRight>
+					<Button
+						text="Change Logs"
+						class="appleAlternateBtn"
+						press="showChangeLog"
+					/>
+					<Button
+						class="appleDangerBtn"
+						text="Remove All"
+						visible="{= ${/ContainerAnnotate/Status} === 'DRAFT' &amp;&amp; ${/EditAuth}}"
+						enabled="{= ${Drawings>/ViewMode} ? false:true}"
+						press="deleteAll"
+					/>
+					<Button
+						text="Create Draft"
+						class="applePrimaryBtn"
+						type="Emphasized"
+						visible="{= ${/ContainerAnnotate/Status} === 'PUBLISH' &amp;&amp; ${/EditAuth}}"
+						press="updateUIScreen('PUBLISHCREATE','true')"
+					/>
+					<Button
+						text="Save As Draft"
+						class="applePrimaryBtn"
+						type="Emphasized"
+						visible="{= ${/ContainerAnnotate/Status} === 'DRAFT' &amp;&amp; ${/EditAuth}}"
+						enabled="{= ${Drawings>/ViewMode} ? false:true}"
+						press="saveConfirmation($event,'D')"
+					/>
+					<Button
+						text="Publish"
+						id="btnPublish"
+						visible="{= ${/ContainerAnnotate/Status} === 'DRAFT' &amp;&amp; ${/EditAuth}}"
+						enabled="{= ${Drawings>/ViewMode} ? false:true}"
+						class="applePrimaryBtn"
+						type="Emphasized"
+						press="saveConfirmation($event,'P')"
+					/>
+				</contentRight>
+				<contentMiddle>
+					<HeaderContainer scrollStep="500">
+						<ObjectIdentifier
+							text="{/ContainerAnnotate/Alderaan_CM}"
+							title="Alderaan CM:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{/ContainerAnnotate/Alderaan_Site}"
+							title="Alderaan Site:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{/ContainerAnnotate/Building}"
+							title="Building:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{/ContainerAnnotate/Floor}"
+							title="Floor:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{/ContainerAnnotate/Status}"
+							title="Status:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{
+								parts: ['/ContainerAnnotate/Scan_Start_Date'],
+								formatter: '.formatter.formatScanDate'
+							}"
+							title="Scan Start:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							text="{
+								parts: ['/ContainerAnnotate/Scan_End_Date'],
+								formatter: '.formatter.formatScanDate'
+							}"
+							title="Scan End:"
+							class="headInfo"
+						/>
+						<ObjectIdentifier
+							id="txtTotalRfid"
+							title="RFIDs:"
+							class="headInfo"
+						/>
+					</HeaderContainer>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<l:Splitter
+				id="splitterAnnotation"
+				height="auto"
+			>
+				<l:FixFlex vertical="true">
+					<l:layoutData>
+						<l:SplitterLayoutData
+							resizable="false"
+							size="70%"
+							id="canvaLayout"
+						/>
+					</l:layoutData>
+					<l:fixContent>
+						<OverflowToolbar id="toolDraw" class="sapUiSizeCompact">
+							<content>
+								<SegmentedButton
+									id="segDrawingType"
+									class="drawingBtn"
+									selectedKey="R"
+									selectionChange="onDrawSelection"
+									visible="{=${/EditAuth}}"
+									enabled="{= ${Drawings>/ViewMode} ? false:true}"
+								>
+									<items>
+										<SegmentedButtonItem
+											icon="sap-icon://draw-rectangle"
+											text="Rectangle"
+											key="R"
+											tooltip="Rectangle"
+										/>
+										<SegmentedButtonItem
+											id="btnPoly"
+											text="Free Draw"
+											key="L"
+											icon="sap-icon://rhombus-milestone"
+											tooltip="Polygon"
+										/>
+									</items>
+								</SegmentedButton>
+								<Button
+									icon="sap-icon://refresh"
+									class="buttonWithIconOnly"
+									visible="{=${/EditAuth}}"
+									enabled="{= ${Drawings>/ViewMode} ? false:true}"
+									press="refreshDrawings"
+								/>
+								<ToolbarSeparator/>
+								<ColorPalette id="colorPellete"
+									class="colorPicker "
+									colorSelect="onColorSelection"
+									visible="{= ${Drawings>/ViewMode} ? false:true}"
+								/>
+								<Label
+									design="Bold"
+									id="txtSelectedColor"
+								/>
+								<ToolbarSpacer/>
+								<Text id="locktext" text="{Drawings>/lockText}"/>
+								<Title
+									text="View Mode"
+									level="H3"
+									visible="{=${/EditAuth}}"
+								/>
+								<Switch
+									id="switchViewMode"
+									change="toggleLock($event,null)"
+									visible="{=${/EditAuth}}"
+									enabled="{= ${/ContainerAnnotate/Status} === 'DRAFT'}"
+									state="{Drawings>/ViewMode}"
+								/>
+								<Button
+									icon="sap-icon://zoom-out"
+									type="Transparent"
+									class="buttonWithIconOnly"
+									press="onZoom(-1)"
+								/>
+								<Button
+									icon="sap-icon://responsive"
+									tooltip="Reset to original size"
+									class="buttonWithIconOnly"
+									type="Transparent"
+									press="resetZoom"
+								/>
+								<Button
+									icon="sap-icon://zoom-in"
+									type="Transparent"
+									class="buttonWithIconOnly"
+									press="onZoom(1)"
+								/>
+								<Button id="expandBtn"
+									icon="sap-icon://navigation-right-arrow"
+									type="Transparent"
+									class="buttonWithIconOnly"
+									press=".closeShapeTable"
+								/>
+							</content>
+						</OverflowToolbar>
+						<c:HTML id="htmlCanvasContainer"/>
+					</l:fixContent>
+					<l:flexContent/>
+				</l:FixFlex>
+				<Panel
+					accessibleRole="Region"
+					expanded="true"
+					height="65vh"
+					class="sapUiSizeCompact nopanelborder"
+					id="shapeTable"
+				>
+					<layoutData>
+						<l:SplitterLayoutData id="tableLayout" size="30%"/>
+					</layoutData>
+					<content>
+						<ScrollContainer
+							height="100%"
+							horizontal="true"
+							width="100%"
+							vertical="true"
+						>
+							<content>
+								<Table
+									id="tabShapes"
+									class="mTableHeader"
+									headerText="Shapes"
+									items="{path: 'Drawings>/UiShapes', sorter: [{ path: 'modifiedAt', descending: true },{path: 'LineId', descending: true}]}"
+									fixedLayout="false"
+									busyIndicatorDelay="0"
+								>
+								<dependents>
+								<plugins:ColumnResizer />
+								</dependents>
+									<columns>
+										<Column
+											width="2rem"
+											hAlign="Center"
+										/>
+										<Column width="7rem">
+											<Label text="Line ID"/>
+										</Column>
+										<Column width="auto">
+											<Label text="Line Type"/>
+										</Column>
+										<Column width="7rem">
+											<Label text="UPH"/>
+										</Column>
+										<Column width="7rem">
+											<Label text="Line Prio." tooltip="Line Priority"/>
+										</Column>
+										<Column>
+											<Label text="Comments"/>
+										</Column>
+										<Column hAlign="Center">
+											<Label text="Del"/>
+										</Column>
+										<Column
+											demandPopin="true"
+											minScreenWidth="5000px"
+											popinDisplay="WithoutHeader"
+											hAlign="End"
+										>
+											<Label text="Changes Detected"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<c:Icon
+												id="iconColor"
+												src="sap-icon://color-fill"
+												color="{Drawings>Shape_Color}"
+											/>
+											<Input
+												value="{Drawings>LineId}"
+												change="updateShape"
+												maxLength="250"
+												editable="{= ${Drawings>/ViewMode} ? false:true}"
+												tooltip="{Drawings>LineId}"
+											/>
+											<ComboBox width="100%"
+												id="boxLineType"
+												selectedKey="{Drawings>LineType}"
+												items="{
+													path: 'Drawings>/DropLineType',
+													templateShareable: false,
+													sorter: {
+														path: 'Id'
+													}
+												}"
+												change="updateShape($event,true)"
+												editable="{= ${Drawings>/ViewMode} ? false:true}"
+												tooltip="{Drawings>LineType}"
+											>
+												<c:Item
+													key="{Drawings>Id}"
+													text="{Drawings>Id}"
+												/>
+											</ComboBox>
+											<Select
+												id="boxUph"
+												forceSelection="false"
+												selectedKey="{Drawings>Uph}"
+												items="{
+													path: 'Drawings>/DropUph',
+													templateShareable: false,
+													sorter: {
+														path: 'Id'
+													}
+												}"
+												change="updateShape"
+												enabled="{= ${Drawings>LineType} === null ? false:true}"
+												editable="{= ${Drawings>/ViewMode} ? false:true}"
+											>
+												<c:Item
+													key="{Drawings>Id}"
+													text="{Drawings>Id}"
+												/>
+											</Select>
+											<Input
+												value="{Drawings>Line_Priority}"
+												change="updateShape"
+												editable="{= ${Drawings>/ViewMode} ? false:true}"
+												type="Number"
+											/>
+											<Input
+												value="{Drawings>Shape_Name}"
+												change="updateShape"
+												editable="{= ${Drawings>/ViewMode} ? false:true}"
+											/>
+											<c:Icon
+												color="red"
+												src="sap-icon://sys-cancel-2"
+												visible="{= ${Drawings>/ViewMode} ? false:true}"
+												press="deleteShape"
+											/>
+											<VBox>
+												<items>
+													<!-- Text control visibility is used to hide/show the column using css -->
+													<Text
+														class="toggleVisibilityStrip"
+														visible="{= (${Drawings>ConfirmedRequired} || ${Drawings>ConfirmedBy}) ? false:true}"
+													/>
+													<MessageStrip
+														text="RFID changes detected inside the shape, Please"
+														type="Warning"
+														showIcon="true"
+														visible="{= ${Drawings>ConfirmedRequired} ? true:false}"
+													>
+														<link>
+															<Link
+																text="Confirm"
+																press="updateShape($event,false,true)"
+																enabled="{= ${Drawings>/ViewMode} ? false:true}"
+															/>
+														</link>
+													</MessageStrip>
+													<ObjectStatus
+														state="Success"
+														visible="{= ${Drawings>ConfirmedBy} ? true:false}"
+														icon="sap-icon://accept"
+														text="RFID changes confirmed by	{Drawings>ConfirmedBy} on {Drawings>ConfirmedOn}"
+													/>
+												</items>
+											</VBox>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</content>
+						</ScrollContainer>
+					</content>
+				</Panel>
+			</l:Splitter>
+		
+		<smarttable:SmartTable
+		beforeRebindTable="applyDefaultFilterToSmartTable"
+		tableBindingPath="Drawings>/UiRFIDPoints"
+		enableAutoBinding="true"
+		id="tabSmartRFID"
+		placeToolbarInTable="false"
+		entitySet="AnnotationDetails"
+		busyIndicatorDelay="0"
+		header="RFIDs"
+		tableType="Table"
+		showFullScreenButton="true"
+		fullScreenToggled="onRfidFullScreen"
+		useVariantManagement="false"
+		initialNoDataText="No RFIDs found within a shape"
+		class="sapUiSmallMarginBeginEnd buttonWithIconOnly"
+		ignoredFields="createdBy,modifiedBy"
+		initiallyVisibleFields="Asset_id,LineId,Rfid,Sernr,ZZVModel,Aqid,EquipName,Equip_Status,Equip_CM,Equip_Site,Program,Equip_Manf,CarryOverAqid,CarryOverEqName,CarryOverOldProgram,Override_LineId,LineType,Uph,Comments,ErrorMsg"
+		requestAtLeastFields="Asset_id,LineId,Rfid,Sernr,ZZVModel,Aqid,EquipName,Equip_Status,Equip_CM,Equip_Site,Program,Equip_Manf,CarryOverAqid,CarryOverEqName,CarryOverOldProgram,Override_LineId,LineType,Uph,Comments,Scan_End_Date,modifiedAt,ErrorMsg"
+		ignoreFromPersonalisation="Alderaan_Site,Alderaan_CM,Building,Floor,Status,Scan_Start_Date,SAP_CM_Site,Shape_Guid,Rfid_XAxis,Rfid_YAxis,Shape_Color,CM,Site,Zaldr_Site,Scan_End_Date,modifiedAt"
+		beforeExport="beforeExportData"
+		initialise="initialSmartRFID"
+	>
+		<smarttable:customToolbar>
+			<OverflowToolbar design="Transparent">
+				<ToolbarSpacer/>
+				<Button
+					class="applePrimaryBtn"
+					type="Emphasized"
+					text="Copy Over"
+					press="copyCOValues"
+					enabled="{= ${Drawings>/ViewMode} ? false:true}"
+					visible="{/EditAuth}"
+				/>
+				<Button
+					class="applePrimaryBtn"
+					type="Emphasized"
+					text="Mass Update"
+					press="showMassUpdate"
+					enabled="{= ${Drawings>/ViewMode} ? false:true}"
+					visible="{/EditAuth}"
+				/>
+				<Button
+					icon="sap-icon://media-reverse"
+					press="tableScroller('L')"
+				/>
+				<Button
+					icon="sap-icon://media-play"
+					press="tableScroller('R')"
+				/>
+				<Button
+					icon="sap-icon://clear-filter"
+					press="clearRfidFilter"
+				/>
+			</OverflowToolbar>
+		</smarttable:customToolbar>
+		<table:Table
+			id="tabRFID"
+			class="uiTableColumnHead sapUiSizeCompact"
+			visibleRowCountMode="Interactive"
+			visibleRowCount="4"
+			fixedColumnCount="1"
+		>
+			<table:rowSettingsTemplate>
+				<table:RowSettings
+					highlight="{=(${Drawings>ErrorMsg}) ? 'Error':'None'}"
+					highlightText="Test"
+				/>
+			</table:rowSettingsTemplate>
+
+
+
+		<table:Column
+				filterProperty="Rfid"
+				width="16rem"
+				sortProperty="Rfid"
+				customData:p13nData='\{"columnIndex":2,"columnKey": "Rfid", "leadingProperty":"Rfid", "additionalProperty":"Rfid", "sortProperty": "Rfid", "filterProperty": "Rfid","type":"string"}'
+			>
+				<Label text="RFID"/>
+				<table:template>
+					<HBox alignItems="Center">
+						<items>
+							<c:Icon
+								id="rfidShapeColor"
+								src="sap-icon://color-fill"
+								color="{Drawings>Shape_Color}"
+								class="sapUiTinyMarginEnd"
+							/>
+							<Text text="{Drawings>Rfid}"/>
+						</items>
+					</HBox>
+				</table:template>
+			</table:Column>
+			
+			 <table:Column
+				width="8rem"
+				filterProperty="CarryOverAqid"
+				sortProperty="CarryOverAqid"
+				customData:p13nData='\{"columnIndex":11,"columnKey": "CarryOverAqid", "leadingProperty":"CarryOverAqid", "additionalProperty":"CarryOverAqid", "sortProperty": "CarryOverAqid", "filterProperty": "CarryOverAqid","type":"string","nullable":true}'
+			>
+				<Label text="CO Make AQID"/>
+				<table:template>
+					<Input
+						value="{Drawings>CarryOverAqid}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="12rem"
+				filterProperty="CarryOverEqName"
+				sortProperty="CarryOverEqName"
+				customData:p13nData='\{"columnIndex":12,"columnKey": "CarryOverEqName", "leadingProperty":"CarryOverEqName", "additionalProperty":"CarryOverEqName", "sortProperty": "CarryOverEqName", "filterProperty": "CarryOverEqName","type":"string","nullable":true}'
+			>
+				<Label text="CO Eq. Name"/>
+				<table:template>
+					<Text
+						text="{Drawings>CarryOverEqName}" wrapping="false"
+					/>
+				</table:template>
+			</table:Column>
+				<table:Column
+				width="6rem"
+				filterProperty="CarryOverOldProgram"
+				sortProperty="CarryOverOldProgram"
+				customData:p13nData='\{"columnIndex":13,"columnKey": "CarryOverOldProgram", "leadingProperty":"CarryOverOldProgram", "additionalProperty":"CarryOverOldProgram", "sortProperty": "CarryOverOldProgram", "filterProperty": "CarryOverOldProgram","type":"string","nullable":true}'
+			>
+				<Label text="CO Prgm"/>
+				<table:template>
+					<Input
+						value="{Drawings>CarryOverOldProgram}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column>
+
+			<table:Column
+				width="6rem"
+				filterProperty="Equip_Manf"
+				sortProperty="Equip_Manf"
+				customData:p13nData='\{"columnIndex":15,"columnKey": "Equip_Manf", "leadingProperty":"Equip_Manf", "additionalProperty":"Equip_Manf", "sortProperty": "Equip_Manf", "filterProperty": "Equip_Manf","type":"string","nullable":true}'
+			>
+				<Label text="Vendor"/>
+				<table:template>
+					<Text text="{Drawings>Equip_Manf}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="8rem"
+				filterProperty="Override_LineId"
+				sortProperty="Override_LineId"
+				customData:p13nData='\{"columnIndex":16,"columnKey": "Override_LineId", "leadingProperty":"Override_LineId", "additionalProperty":"Override_LineId", "sortProperty": "Override_LineId", "filterProperty": "Override_LineId","type":"string","nullable":true}'
+			>
+				<Label text="Override Line ID"/>
+				<table:template>
+					<Input
+						value="{Drawings>Override_LineId}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="9rem"
+				filterProperty="LineType"
+				sortProperty="LineType"
+				customData:p13nData='\{"columnIndex":17,"columnKey": "LineType", "leadingProperty":"LineType", "additionalProperty":"LineType", "sortProperty": "LineType", "filterProperty": "LineType","type":"string","nullable":true}'
+			>
+				<Label text="Line Type"/>
+				<table:template>
+					<Input
+						value="{Drawings>LineType}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="9rem"
+				filterProperty="Line_Priority"
+				sortProperty="Line_Priority"
+				customData:p13nData='\{"columnIndex":18,"columnKey": "Line_Priority", "leadingProperty":"Line_Priority", "additionalProperty":"Line_Priority", "sortProperty": "Line_Priority", "filterProperty": "Line_Priority","type":"string","nullable":true}'
+			>
+				<Label text="Line Priority"/>
+				<table:template>
+					<Text
+						text="{Drawings>Line_Priority}"
+					/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="6rem"
+				filterProperty="Uph"
+				sortProperty="Uph"
+				customData:p13nData='\{"columnIndex":19,"columnKey": "Uph", "leadingProperty":"Uph", "additionalProperty":"Uph", "sortProperty": "Uph", "filterProperty": "Uph","type":"string","nullable":true}'
+			>
+				<Label text="UPH"/>
+				<table:template>
+					<Input
+						value="{Drawings>Uph}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				width="15rem"
+				filterProperty="Comments"
+				sortProperty="Comments"
+				customData:p13nData='\{"columnIndex":20,"columnKey": "Comments", "leadingProperty":"Comments", "additionalProperty":"Comments", "sortProperty": "Comments", "filterProperty": "Comments","type":"string","nullable":true}'
+			>
+				<Label text="Comments"/>
+				<table:template>
+					<Input
+						value="{Drawings>Comments}"
+						editable="{= ${Drawings>/ViewMode} ? false:true}"
+					/>
+				</table:template>
+			</table:Column> 
+		</table:Table>
+	</smarttable:SmartTable>
+		</content>
+	</Page>
+</mvc:View>

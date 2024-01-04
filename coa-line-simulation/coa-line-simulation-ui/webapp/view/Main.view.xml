@@ -1,0 +1,171 @@
+<mvc:View controllerName="com.apple.coa.coalinesimulationui.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns="sap.m" xmlns:l="sap.ui.layout"   xmlns:f="sap.ui.layout.form"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="page" title="{i18n>title}" showHeader="false">
+		<content >
+			<Panel id="pnlSel" class="dPageHeader" headerText="Line Simulation">
+				<HBox id="hboxSel" alignContent="Stretch" justifyContent="Start">
+					<Label id="txtlSimulation" text="Simulation Name:" class="sapUiSmallMarginEnd sapUiTinyMarginTop zSimLabel" required="true"/>
+					<Input id="inpSimName" placeholder="Enter Simulation"  showValueHelp="{authModel>/display}" valueHelpRequest=".onSimValHelpRequest"
+						value="{lineSimulationModel>/Simulation_name}" suggestionItems="{/SimulationData}" required="true">
+						<suggestionItems >
+							<core:Item text="{Simulation_name}" id="cisimname"/>
+						</suggestionItems>
+					</Input>
+					<Button id="btnNewSim" type="Emphasized" text="New Simulation" class="sapUiLargeMarginBeginEnd applePrimaryBtn" press=".onNewSimulation" visible="{authModel>/modifiy}"/>
+					<Button id="btnGetSim" type="Emphasized" text="Get Simulation" class="sapUiLargeMarginBeginEnd applePrimaryBtn" press=".onGetSimulation" visible="{authModel>/display}"/>
+					<Button id="btnSavSim" type="Emphasized" text="Save Simulation" class="sapUiLargeMarginBeginEnd applePrimaryBtn" press=".onSaveSimulation" visible="{authModel>/modifiy}"/>
+					<Button id="btnCloneSim" type="Emphasized" text="Clone Simulation" class="sapUiLargeMarginBeginEnd applePrimaryBtn" visible="{authModel>/modifiy}"
+						press=".onCloneSimulation"/>
+					<Button id="btnDeleteSim" type="Reject" text="Delete Simulation" class="sapUiLargeMarginBeginEnd appleDangerBtnSmartTable" press=".onDeleteSimulation" visible="{authModel>/modifiy}"/>
+				</HBox>
+			</Panel>
+			<Panel id="btnaddremove" accessibleRole="Region"
+					expanded="true"
+					height="30vh"
+					class="nopanelborder">
+					
+
+				<ScrollContainer
+						height="100%"
+						horizontal="true"
+						width="100%"
+						vertical="true">
+				<Table id="simulationHTable"
+					inset="false" mode="MultiSelect"
+					items="{lineSimulationModel>/simulationItem}" sticky="HeaderToolbar,InfoToolbar,ColumnHeaders">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="" level="H2"/>
+					<ToolbarSpacer />
+					 <FlexBox alignItems="End" justifyContent="End">
+                            <Text text="Simulation Status:" class="sapUiTinyMarginBottom" />
+                            <Text class="sapUiTinyMarginBegin sapUiTinyMarginBottom" text="{path: 'lineSimulationModel>/simulationStatus'}"/>
+                        </FlexBox>
+					<Button text="Download" type="Emphasized" id="downloadimline" press=".onDownloadSimLine" icon="sap-icon://download"
+						class="sapUiTinyMarginEnd sapUiTinyMarginBottom applePrimaryBtn" visible="{authModel>/display}"/>
+					<Button text="Add" type="Emphasized" id="createsimline" press=".onCreateSimLine" icon="sap-icon://add" enabled="{lineSimulationModel>/addEnable}"
+						class="sapUiTinyMarginEnd sapUiTinyMarginBottom applePrimaryBtn" visible="{authModel>/modifiy}"/>
+					<Button text="Remove" type="Emphasized" id="removesimline" press=".onRemoveSimLine" icon="sap-icon://less"
+						class="sapUiTinyMarginEnd sapUiTinyMarginBottom applePrimaryBtn" visible="{authModel>/modifiy}"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+
+		<columns>
+			<Column
+				width="12em">
+				<Label text="From GH Site" id="lbltblfrmghsite" required="true" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Label text="From Program" id="lbltblfromprogram" required="true"/>
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				>
+				<Label text="Line Id" id="lbltbllineid" required="true"/>
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				>
+				<Label text="To GH Site" id="lbltbltoghsite" />
+			</Column>
+			<Column
+				>
+				<Label text="To Program" id="lbltbltoprogram"/>
+			</Column>
+			<Column
+				>
+				<Label text="To Business Group" id="lbltblbusgrp"/>
+			</Column>
+			<Column>
+				<Label text="Error" id="lbltblError"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+				<Input id="cmbfromghsite" value="{path:'lineSimulationModel>From_GHSite'}" editable="{lineSimulationModel>edit}" change=".onTaleDataChange"/>
+					<Input id="cmbfromprogram" value="{path:'lineSimulationModel>Program'}" change=".onTaleDataChange" editable="{lineSimulationModel>edit}"/>
+								<MultiComboBox id="mcmblineid" editable="{= ${lineSimulationModel>edit} === true &amp;&amp; ${lineSimulationModel>From_GHSite} !== '' &amp;&amp; ${lineSimulationModel>Program} !== ''}" width="100%"
+									selectedKeys="{path:'lineSimulationModel>Line_ID', formatter:'com.apple.coa.coalinesimulationui.utils.Formatter.formatValue'}" selectionFinish=".lineIdSelctionFinish"
+									 change=".onTaleDataChange"  items="{lineSimulationModel>/lineid_dd}">
+									<core:Item key="{lineSimulationModel>LINEID}" text="{lineSimulationModel>LINEID}" id="cilineid"/>
+								</MultiComboBox>
+							<Input id="cmbtoghsite" value="{path:'lineSimulationModel>To_GHSite'}" editable="{lineSimulationModel>edit}" change=".onTaleDataChange"/>
+							<Input id="cmbtoprogram" value="{path:'lineSimulationModel>To_Program'}" editable="{lineSimulationModel>edit}" change=".onTaleDataChange"/>
+							<Input value="{lineSimulationModel>To_Business_Grp}" id="inpbusgrp" change=".onTaleDataChange" editable="{lineSimulationModel>edit}"/>
+							<Text id="errorSimHeader" text="{lineSimulationModel>ErrorMsg}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</ScrollContainer>
+			</Panel>
+			<HBox id="hboxSelSim" alignContent="Stretch" justifyContent="End" alignItems="End" class="sapUiSmallMarginEnd sapUiTinyMarginTop">
+				<Button text="Simulate" class="sapUiSmallMarginEnd applePrimaryBtn" type="Emphasized" id="idbtnSimulate" press=".onSimulate" visible="{authModel>/modifiy}">
+					<layoutData>
+						<FlexItemData growFactor="0" id="fidsim"/>
+					</layoutData>
+				</Button>
+				<Button text="Clear" type="Emphasized" class="applePrimaryBtn" press=".onClearSimulation" id="idbtnclear">
+					<layoutData>
+						<FlexItemData growFactor="0" id="fidclear"/>
+					</layoutData>
+				</Button>
+			</HBox>
+			<Panel>
+			<Toolbar height="6rem">
+                <GenericTile header="RFID Equipment" id="btnRFIDEquip" class="sapUiTinyMarginBegin" press="onRFIDEquipment"/>
+                <ToolbarSpacer/>
+                <GenericTile header="Non RFID Equipment" id="btnNonRFIDEquip" press="onNonRFIDEquipment"/>
+                <ToolbarSpacer/>
+                <GenericTile header="Carry Over Simulation" id="btnCarryOverSim" class="sapUiTinyMarginEnd" press="onCarryOverSimulation"/>
+            </Toolbar>
+			</Panel>
+			<Panel id="rfidEquip">
+				<FlexBox id="tables" alignItems="Center" justifyContent="Center" class="panelTable sapUiNoMarginBottom" height="100%">
+					<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" id="rfidEquipTable" enableExport="true" 
+						beforeExport=".onBeforeExportLine($event,'RfidSimu')" useVariantManagement="false" useTablePersonalisation="true" enableAutoBinding="false" editable="false"
+						enableAutoColumnWidth="true" class="zTable buttonWithIconOnly zSTTitle zTableTrEdit" width="100%" direction="Column" entitySet="RfidSimu"
+						header="RFID Equipment" editToggled="onEditToggle" showFullScreenButton="true" visible="{lineSimulationModel>/rfidTable}" height="100%"
+						initialise="onAQIDSTInitialise" beforeRebindTable="applyFilterRFIDEquipment" editTogglable="false" showRowCount="true"
+						headerLevel="H1" requestAtLeastFields="GHSite,To_CM,To_Site,To_Program,Line_Id,Site,CM_Program,RFID,AQID"
+						initiallyVisibleFields="RFID,Serial_Number,AQID,CM_Program,EQ_Name,Asset_Own,Status,CO_Program,CO_Aqid,Mapped_AQID,CO_Eq,Short_Name,CM,GHSite,Site,Area,CM_Dept,Line_Id,Line_Type,UPH,To_GhSite,To_CM,To_Site,To_Program,To_Business_Grp,Transfer_Flag,Match_Qty,Mismatch_Qty,Match_Status">
+						<t:Table id="rfidequiptable" selectionMode="MultiToggle" visibleRowCount="10" visibleRowCountMode="Interactive"></t:Table>
+					</sap.ui.comp.smarttable:SmartTable>
+
+
+					<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" id="nonrfidEquipTable"
+						smartFilterId="smartFilterBar" customData:useSmartToggle="false" customData:useSmartField="true" enableExport="true"
+						beforeExport=".onBeforeExportLine($event,'NonRfidSimu')"  useVariantManagement="false" useTablePersonalisation="true" enableAutoBinding="false" editable="false"
+						enableAutoColumnWidth="true" class="zTable buttonWithIconOnly zSTTitle zTableTrEdit" width="100%" direction="Column" entitySet="NonRfidSimu"
+						header="NON RFID Equipment" editToggled="onEditToggle" showFullScreenButton="true" visible="{lineSimulationModel>/nonRFIDTable}"
+						height="100%" initialise="onAQIDSTInitialise" fieldChange=".onAgmtFieldChange" beforeRebindTable="applyFilterNonRFIDEquipment"
+						editTogglable="false" showRowCount="true" headerLevel="H1"
+						requestAtLeastFields="GH_Site,CM,Site,Program,Aqid,Station,Group_Priority,Scope,Line_Type,UPH,Line_Id"
+						initiallyVisibleFields="GH_Site,Program,UPH,Line_Type,Line_Id,Aqid,Mapped_Aqid,Station,Alt_Station,Scope,RFID_Scope,Group_Priority,confLevel,Projected_Qty,To_GHSite,To_Program,To_Business_Grp,Transfer_Qty,Transfer_Flag,Comments,Status,Sync_on_Dt,Sync_By_Name,Group_ID,Line_Priority,Dept,Equipment_Name,Equipment_Type,Mfr,Submit_By,Submit_Dt,modifiedBy_Name,Modify_Date,Reviewed_By,Review_Date,Match_Qty,Mismatch_Qty,Match_Status">
+						<t:Table id="nonrfidequiptable" selectionMode="MultiToggle" visibleRowCount="10" visibleRowCountMode="Interactive"></t:Table>
+					</sap.ui.comp.smarttable:SmartTable>
+
+					<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" id="carryoversimulationTable"
+						smartFilterId="smartFilterBar" customData:useSmartToggle="false" customData:useSmartField="true" enableExport="true"
+						beforeExport=".onBeforeExportLine($event,'COSimu')"  useVariantManagement="false" useTablePersonalisation="true" enableAutoBinding="false" editable="false"
+						enableAutoColumnWidth="true" class="zTable buttonWithIconOnly zSTTitle zTableTrEdit" width="100%" direction="Column" entitySet="COSimu"
+						header="CarryOver Simulation" editToggled="onEditToggle" showFullScreenButton="true" visible="{lineSimulationModel>/coSimulation}"
+						height="100%" initialise="onAQIDSTInitialise" fieldChange=".onAgmtFieldChange" beforeRebindTable="applyFilterCOSimulation"
+						editTogglable="false" showRowCount="true" headerLevel="H1" requestAtLeastFields="From_GHSite"
+						initiallyVisibleFields="From_GHSite,From_Product,From_Business_Grp,Apple_Id,To_Product,To_Site,To_Business_Grp,CO_Type,Quantity,Comment,Match_Qty,Mismatch_Qty,Match_Status">
+						<t:Table id="cooutputtable" selectionMode="MultiToggle" visibleRowCount="10" visibleRowCountMode="Interactive"></t:Table>
+					</sap.ui.comp.smarttable:SmartTable>
+
+				</FlexBox>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

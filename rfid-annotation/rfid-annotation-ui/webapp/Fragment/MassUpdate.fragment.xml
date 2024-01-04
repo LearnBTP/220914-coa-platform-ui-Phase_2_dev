@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog contentWidth="45%" contentHeight="auto"  title="RFID Mass Update" showHeader="true" resizable="true">
+        <content>
+            <f:SimpleForm  editable="true" class="sapUiSizeCompact" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" labelSpanS="12" emptySpanL="2" emptySpanM="1">
+                <f:content>
+                    <Label text="CO AQID" />
+                    <Input value="{/MassUpdateVal/CarryOverAqid}" />
+                    <Label text="CO Prgm" />
+                    <Input value="{/MassUpdateVal/CarryOverOldProgram}" />
+                    <Label text="Override Line Id" />
+                    <Input value="{/MassUpdateVal/Override_LineId}" />
+                    <Label text="Line Type" />
+                    <Input value="{/MassUpdateVal/LineType}" />
+                    <Label text="Uph" />
+                    <Input value="{/MassUpdateVal/Uph}" />
+                    <Label text="Comments" />
+                    <Input value="{/MassUpdateVal/Comments}" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button id="btnMassSave" class="applePrimaryBtn" type="Emphasized" text="Save" press="applyUpdateChange" />
+        </beginButton>
+        <endButton>
+            <Button class="appleAlternateBtn" text="Cancel" press="closeUpdateChange" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

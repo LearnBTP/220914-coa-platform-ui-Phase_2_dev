@@ -1,0 +1,77 @@
+{
+    "authenticationMethod": "route",   
+    "welcomeFile": "/logoncoalogonui",
+    "routes": [
+        {
+            "source": "^/coa-api/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM",
+            "scope": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineReadOnly",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineReadOnly",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.LinePlanReadOnly",
+                "$XSAPPNAME.COOutputReadOnly",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ApproveRfidOnHandTT",
+                "$XSAPPNAME.ApproveCoOutput",
+                "$XSAPPNAME.ProjectionTableReadOnly",
+                "$XSAPPNAME.nonRFIDTTReadOnly",
+                "$XSAPPNAME.UnScannableReadOnly",
+                "$XSAPPNAME.LineSimulationReadOnly",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify",
+                "$XSAPPNAME.NPIProgramModify",
+                "$XSAPPNAME.SyncActionAll"
+            ]
+        },
+        {
+            "source": "^/coa-api-ext/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_APIM_EXT",
+            "scope": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineReadOnly",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineReadOnly",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.LinePlanReadOnly",
+                "$XSAPPNAME.COOutputReadOnly",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ProjectionTableReadOnly",
+                "$XSAPPNAME.nonRFIDTTReadOnly",
+                "$XSAPPNAME.UnScannableReadOnly",
+                "$XSAPPNAME.LineSimulationReadOnly",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify",
+                "$XSAPPNAME.NPIProgramModify"
+            ]
+        },
+        {
+            "source": "^/coa-dms/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false,
+            "destination": "COA_DMS"
+        }
+    ]
+
+}

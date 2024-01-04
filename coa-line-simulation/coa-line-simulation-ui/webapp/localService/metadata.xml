@@ -1,0 +1,1005 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="Line_simulation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="COSimu" EntityType="Line_simulation.COSimu"/>
+        <EntitySet Name="RfidSimu" EntityType="Line_simulation.RfidSimu"/>
+        <EntitySet Name="NonRfidSimu" EntityType="Line_simulation.NonRfidSimu"/>
+        <EntitySet Name="SimulationData" EntityType="Line_simulation.SimulationData"/>
+        <EntitySet Name="SimulationHeader" EntityType="Line_simulation.SimulationHeader"/>
+        <EntitySet Name="BomStructure" EntityType="Line_simulation.BomStructure"/>
+        <EntitySet Name="LineID" EntityType="Line_simulation.LineID"/>
+        <EntitySet Name="RfidTT" EntityType="Line_simulation.RfidTT"/>
+        <EntitySet Name="nonRfidTT" EntityType="Line_simulation.nonRfidTT"/>
+        <EntitySet Name="ViewSimulation" EntityType="Line_simulation.ViewSimulation"/>
+        <EntitySet Name="DropDownHelp" EntityType="Line_simulation.DropDownHelp"/>
+        <FunctionImport Name="OnSimulate" m:HttpMethod="POST">
+          <Parameter Name="simulationName" Type="Edm.String" Mode="In" Nullable="true"/>
+        </FunctionImport>
+      </EntityContainer>
+      <EntityType Name="COSimu">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+          <PropertyRef Name="From_GHSite"/>
+          <PropertyRef Name="From_Product"/>
+          <PropertyRef Name="To_Product"/>
+          <PropertyRef Name="To_Site"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="From_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="From_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="To_Product" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Apple_Id" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Quantity" Type="Edm.Int32"/>
+        <Property Name="Comment" Type="Edm.String" MaxLength="150"/>
+        <Property Name="Match_Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Match_Qty" Type="Edm.Int32"/>
+        <Property Name="Mismatch_Qty" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="RfidSimu">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+          <PropertyRef Name="GHSite"/>
+          <PropertyRef Name="To_CM"/>
+          <PropertyRef Name="To_Site"/>
+          <PropertyRef Name="To_Program"/>
+          <PropertyRef Name="Line_Id"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="CM_Program"/>
+          <PropertyRef Name="RFID"/>
+          <PropertyRef Name="AQID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="5000"/>
+        <Property Name="Raw_AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Mapped_AQID" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Short_Name" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Serial_Number" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Asset_Own" Type="Edm.String" MaxLength="30"/>
+        <Property Name="EQ_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Area" Type="Edm.String" MaxLength="32"/>
+        <Property Name="CM_Dept" Type="Edm.String" MaxLength="128"/>
+        <Property Name="Lob_Name" Type="Edm.String" MaxLength="64"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="5"/>
+        <Property Name="CO_Aqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="CO_Eq" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CO_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Line_Id" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="128"/>
+        <Property Name="UPH" Type="Edm.Int32"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="4"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Match_Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Match_Qty" Type="Edm.Int32"/>
+        <Property Name="Mismatch_Qty" Type="Edm.Int32"/>
+        <Property Name="RFID" Type="Edm.String" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="NonRfidSimu">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+          <PropertyRef Name="GH_Site"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="Station"/>
+          <PropertyRef Name="Group_Priority"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Short_AQID" Type="Edm.String" MaxLength="255"/>
+        <Property Name="PO_Type" Type="Edm.String"/>
+        <Property Name="Station" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Group_Priority" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+        <Property Name="UPH" Type="Edm.Int32"/>
+        <Property Name="Consumable" Type="Edm.String"/>
+        <Property Name="RFID_Scope" Type="Edm.String" MaxLength="1"/>
+        <Property Name="SPL" Type="Edm.Int32"/>
+        <Property Name="MP_Intent" Type="Edm.String"/>
+        <Property Name="QPL" Type="Edm.Int32"/>
+        <Property Name="Release_Quantity" Type="Edm.String"/>
+        <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="BOH" Type="Edm.Int32"/>
+        <Property Name="Created_User" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Update_On" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Match_Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Match_Qty" Type="Edm.Int32"/>
+        <Property Name="Mismatch_Qty" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="SimulationData">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="UserId" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="30"/>
+      </EntityType>
+      <EntityType Name="SimulationHeader">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+          <PropertyRef Name="From_GHSite"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Line_ID"/>
+          <PropertyRef Name="Line_Type"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Line_ID" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="18"/>
+      </EntityType>
+      <EntityType Name="BomStructure">
+        <Key>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Station"/>
+          <PropertyRef Name="Level"/>
+          <PropertyRef Name="Group_Priority"/>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="Program"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Station" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Level" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Group_Priority" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Parent_Item" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Mp_Intent_Qty" Type="Edm.Int32"/>
+        <Property Name="Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="Dept" Type="Edm.String" MaxLength="18"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="LineID">
+        <Key>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Building"/>
+          <PropertyRef Name="Floor"/>
+          <PropertyRef Name="Status"/>
+          <PropertyRef Name="Asset_ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Asset_ID" Type="Edm.Decimal" Precision="22" Nullable="false"/>
+        <Property Name="Rfid" Type="Edm.String" MaxLength="25"/>
+        <Property Name="Alderaan_ID" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Override_LineId" Type="Edm.String" MaxLength="30"/>
+        <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+        <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40"/>
+        <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="255"/>
+        <Property Name="isAqidChanged" Type="Edm.Boolean"/>
+        <Property Name="isProgramChanged" Type="Edm.Boolean"/>
+        <Property Name="EquipName" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="Uph" Type="Edm.Int32"/>
+        <Property Name="LineType" Type="Edm.String" MaxLength="128"/>
+        <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+        <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50"/>
+        <Property Name="Version_Id" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="150"/>
+        <Property Name="Rfid_XAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+        <Property Name="Rfid_YAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="RfidTT">
+        <Key>
+          <PropertyRef Name="Raw_Aqid"/>
+          <PropertyRef Name="Mapped_Aqid"/>
+          <PropertyRef Name="Short_Name"/>
+          <PropertyRef Name="Equipment_Name"/>
+          <PropertyRef Name="MFR"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="TIMESTAMP"/>
+          <PropertyRef Name="RFID"/>
+          <PropertyRef Name="AREA"/>
+          <PropertyRef Name="CM_DEPT"/>
+          <PropertyRef Name="LOB_NAME"/>
+          <PropertyRef Name="ALDERAN"/>
+          <PropertyRef Name="SERNR"/>
+          <PropertyRef Name="ASSETOWN"/>
+          <PropertyRef Name="SITE"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="ZALDR_CMPROGRAM"/>
+          <PropertyRef Name="ZALDR_SITE"/>
+          <PropertyRef Name="ZALDR_CM"/>
+          <PropertyRef Name="STATUS"/>
+          <PropertyRef Name="createdAt"/>
+          <PropertyRef Name="Override_LineId"/>
+          <PropertyRef Name="CarryOverAqid"/>
+          <PropertyRef Name="CarryOverEqName"/>
+          <PropertyRef Name="CarryOverOldProgram"/>
+          <PropertyRef Name="Uph"/>
+          <PropertyRef Name="LineType"/>
+          <PropertyRef Name="LineId"/>
+          <PropertyRef Name="Version_Id"/>
+          <PropertyRef Name="Transfer_Flag"/>
+          <PropertyRef Name="To_CM"/>
+          <PropertyRef Name="To_Site"/>
+          <PropertyRef Name="To_Program"/>
+          <PropertyRef Name="Tp_Business_Grp"/>
+          <PropertyRef Name="Comments"/>
+          <PropertyRef Name="Approval_Status"/>
+          <PropertyRef Name="Submit_Dte"/>
+          <PropertyRef Name="Submit_By"/>
+          <PropertyRef Name="Review_Date"/>
+          <PropertyRef Name="Reviewed_By"/>
+          <PropertyRef Name="SAP_CM_Site"/>
+          <PropertyRef Name="SAP_To_CM_Site"/>
+          <PropertyRef Name="To_GHSite"/>
+          <PropertyRef Name="Submit_By_Name"/>
+          <PropertyRef Name="Submit_By_mail"/>
+          <PropertyRef Name="Reviewed_By_Name"/>
+          <PropertyRef Name="Reviewed_By_mail"/>
+          <PropertyRef Name="modifiedBy_Name"/>
+          <PropertyRef Name="modifiedBy_mail"/>
+          <PropertyRef Name="createdBy_Name"/>
+          <PropertyRef Name="createdBy_mail"/>
+        </Key>
+        <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Short_Name" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="RFID" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="AREA" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="CM_DEPT" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="LOB_NAME" Type="Edm.String" MaxLength="64" Nullable="false"/>
+        <Property Name="ALDERAN" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="SERNR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="ZALDR_SITE" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="ZALDR_CM" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="STATUS" Type="Edm.String" MaxLength="5" Nullable="false"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Override_LineId" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="LineType" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="LineId" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Version_Id" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Tp_Business_Grp" Type="Edm.String" MaxLength="5000" Nullable="false"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Approval_Status" Type="Edm.String" MaxLength="5000" Nullable="false"/>
+        <Property Name="Submit_Dte" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+        <Property Name="Submit_By" Type="Edm.String" MaxLength="5000" Nullable="false"/>
+        <Property Name="Review_Date" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
+        <Property Name="Reviewed_By" Type="Edm.String" MaxLength="5000" Nullable="false"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61" Nullable="false"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Submit_By_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Submit_By_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Reviewed_By_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="Reviewed_By_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" MaxLength="600"/>
+      </EntityType>
+      <EntityType Name="nonRfidTT">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="GH_Site"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="Line_Type"/>
+          <PropertyRef Name="Uph"/>
+          <PropertyRef Name="Aqid"/>
+          <PropertyRef Name="Station"/>
+          <PropertyRef Name="Scope"/>
+          <PropertyRef Name="Line_Id"/>
+          <PropertyRef Name="Group_Priority"/>
+          <PropertyRef Name="Sequence_No"/>
+          <PropertyRef Name="Split"/>
+          <PropertyRef Name="Mfr"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="36" Nullable="false"/>
+        <Property Name="GH_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="Scope" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="Line_Id" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Parent_Item" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Alt_Station" Type="Edm.Int32"/>
+        <Property Name="Group_Priority" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="Sequence_No" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="Split" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="confLevel" Type="Edm.Int32"/>
+        <Property Name="Projected_Qty" Type="Edm.Int32"/>
+        <Property Name="Transfer_Qty" Type="Edm.Int32"/>
+        <Property Name="Mfr" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="BusinessGrp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="SAP_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="SAP_To_CM_Site" Type="Edm.String" MaxLength="61"/>
+        <Property Name="Dept" Type="Edm.String" MaxLength="18"/>
+        <Property Name="RFID_Scope" Type="Edm.String" MaxLength="32"/>
+        <Property Name="LastSyncDate" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Group_ID" Type="Edm.Int32"/>
+        <Property Name="Line_Priority" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+        <Property Name="Status" Type="Edm.String" MaxLength="18"/>
+        <Property Name="Submit_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Submit_By" Type="Edm.String"/>
+        <Property Name="Review_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="Reviewed_By" Type="Edm.String"/>
+        <Property Name="modifiedBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdBy_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Submit_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_Name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Reviewed_By_mail" Type="Edm.String" MaxLength="255"/>
+        <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18"/>
+      </EntityType>
+      <EntityType Name="ViewSimulation">
+        <Key>
+          <PropertyRef Name="Simulation_name"/>
+          <PropertyRef Name="From_GHSite"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Line_ID"/>
+        </Key>
+        <Property Name="Simulation_name" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="From_GHSite" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Line_ID" Type="Edm.String" MaxLength="80" Nullable="false"/>
+        <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+        <Property Name="To_GHSite" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+        <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" MaxLength="18"/>
+        <Property Name="createdAt" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="DropDownHelp">
+        <Key>
+          <PropertyRef Name="GH_Site"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="Site"/>
+          <PropertyRef Name="Program"/>
+          <PropertyRef Name="LineId"/>
+          <PropertyRef Name="To_Business_Grp"/>
+        </Key>
+        <Property Name="GH_Site" Type="Edm.String" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" Nullable="false"/>
+        <Property Name="Site" Type="Edm.String" Nullable="false"/>
+        <Property Name="Program" Type="Edm.String" Nullable="false"/>
+        <Property Name="LineId" Type="Edm.String" Nullable="false"/>
+        <Property Name="To_Business_Grp" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <Annotations Target="Line_simulation.COSimu/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.COSimu/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.COSimu/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.COSimu/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidSimu/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidSimu/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidSimu/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidSimu/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.NonRfidSimu/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.NonRfidSimu/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.NonRfidSimu/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.NonRfidSimu/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationData/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationData/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationData/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationData/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationHeader/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationHeader/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationHeader/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.SimulationHeader/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/Level" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.BomStructure/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.LineID/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.LineID/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.LineID/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.LineID/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/AREA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/CM_DEPT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/LOB_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ALDERAN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ZALDR_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ZALDR_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Override_LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/CarryOverAqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/CarryOverEqName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/CarryOverOldProgram" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/LineType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/LineId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Version_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Approval_Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/SAP_To_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Submit_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Submit_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Reviewed_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/Reviewed_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/modifiedBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/modifiedBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/createdBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/createdBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.RfidTT/ErrorMsg" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/GH_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Scope" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Parent_Item" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Alt_Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Group_Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Sequence_No" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Split" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/confLevel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Projected_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Transfer_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Mfr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/BusinessGrp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/SAP_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/SAP_To_CM_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Dept" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/RFID_Scope" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/LastSyncDate" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Group_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Line_Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Equipment_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/To_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/To_GHSite" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Submit_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/modifiedBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/modifiedBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/createdBy_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/createdBy_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Submit_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Submit_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Reviewed_By_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Reviewed_By_mail" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="Line_simulation.nonRfidTT/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

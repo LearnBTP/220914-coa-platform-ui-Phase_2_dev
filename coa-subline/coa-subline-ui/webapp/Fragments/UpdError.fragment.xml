@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog  contentWidth="70%" contentHeight="62%" title="Errors on Upload" draggable="true" horizontalScrolling="true" resizable="true" showHeader="true" type="Standard" verticalScrolling="true" afterClose="onAfterErrorClose">
+        <content>
+            <smartTable:SmartTable
+                tableBindingPath="coaErr>/coaSubLine"
+                entitySet="CarryoverSubline"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Errors"
+                initialise="errorTabInit"
+                beforeRebindTable="applyErrorLog"
+                showRowCount="true"
+                enableAutoBinding="true"
+                enableExport="true"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                initiallyVisibleFields="Sub_Line_Name,Program,Uph,boH_Qty,Fatp_Sustaining_Qty,Remote_Site_Cap_Demand,Yield,SubLine_UPH,Working_Hrs,Efficiency_Field,Comment,modifiedAt,modifiedBy_Name,createdAt,createdBy_Name,Error"
+                ignoredFields="modifiedAt,modifiedBy,createdAt,createdBy"
+            >
+                <t:Table  selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+        <endButton>
+            <Button  text="Close" type="Ghost" press="onErrCloseDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

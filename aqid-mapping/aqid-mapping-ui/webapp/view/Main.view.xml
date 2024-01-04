@@ -1,0 +1,208 @@
+<mvc:View
+    controllerName="coa.aqidmappingui.controller.Main"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+>
+    <Page id="page" showHeader="false" backgroundDesign="Transparent" showFooter="false" enableScrolling="false">
+        <content>
+            <semantic:SemanticPage id="pageDrawingSearch" fitContent="false" class="dPageHeader" headerExpanded="true" headerPinnable="true" preserveHeaderStateOnScroll="false" showFooter="false" toggleHeaderOnTitleClick="false">
+                <semantic:headerContent>
+                    <Title id="title" level="H1" text="AQID Mapping" class="pageTitleContrast sapUiSmallMarginBottom" />
+                    <smartFilterBar:SmartFilterBar
+                        id="smartFilterBar"
+                        showGoOnFB="true"
+                        entitySet="AQIDMapping"
+                        enableBasicSearch="false"
+                        class="contrastTextSF applePrimaryBtn appleSecondaryBtn"
+                        useToolbar="false"
+                        search=".onSFBSearch"
+                        initialise=".onSFBInitialise"
+                        showClearOnFB="true"
+                        basicSearchFieldName="Aqid"
+                    >
+                        <smartFilterBar:customData>
+                            <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                        </smartFilterBar:customData>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData shrinkFactor="0" id="fid2" />
+                        </smartFilterBar:layoutData>
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration key="Aqid" conditionPanelDefaultOperation="LT" id="cconfig" />
+                        </smartFilterBar:controlConfiguration>
+                    </smartFilterBar:SmartFilterBar>
+                </semantic:headerContent>
+
+                <semantic:content>
+                    <Panel headerText="">
+                        <FlexBox alignItems="End" justifyContent="End">
+                            <Text text="Last file received from Groundhog:" class="sapUiTinyMarginBottom" />
+                            <Text class="sapUiTinyMarginBegin sapUiTinyMarginBottom" text="{path: 'AqidModel>/lastSyncGND5',type: 'sap.ui.model.type.DateTime',formatOptions: {pattern: 'MMM d y HH:mm:ss'}}"/>
+                            <Text text="PST" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" visible="{= ${AqidModel>/lastSyncGND5} ? true : false}"/>
+                            <core:Icon id="lastSyncdata" color="lime" src="sap-icon://information" press=".onLastSyncPopover" class="sapUiTinyMarginBegin zIconLastSync" />
+                            <ResponsivePopover id="lastSyncPopover" placement="Bottom" class="sapUiMediumMarginTop">
+                                <f:SimpleForm id="SFormLastSyncData" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                                    <f:content>
+                                        <Label text="User(ID)" showColon="true" />
+                                        <Text text="{AqidModel>/lastSyncBy}({AqidModel>/createdBy_mail})"  class="sapUiTinyMarginBottom" />
+                                        <Label text="Log Id" showColon="true" />
+                                        <Text text="{AqidModel>/lastSyncLogId}" />
+                                        <Label id="lblsync" text="Last Sync(PST)"/>
+                                        <Text  id="idsyncDate" text="{path: 'AqidModel>/lastSyncDate',type: 'sap.ui.model.type.DateTime',formatOptions: {pattern: 'MMM d y HH:mm:ss'}}" />
+                                        <Label text="Sync Status Reason" visible="{AqidModel>/reasonSyncVisible}"/>
+                                        <Text id="syncFailReason" text="{AqidModel>/ReasonForStatus}" visible="{AqidModel>/reasonSyncVisible}"/>
+                                    </f:content>
+                                </f:SimpleForm>
+                            </ResponsivePopover>
+                        </FlexBox>
+
+                        <FlexBox id="table" alignItems="Center" justifyContent="Center" class="panelTable sapUiNoMarginBottom" height="100%">
+                            <sap.ui.comp.smarttable:SmartTable
+                                xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable"
+                                id="AqidMappingTable"
+                                smartFilterId="smartFilterBar"
+                                customData:useSmartToggle="false"
+                                customData:useSmartField="true"
+                                enableExport="true"
+                                beforeExport=".onBeforeExportAQID"
+                                useVariantManagement="false"
+                                useTablePersonalisation="true"
+                                enableAutoBinding="false"
+                                editable="false"
+                                enableAutoColumnWidth="true"
+                                class="zTable buttonWithIconOnly zSTTitle zTableTrEdit"
+                                width="100%"
+                                direction="Column"
+                                entitySet="AQIDMapping"
+                                header="AQID Mapping"
+                                editToggled="onEditToggle"
+                                showFullScreenButton="true"
+                                visible="true"
+                                height="100%"
+                                initialise="onAQIDSTInitialise"
+                                fieldChange=".onAgmtFieldChange"
+                                beforeRebindTable="onDataReceived"
+                                editTogglable="{authModel>/modifiy}"
+                                showRowCount="true"
+                                headerLevel="H1"
+                                ignoredFields="Update_By_User,Update_By_Name"
+                                requestAtLeastFields="GH_Site,Raw_Aqid,Mapped_Aqid,Program,Site,Stack_Item,Edit"
+                                initiallyVisibleFields="GH_Site,Program,Raw_Aqid,Make_Aqid,Mapped_Aqid,MFR,Equipment_Name,Stack_Item,Recommendation_Type,createdBy_Name,modifiedBy_Name,CM,Site,Error"
+                            >
+                                <sap.ui.comp.smarttable:customData>
+                                    <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                                </sap.ui.comp.smarttable:customData>
+                                <smartTable:customToolbar>
+                                    <OverflowToolbar id="OTT" design="Transparent">
+                                        <ToolbarSpacer id='TS' />
+                                        <OverflowToolbarButton id='OTBRefresh' icon="sap-icon://refresh" tooltip="Refresh" press=".onTableRefresh"  class="buttonWithIconOnly" />
+                                        <Button id='OTBSave' text="Save" visible="{authModel>/modifiy}"  press=".onTableDataSave"  enabled="{= ${sm4rtM0d3l>/editable}}" class="applePrimaryBtnSmartTable" type="Emphasized" />
+                                        <Button id='OTBMassUpdate' text="Mass Update" visible="{authModel>/modifiy}"  press=".onPressUpload" enabled="{= ${sm4rtM0d3l>/editable}}" class="applePrimaryBtnSmartTable"  type="Emphasized"/>
+                                        <u:FileUploader id="fileUploader" sameFilenameAllowed="true"  name="myFileUpload" tooltip="Upload your file" buttonOnly="true" buttonText="Upload" class="appleAlternateBtn" change="handleUploadPress" visible="{authModel>/modifiy}" enabled="{= ${sm4rtM0d3l>/editable}}"/> 
+                                        <Button id="syncaqid" icon="sap-icon://synchronize" text="Sync AQID" press=".onSyncAqid" visible="{authModel>/syncButton}" enabled="{= !${sm4rtM0d3l>/editable}}" class="appleAlternateBtn" />
+                                        <Button id="OTBHistory" icon="sap-icon://history" text="Change Log" press="showChangeLog" class="appleAlternateBtn" />
+                                    </OverflowToolbar>
+                                </smartTable:customToolbar>
+                                <t:Table id="idMPTab" visibleRowCountMode="Interactive" visibleRowCount="15" rowSelectionChange=".tableSelChange">
+
+
+                                    <t:columns >
+                                    <t:Column id="colCm_Recommendation" width="14rem" hAlign="Begin" filterProperty="Cm_Recommendation" sortProperty="Cm_Recommendation">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Cm_Recommendation", "leadingProperty": "Cm_Recommendation", "additionalProperty":"Cm_Recommendation", "sortProperty": "Cm_Recommendation", "filterProperty": "Cm_Recommendation","type":"string", "columnIndex": "5"}'/>
+                                        </t:customData>
+                                        <Label id="lblCm_Recommendation" text="CM Manual Mapped AQID" wrapping="true"/>
+                                        <t:template>
+                                         <HBox id="hboxCm_Recommendation" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+						                <items>
+                                        <Input id="inpCm_Recommendation" value="{path:'Cm_Recommendation'}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"/>
+                                         <Text id="txtCm_Recommendation" text="{path:'Cm_Recommendation'}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                       
+                                         </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    
+                                    <t:Column id="colShort_Name" width="14rem" hAlign="Begin" filterProperty="Short_Name" sortProperty="Short_Name">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Short_Name", "leadingProperty": "Short_Name","additionalProperty":"Short_Name", "sortProperty": "Short_Name", "filterProperty": "Short_Name","type":"string", "columnIndex": "8"}'/>
+                                        </t:customData>
+                                        <Label id="lblShort_Name" text="Short Name" wrapping="true"/>
+                                        <t:template>
+                                         <HBox id="hboxShort_Name" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+						                <items>
+                                        <Input id="inpShort_Name" value="{path:'Short_Name'}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"/>
+                                         <Text id="txgShort_Name" text="{path:'Short_Name'}"  visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                       
+                                         </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column id="colComment" width="14rem" hAlign="Begin" filterProperty="Comment" sortProperty="Comment">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Comment", "leadingProperty": "Comment","additionalProperty":"Comment", "sortProperty": "Comment", "filterProperty": "Comment","type":"string", "columnIndex": "11"}'/>
+                                        </t:customData>
+                                        <Label id="lblComment" text="Comment" wrapping="true"/>
+                                        <t:template>
+                                         <HBox id="hboxComment" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+						                <items>
+                                        <Input id="inpComment" value="{path:'Comment'}" visible="{= ${sm4rtM0d3l>/editable} === true &amp;&amp; ${Edit} === 7}"/>
+                                         <Text id="Comment" text="{path:'Comment'}" visible="{= ${sm4rtM0d3l>/editable} === false || ${Edit} !== 7}"/>
+                                       
+                                         </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column id="colcreatedAt" width="14rem" hAlign="Begin" filterProperty="createdAt" sortProperty="createdAt">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "createdAt", "leadingProperty": "createdAt","additionalProperty":"createdAt", "sortProperty": "createdAt", "filterProperty": "createdAt","type":"string", "columnIndex": "12"}'/>
+                                        </t:customData>
+                                        <Label id="lblcreatedAt" text="Created On" wrapping="true"/>
+                                        <t:template>
+                                         <HBox id="hboxcreatedAt" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+						                <items>
+                                         <Text id="createdAt" text="{path:'createdAt',formatter:'.formatDate'}" />
+                                       
+                                         </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+                                    <t:Column id="colmodifiedAt" width="14rem" hAlign="Begin" filterProperty="modifiedAt" sortProperty="modifiedAt">
+                                        <t:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "modifiedAt", "leadingProperty": "modifiedAt","additionalProperty":"modifiedAt", "sortProperty": "modifiedAt", "filterProperty": "modifiedAt","type":"string", "columnIndex": "14"}'/>
+                                        </t:customData>
+                                        <Label id="lblmodifiedAt" text="Updated On" wrapping="true"/>
+                                        <t:template>
+                                         <HBox id="hboxmodifiedAt" class="zCoreSelectColumns" alignItems="Start" justifyContent="Start">
+						                <items>
+                                         <Text id="modifiedAt" text="{path:'modifiedAt',formatter:'.formatDate'}" />
+                                       
+                                         </items>
+					                    </HBox>
+                                        </t:template>
+                                    </t:Column>
+
+
+                                    </t:columns >
+
+                                </t:Table>
+                            </sap.ui.comp.smarttable:SmartTable>
+                        </FlexBox>
+                    </Panel>
+                </semantic:content>
+            </semantic:SemanticPage>
+        </content>
+    </Page>
+</mvc:View>

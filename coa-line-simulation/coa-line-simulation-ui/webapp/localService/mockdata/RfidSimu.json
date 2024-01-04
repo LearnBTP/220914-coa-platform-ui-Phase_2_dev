@@ -1,0 +1,78 @@
+{
+    "d": {
+        "results": [
+            {
+                "GHSite": "iPhone_FXCN",
+                "To_CM": "LXSA",
+                "To_Site": "SZPH",
+                "To_Program": "D53G",
+                "To_Business_Grp": "IPHONE",
+                "Raw_AQID": "00134-01",
+                "Mapped_AQID": "86643-05",
+                "Short_Name": "IPH-86643-05",
+                "Serial_Number": "134928",
+                "Asset_Own": "CONSIGN",
+                "EQ_Name": "EQP,TE,RADIO COM TST,CMW500,CFG 33,NO DISPLAY",
+                "Area": "MLB",
+                "CM_Dept": "ZZ-MLB-TE",
+                "Lob_Name": "iPhone FATP",
+                "Status": "",
+                "CO_Aqid": "",
+                "CO_Eq": "EQP,TE,RADIO COM TST,CMW500,CFG 33,NO DISPLAY",
+                "CO_Program": "D49",
+                "Line_Id": "PPP",
+                "Line_Type": "CSA Atlantis (non-Field) 2683",
+                "UPH": 1050,
+                "CM": "HHTI",
+                "Site": "STIN",
+                "CM_Program": "D49",
+                "Transfer_Flag": "",
+                "Match_Status": null,
+                "Match_Qty": 0,
+                "Mismatch_Qty": 0,
+                "RFID": "000000000000A13000137F66",
+                "AQID": "00134-01",
+                "Simulation_name": "Simulation_3",
+                "__metadata": {
+                    "type": "Line_simulation.RfidSimu",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/RfidSimu(Simulation_name='Simulation_3',GHSite='iPhone_FXCN',To_CM='LXSA',To_Site='SZPH',To_Program='D10',Line_Id='PPP',Site='STIN',CM_Program='D49',RFID='000000000000A13000137F66',AQID='00134-01')"
+                }
+            },
+
+            {
+                "GHSite": "iPhone_FXCN",
+                "To_CM": "LXSA1",
+                "To_Site": "SZPH1",
+                "To_Program": "D53G",
+                "To_Business_Grp": "IPHONE1",
+                "Raw_AQID": "00134-011",
+                "Mapped_AQID": "86643-051",
+                "Short_Name": "IPH-86643-051",
+                "Serial_Number": "134928",
+                "Asset_Own": "CONSIGN",
+                "EQ_Name": "EQP,TE,RADIO COM TST,CMW500,CFG 33,NO DISPLAY",
+                "Area": "MLB",
+                "CM_Dept": "ZZ-MLB-TE",
+                "Lob_Name": "iPhone FATP",
+                "Status": "",
+                "CO_Aqid": "",
+                "CO_Eq": "EQP,TE,RADIO COM TST,CMW500,CFG 33,NO DISPLAY",
+                "CO_Program": "D49",
+                "Line_Id": "PPP",
+                "Line_Type": "CSA Atlantis (non-Field) 2683",
+                "UPH": 1050,
+                "CM": "HHTI1",
+                "Site": "STIN1",
+                "CM_Program": "D41",
+                "Transfer_Flag": "",
+                "Match_Status": null,
+                "Match_Qty": 0,
+                "Mismatch_Qty": 0,
+                "RFID": "000000000000A13000137F67",
+                "AQID": "00134-01",
+                "Simulation_name": "Simulation_3"
+            }
+        ],
+        "__count": "2"
+    }
+}

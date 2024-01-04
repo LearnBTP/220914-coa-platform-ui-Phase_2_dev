@@ -1,0 +1,234 @@
+ [
+            {
+                "GH_Site": "iPhone_WIDV",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_WIDV',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "WATCH_CCPB",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='WATCH_CCPB',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_LXSZ",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_LXSZ',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXGL",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXGL',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_CSMC",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_CSMC',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_PGMD",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_PGMD',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_PGOS",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_PGOS',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_FXCN",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_FXCN',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXCN",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXCN',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_WIBL",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_WIBL',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXZZ-XeAR",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXZZ-XeAR',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_APPL",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_APPL',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPad_BYLG",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPad_BYLG',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXTY",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXTY',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_FXGL",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_FXGL',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_PGPD",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_PGPD',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_WINP",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_WINP',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXLH",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXLH',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_GTSD",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_GTSD',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_LXKS",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_LXKS',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "Input_FXLH",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='Input_FXLH',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPad_FXLH",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPad_FXLH',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "WATCH_CWCQ",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='WATCH_CWCQ',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_APPL",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_APPL',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPad_FXBZ",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPad_FXBZ',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_WIPI",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_WIPI',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXBZ",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXBZ',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPad_FXCD",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPad_FXCD',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "WATCH_FXCD",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='WATCH_FXCD',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXZZ",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXZZ',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_PGKS",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_PGKS',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "iPhone_FXDT",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='iPhone_FXDT',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            },
+            {
+                "GH_Site": "NONE_FXLH",
+                "__metadata": {
+                    "type": "Line_simulation.DropDownHelp",
+                    "uri": "https://coa-dev-cp.corp.apple.com/coa-api/v1/coa/line-simulation-service/DropDownHelp(GH_Site='NONE_FXLH',CM=undefined,Site=undefined,Program=undefined,LineId=undefined,To_Business_Grp=undefined)"
+                }
+            }
+        ]
+  

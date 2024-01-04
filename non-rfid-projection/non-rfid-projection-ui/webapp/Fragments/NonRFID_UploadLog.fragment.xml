@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog id="iderrorlogdialogupload" title="Upload Error Log" contentHeight="60%" draggable="true" resizable="true"
+        contentWidth="60%" class="sapUiSizeCompact" afterClose="onAfterErrorCloseupload" afterOpen=""
+        beforeOpen="">
+        <content>
+        <smartTable:SmartTable
+                id="tabOutputErrorupload"
+                tableBindingPath="NonRfidErrorModel>/NonRFIdErrData"
+                entitySet="NonRFIDProjectionDetails"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Error Log"
+                enableAutoColumnWidth="false"
+                initialise="errorTabInit"
+                enableExport="true"
+                showRowCount="true"
+                enableAutoBinding="true"
+                beforeRebindTable="applyErrorLog"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                requestAtLeastFields="GH_SITE,PROGRAM,AQID,RFID_SCOPE,CARRY_OVER"
+                initiallyVisibleFields="GH_SITE,PROGRAM,AQID,RFID_SCOPE,CARRY_OVER,ErrorMsg"
+                ignoredFields="modifiedBy,modifiedAt,createdAt,createdBy"
+            >
+                <t:Table id="ErrCOTableupload" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+        </content>
+      <endButton>
+    
+            <Button id="idbtnlogupload" text="Ok" press="fnOutput_frag_CloseLogupload"
+                 class="applePrimaryBtn" />
+     </endButton>
+    </Dialog>
+</core:FragmentDefinition>

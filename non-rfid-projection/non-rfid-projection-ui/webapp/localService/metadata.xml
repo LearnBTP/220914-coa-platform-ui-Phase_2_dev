@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="nonrfid_projection" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Upload_NonRFID_Projection" EntityType="nonrfid_projection.Upload_NonRFID_Projection"/>
+        <EntitySet Name="ExcelUpload" EntityType="nonrfid_projection.ExcelUpload"/>
+        <EntitySet Name="NonRFID_Projection_Action" EntityType="nonrfid_projection.NonRFID_Projection_Action"/>
+        <EntitySet Name="ResetQPL" EntityType="nonrfid_projection.ResetQPL"/>
+        <EntitySet Name="F4help" EntityType="nonrfid_projection.F4help"/>
+        <EntitySet Name="NonRFIDProjectionDetails" EntityType="nonrfid_projection.NonRFIDProjectionDetails"/>
+        <FunctionImport Name="selectAllMassUpdate" m:HttpMethod="POST">
+          <Parameter Name="url" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="RFID_SCOPE" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="CARRY_OVER" Type="Edm.Int32" Mode="In" Nullable="true"/>
+          <Parameter Name="QPL" Type="Edm.Int32" Mode="In" Nullable="true"/>
+        </FunctionImport>
+        <FunctionImport Name="selectAllResetQPL" m:HttpMethod="POST">
+          <Parameter Name="url" Type="Edm.String" Mode="In" Nullable="true"/>
+          <Parameter Name="action" Type="Edm.String" Mode="In" Nullable="true"/>
+        </FunctionImport>
+        <AssociationSet Name="NonRFID_Projection_Action_NonRFIDData" Association="nonrfid_projection.NonRFID_Projection_Action_NonRFIDData">
+          <End Role="NonRFID_Projection_Action" EntitySet="NonRFID_Projection_Action"/>
+          <End Role="NonRFIDProjectionDetails" EntitySet="NonRFIDProjectionDetails"/>
+        </AssociationSet>
+        <AssociationSet Name="ResetQPL_NonRFIDData" Association="nonrfid_projection.ResetQPL_NonRFIDData">
+          <End Role="ResetQPL" EntitySet="ResetQPL"/>
+          <End Role="NonRFIDProjectionDetails" EntitySet="NonRFIDProjectionDetails"/>
+        </AssociationSet>
+      </EntityContainer>
+      <EntityType Name="Upload_NonRFID_Projection" m:HasStream="true"/>
+      <EntityType Name="ExcelUpload" m:HasStream="true"/>
+      <EntityType Name="NonRFID_Projection_Action">
+        <NavigationProperty Name="NonRFIDData" Relationship="nonrfid_projection.NonRFID_Projection_Action_NonRFIDData" FromRole="NonRFID_Projection_Action" ToRole="NonRFIDProjectionDetails"/>
+        <Property Name="NonRFIDData_ID" Type="Edm.String" MaxLength="36"/>
+        <Property Name="NonRFIDData_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_GH_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_PROGRAM" Type="Edm.String" MaxLength="40"/>
+        <Property Name="NonRFIDData_LINE" Type="Edm.String" MaxLength="128"/>
+        <Property Name="NonRFIDData_UPH" Type="Edm.Int32"/>
+        <Property Name="NonRFIDData_STATION" Type="Edm.String" MaxLength="128"/>
+        <Property Name="NonRFIDData_LEVEL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="NonRFIDData_GROUP_PRIORITY" Type="Edm.String" MaxLength="18"/>
+        <Property Name="NonRFIDData_AQID" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_SCOPE" Type="Edm.String" MaxLength="32"/>
+        <Property Name="NonRFIDData_MFR" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="ResetQPL">
+        <NavigationProperty Name="NonRFIDData" Relationship="nonrfid_projection.ResetQPL_NonRFIDData" FromRole="ResetQPL" ToRole="NonRFIDProjectionDetails"/>
+        <Property Name="NonRFIDData_ID" Type="Edm.String" MaxLength="36"/>
+        <Property Name="NonRFIDData_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_CM" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_GH_SITE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_PROGRAM" Type="Edm.String" MaxLength="40"/>
+        <Property Name="NonRFIDData_LINE" Type="Edm.String" MaxLength="128"/>
+        <Property Name="NonRFIDData_UPH" Type="Edm.Int32"/>
+        <Property Name="NonRFIDData_STATION" Type="Edm.String" MaxLength="128"/>
+        <Property Name="NonRFIDData_LEVEL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="NonRFIDData_GROUP_PRIORITY" Type="Edm.String" MaxLength="18"/>
+        <Property Name="NonRFIDData_AQID" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NonRFIDData_SCOPE" Type="Edm.String" MaxLength="32"/>
+        <Property Name="NonRFIDData_MFR" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="F4help">
+        <Key>
+          <PropertyRef Name="SITE"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="GH_SITE"/>
+          <PropertyRef Name="PROGRAM"/>
+          <PropertyRef Name="SCOPE"/>
+          <PropertyRef Name="LINE"/>
+          <PropertyRef Name="MP_INTENT_QTY"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="CONSUMABLES"/>
+          <PropertyRef Name="PO_TYPE"/>
+          <PropertyRef Name="ALT_STATION"/>
+          <PropertyRef Name="QPL"/>
+          <PropertyRef Name="SPL"/>
+          <PropertyRef Name="BOH"/>
+          <PropertyRef Name="RELEASE_QTY"/>
+        </Key>
+        <Property Name="SITE" Type="Edm.String" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" Nullable="false"/>
+        <Property Name="GH_SITE" Type="Edm.String" Nullable="false"/>
+        <Property Name="PROGRAM" Type="Edm.String" Nullable="false"/>
+        <Property Name="SCOPE" Type="Edm.String" Nullable="false"/>
+        <Property Name="LINE" Type="Edm.String" Nullable="false"/>
+        <Property Name="MP_INTENT_QTY" Type="Edm.String" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" Nullable="false"/>
+        <Property Name="CONSUMABLES" Type="Edm.String" Nullable="false"/>
+        <Property Name="PO_TYPE" Type="Edm.String" Nullable="false"/>
+        <Property Name="ALT_STATION" Type="Edm.String" Nullable="false"/>
+        <Property Name="QPL" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="SPL" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="BOH" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="RELEASE_QTY" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="NonRFIDProjectionDetails">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="SITE"/>
+          <PropertyRef Name="CM"/>
+          <PropertyRef Name="GH_SITE"/>
+          <PropertyRef Name="PROGRAM"/>
+          <PropertyRef Name="LINE"/>
+          <PropertyRef Name="UPH"/>
+          <PropertyRef Name="STATION"/>
+          <PropertyRef Name="LEVEL"/>
+          <PropertyRef Name="GROUP_PRIORITY"/>
+          <PropertyRef Name="AQID"/>
+          <PropertyRef Name="SCOPE"/>
+          <PropertyRef Name="MFR"/>
+        </Key>
+        <Property Name="ID" Type="Edm.String" MaxLength="36" Nullable="false"/>
+        <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="GH_SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="PROGRAM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="LINE" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="AREA" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="UPH" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="STATION" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="DISPLAY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="GROUP" Type="Edm.Int32"/>
+        <Property Name="ALT_STATION" Type="Edm.Int32"/>
+        <Property Name="PARENT_ITEM" Type="Edm.String" MaxLength="255"/>
+        <Property Name="LEVEL" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="GROUP_PRIORITY" Type="Edm.String" MaxLength="18" Nullable="false"/>
+        <Property Name="AQID" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="MP_INTENT_QTY" Type="Edm.Int32"/>
+        <Property Name="SCOPE" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="EQUIPMENT_TYPE" Type="Edm.String" MaxLength="32"/>
+        <Property Name="DEPT" Type="Edm.String" MaxLength="18"/>
+        <Property Name="EQUIPMENT_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MFR" Type="Edm.String" MaxLength="255" Nullable="false"/>
+        <Property Name="PO_TYPE" Type="Edm.String" MaxLength="32"/>
+        <Property Name="CONSUMABLES" Type="Edm.String" MaxLength="1"/>
+        <Property Name="CATEGORY" Type="Edm.String" MaxLength="255"/>
+        <Property Name="SPARE_QTY" Type="Edm.Int32"/>
+        <Property Name="SPARE_RATE" Type="Edm.Int32"/>
+        <Property Name="RELEASE_QTY" Type="Edm.Int32"/>
+        <Property Name="QPL" Type="Edm.Int32"/>
+        <Property Name="CARRY_OVER" Type="Edm.Int32"/>
+        <Property Name="SHORT_NAME" Type="Edm.String"/>
+        <Property Name="BOH" Type="Edm.Int32"/>
+        <Property Name="SPL" Type="Edm.Int32"/>
+        <Property Name="Balance_Qty" Type="Edm.Decimal" Scale="2" Precision="15"/>
+        <Property Name="RFID_SCOPE" Type="Edm.String" MaxLength="1"/>
+        <Property Name="MODIFIEDBY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="MODIFIEDBY_MAIL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CREATEDBY_NAME" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CREATEDBY_MAIL" Type="Edm.String" MaxLength="255"/>
+        <Property Name="CREATEDAT" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="MODIFIEDAT" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="ErrorMsg" Type="Edm.String" MaxLength="600"/>
+        <Property Name="Edit" Type="Edm.Int32"/>
+      </EntityType>
+      <Association Name="NonRFID_Projection_Action_NonRFIDData">
+        <End Role="NonRFID_Projection_Action" Type="nonrfid_projection.NonRFID_Projection_Action" Multiplicity="1">
+          <OnDelete Action="Cascade"/>
+        </End>
+        <End Role="NonRFIDProjectionDetails" Type="nonrfid_projection.NonRFIDProjectionDetails" Multiplicity="*"/>
+      </Association>
+      <Association Name="ResetQPL_NonRFIDData">
+        <End Role="ResetQPL" Type="nonrfid_projection.ResetQPL" Multiplicity="1">
+          <OnDelete Action="Cascade"/>
+        </End>
+        <End Role="NonRFIDProjectionDetails" Type="nonrfid_projection.NonRFIDProjectionDetails" Multiplicity="*"/>
+      </Association>
+      <Annotations Target="nonrfid_projection.Upload_NonRFID_Projection" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="text/csv"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.ExcelUpload" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.MediaType" String="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.EntityContainer/F4help" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="SITE"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CM"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/GH_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="GH_SITE"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="PROGRAM"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/SCOPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="SCOPE"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/LINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="LINE"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/MP_INTENT_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="MP_INTENT_QTY"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="AQID"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/CONSUMABLES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="CONSUMABLES"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/PO_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="PO_TYPE"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/ALT_STATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="ALT_STATION"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/QPL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="QPL"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/SPL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="SPL"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/BOH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="BOH"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.F4help/RELEASE_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="RELEASE_QTY"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="NonRFIDProjectionDetails"/>
+        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>GH_SITE</PropertyPath>
+            <PropertyPath>PROGRAM</PropertyPath>
+            <PropertyPath>LINE</PropertyPath>
+            <PropertyPath>UPH</PropertyPath>
+            <PropertyPath>AQID</PropertyPath>
+            <PropertyPath>SHORT_NAME</PropertyPath>
+            <PropertyPath>STATION</PropertyPath>
+            <PropertyPath>RFID_SCOPE</PropertyPath>
+            <PropertyPath>SPL</PropertyPath>
+            <PropertyPath>QPL</PropertyPath>
+            <PropertyPath>BOH</PropertyPath>
+            <PropertyPath>RELEASE_QTY</PropertyPath>
+            <PropertyPath>ALT_STATION</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.EntityContainer/NonRFIDProjectionDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.FilterRestrictions">
+          <Record Type="Capabilities.FilterRestrictionsType">
+            <PropertyValue Property="RequiredProperties">
+              <Collection>
+                <PropertyPath>GH_SITE</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="ID"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="SITE"/>
+                  <PropertyValue Property="ValueListProperty" String="SITE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CM"/>
+                  <PropertyValue Property="ValueListProperty" String="CM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/GH_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="GH_SITE"/>
+                  <PropertyValue Property="ValueListProperty" String="GH_SITE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="GH Site"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/PROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="PROGRAM"/>
+                  <PropertyValue Property="ValueListProperty" String="PROGRAM"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CM Program (3DV)"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/LINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="LINE"/>
+                  <PropertyValue Property="ValueListProperty" String="LINE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Line Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/UPH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="UPH"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/STATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Projected Station"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/DISPLAY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Display Name"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/GROUP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Group"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/ALT_STATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Alternate Station"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/PARENT_ITEM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Parent Item"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/LEVEL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Level"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/GROUP_PRIORITY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Group Priority"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="AQID"/>
+                  <PropertyValue Property="ValueListProperty" String="AQID"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="AQID (non-RFID)"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/MP_INTENT_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="MP_INTENT_QTY"/>
+                  <PropertyValue Property="ValueListProperty" String="MP_INTENT_QTY"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="MP Intent Qty"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SCOPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="SCOPE"/>
+                  <PropertyValue Property="ValueListProperty" String="SCOPE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Scope"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/EQUIPMENT_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Equipment Type"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/DEPT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Department"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/EQUIPMENT_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Equipment Name"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="MFR"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/PO_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="PO_TYPE"/>
+                  <PropertyValue Property="ValueListProperty" String="PO_TYPE"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="PO Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CONSUMABLES" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="F4help"/>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="CONSUMABLES"/>
+                  <PropertyValue Property="ValueListProperty" String="CONSUMABLES"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Consumables"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CATEGORY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Category"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SPARE_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Spare Qty"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SPARE_RATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Spare Rate"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/RELEASE_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Release Qty"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/QPL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="QPL Qty"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CARRY_OVER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="Carry Over Qty"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SHORT_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Short AQID"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/BOH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="BOH Qty"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/SPL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="SPL"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/Balance_Qty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Balance Qty"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/RFID_SCOPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" Path="Edit"/>
+        <Annotation Term="Common.Label" String="RFID Scope"/>
+        <Annotation Term="Core.Computed" Bool="false"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/MODIFIEDBY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Updated By Name"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/MODIFIEDBY_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Updated By Email"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CREATEDBY_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created By Name"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CREATEDBY_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created By Email"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/CREATEDAT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created At"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/MODIFIEDAT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Updated At"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/ErrorMsg" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="nonrfid_projection.NonRFIDProjectionDetails/Edit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

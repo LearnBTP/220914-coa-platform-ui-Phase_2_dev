@@ -1,0 +1,5 @@
+/mta_archives/
+/node_modules/
+/resources/
+/coa-line-simulation-ui/coverage/
+package-lock.json

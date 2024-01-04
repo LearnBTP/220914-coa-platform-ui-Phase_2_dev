@@ -1,0 +1,1549 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="AQID_Details" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="T_COA_AQID_MAIN" EntityType="AQID_Details.T_COA_AQID_MAIN"/>
+                <EntitySet Name="T_COA_BOM_STRUCTURE" EntityType="AQID_Details.T_COA_BOM_STRUCTURE"/>
+                <EntitySet Name="T_COA_LINE_BRING_UP" EntityType="AQID_Details.T_COA_LINE_BRING_UP"/>
+                <EntitySet Name="T_COA_STATION_SUMMARY" EntityType="AQID_Details.T_COA_STATION_SUMMARY"/>
+                <EntitySet Name="T_COA_LINE_SUMMARY" EntityType="AQID_Details.T_COA_LINE_SUMMARY"/>
+                <EntitySet Name="T_COA_MAIN_LINE" EntityType="AQID_Details.T_COA_MAIN_LINE"/>
+                <EntitySet Name="T_COA_SUBLINE" EntityType="AQID_Details.T_COA_SUBLINE"/>
+                <EntitySet Name="SyncAQIDStatus" EntityType="AQID_Details.SyncAQIDStatus"/>
+                <EntitySet Name="AQIDMapping" EntityType="AQID_Details.AQIDMapping"/>
+                <EntitySet Name="T_COA_RFID_TT" EntityType="AQID_Details.T_COA_RFID_TT"/>
+                <EntitySet Name="T_COA_3DV_HEADER" EntityType="AQID_Details.T_COA_3DV_HEADER"/>
+                <EntitySet Name="T_COA_AQID_ANNOTATION" EntityType="AQID_Details.T_COA_AQID_ANNOTATION"/>
+                <EntitySet Name="T_COA_SHAPES" EntityType="AQID_Details.T_COA_SHAPES"/>
+                <EntitySet Name="T_COA_VERTICES" EntityType="AQID_Details.T_COA_VERTICES"/>
+                <EntitySet Name="vei" EntityType="AQID_Details.vei"/>
+                <EntitySet Name="viflot" EntityType="AQID_Details.viflot"/>
+                <EntitySet Name="abj" EntityType="AQID_Details.abj"/>
+                <EntitySet Name="F4help" EntityType="AQID_Details.F4help"/>
+                <EntitySet Name="T_COA_AQID_MAIN_texts" EntityType="AQID_Details.T_COA_AQID_MAIN_texts"/>
+                <FunctionImport Name="beginFetch" m:HttpMethod="POST"/>
+                <FunctionImport Name="beginFetchGpg" m:HttpMethod="POST"/>
+                <FunctionImport Name="bfg" m:HttpMethod="POST"/>
+                <AssociationSet Name="T_COA_AQID_MAIN_texts_1" Association="AQID_Details.T_COA_AQID_MAIN_texts_1">
+                    <End Role="T_COA_AQID_MAIN" EntitySet="T_COA_AQID_MAIN"/>
+                    <End Role="T_COA_AQID_MAIN_texts" EntitySet="T_COA_AQID_MAIN_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="T_COA_AQID_MAIN_localized" Association="AQID_Details.T_COA_AQID_MAIN_localized">
+                    <End Role="T_COA_AQID_MAIN" EntitySet="T_COA_AQID_MAIN"/>
+                    <End Role="T_COA_AQID_MAIN_texts" EntitySet="T_COA_AQID_MAIN_texts"/>
+                </AssociationSet>
+                <AssociationSet Name="T_COA_SHAPES_Shape_Vertices" Association="AQID_Details.T_COA_SHAPES_Shape_Vertices">
+                    <End Role="T_COA_SHAPES" EntitySet="T_COA_SHAPES"/>
+                    <End Role="T_COA_VERTICES" EntitySet="T_COA_VERTICES"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="T_COA_AQID_MAIN">
+                <Key>
+                    <PropertyRef Name="code"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="Mfr"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Mfr" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Category" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Sub_Category" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Po_Type" Type="Edm.String" MaxLength="32"/>
+                <Property Name="Release_Qty" Type="Edm.Int32"/>
+                <Property Name="Consumables" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Stack_item" Type="Edm.String" MaxLength="1"/>
+                <Property Name="PO_Qty" Type="Edm.Int32"/>
+                <Property Name="PR_Qty" Type="Edm.Int32"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="texts" Relationship="AQID_Details.T_COA_AQID_MAIN_texts_1" FromRole="T_COA_AQID_MAIN" ToRole="T_COA_AQID_MAIN_texts"/>
+                <NavigationProperty Name="localized" Relationship="AQID_Details.T_COA_AQID_MAIN_localized" FromRole="T_COA_AQID_MAIN" ToRole="T_COA_AQID_MAIN_texts"/>
+            </EntityType>
+            <EntityType Name="T_COA_BOM_STRUCTURE">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Station"/>
+                    <PropertyRef Name="Level"/>
+                    <PropertyRef Name="Group_Priority"/>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Level" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Group_Priority" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Parent_Item" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Mp_Intent_Qty" Type="Edm.Int32"/>
+                <Property Name="Scope" Type="Edm.String" MaxLength="32"/>
+                <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="T_COA_LINE_BRING_UP">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Line"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="Station"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Line" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="WW" Type="Edm.String"/>
+                <Property Name="Line_Qty" Type="Edm.Int32"/>
+                <Property Name="Floor_Qty" Type="Edm.Int32"/>
+                <Property Name="Building_Qty" Type="Edm.Int32"/>
+                <Property Name="Site_Qty" Type="Edm.Int32"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="T_COA_STATION_SUMMARY">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Line"/>
+                    <PropertyRef Name="Station"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Line" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Group" Type="Edm.Int32"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="T_COA_LINE_SUMMARY">
+                <Key>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Line"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="Station"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Line" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Gh_Spl" Type="Edm.Int32"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="T_COA_MAIN_LINE">
+                <Key>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="CM"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="BoH" Type="Edm.Int32"/>
+                <Property Name="Fatp_Sustaining_Qty" Type="Edm.Int32"/>
+                <Property Name="Working_Hrs" Type="Edm.Int32"/>
+                <Property Name="Efficiency_Field" Type="Edm.Int32"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+            </EntityType>
+            <EntityType Name="T_COA_SUBLINE">
+                <Key>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="Sub_Line_Name"/>
+                    <PropertyRef Name="CM"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Sub_Line_Name" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Yield" Type="Edm.Decimal" Scale="4" Precision="5"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="boH_Qty" Type="Edm.Int32"/>
+                <Property Name="Working_Hrs" Type="Edm.Int32"/>
+                <Property Name="Remote_Site_Cap_Demand" Type="Edm.Int32"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Error" Type="Edm.String" MaxLength="150"/>
+            </EntityType>
+            <EntityType Name="SyncAQIDStatus">
+                <Key>
+                    <PropertyRef Name="Log_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Log_Id" Type="Edm.String" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="AQIDMapping">
+                <Key>
+                    <PropertyRef Name="Raw_Aqid"/>
+                    <PropertyRef Name="Mapped_Aqid"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="Station"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="GH_Site"/>
+                    <PropertyRef Name="Stack_Item"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Mapped_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Cm_Recommendation" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="128" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Stack_Item" Type="Edm.String" MaxLength="1" Nullable="false"/>
+                <Property Name="Make_Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Short_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="MFR" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Recommendation_Type" Type="Edm.String" MaxLength="18"/>
+                <Property Name="TimeStamp" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Update_By_User" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Comment" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Edit" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="T_COA_RFID_TT">
+                <Key>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM_Program"/>
+                    <PropertyRef Name="Rfid"/>
+                    <PropertyRef Name="Line_Id"/>
+                    <PropertyRef Name="Uph"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="CM_Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Rfid" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="Line_Id" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Serial_Number" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Line_Type" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Transfer_Flag" Type="Edm.String" MaxLength="1"/>
+                <Property Name="To_CM" Type="Edm.String" MaxLength="30"/>
+                <Property Name="To_Site" Type="Edm.String" MaxLength="30"/>
+                <Property Name="To_Program" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Tp_Business_Grp" Type="Edm.String"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Approval_Status" Type="Edm.String"/>
+                <Property Name="Submit_Dte" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="Submit_By" Type="Edm.String"/>
+                <Property Name="Review_Date" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="Reviewed_By" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="T_COA_3DV_HEADER">
+                <Key>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Alderaan_Site" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Alderaan_CM" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Scan_Start_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Scan_End_Date" Type="Edm.DateTimeOffset"/>
+                <Property Name="Area" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Image_FileName" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Image_FileId" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Origin_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Origin_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Scale_X" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Scale_Y" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Orientation_X" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Orientation_Y" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Line" Type="Edm.String" MaxLength="40"/>
+            </EntityType>
+            <EntityType Name="T_COA_AQID_ANNOTATION">
+                <Key>
+                    <PropertyRef Name="Rfid"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Rfid" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Override_LineId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="CarryOverAqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="CarryOverOldProgram" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CarryOverEqName" Type="Edm.String" MaxLength="255"/>
+                <Property Name="isAqidChanged" Type="Edm.Boolean"/>
+                <Property Name="isProgramChanged" Type="Edm.Boolean"/>
+                <Property Name="EquipName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="128"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Version_Id" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Comments" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Rfid_XAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+                <Property Name="Rfid_YAxis" Type="Edm.Decimal" sap:variable-scale="true"/>
+            </EntityType>
+            <EntityType Name="T_COA_SHAPES">
+                <Key>
+                    <PropertyRef Name="Floor"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Building"/>
+                    <PropertyRef Name="Shape_Guid"/>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Floor" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Building" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Uph" Type="Edm.Int32"/>
+                <Property Name="LineType" Type="Edm.String" MaxLength="128"/>
+                <Property Name="LineId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Shape_Type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Shape_Color" Type="Edm.String" MaxLength="20"/>
+                <NavigationProperty Name="Shape_Vertices" Relationship="AQID_Details.T_COA_SHAPES_Shape_Vertices" FromRole="T_COA_SHAPES" ToRole="T_COA_VERTICES"/>
+            </EntityType>
+            <EntityType Name="T_COA_VERTICES">
+                <Key>
+                    <PropertyRef Name="Shape_Guid"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="Vertices_X"/>
+                    <PropertyRef Name="Vertices_Y"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Shape_Guid" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="Vertices_X" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Vertices_Y" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Sequence_No" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="vei">
+                <Key>
+                    <PropertyRef Name="MANDT"/>
+                    <PropertyRef Name="EQUNR"/>
+                    <PropertyRef Name="AQID"/>
+                    <PropertyRef Name="SERNR"/>
+                    <PropertyRef Name="ZZVMODEL"/>
+                    <PropertyRef Name="TIMESTAMP"/>
+                    <PropertyRef Name="RECORD_TYPE"/>
+                    <PropertyRef Name="STATUS"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="SITE"/>
+                    <PropertyRef Name="BUILDING"/>
+                    <PropertyRef Name="FLOOR"/>
+                    <PropertyRef Name="LINE"/>
+                    <PropertyRef Name="STATION"/>
+                    <PropertyRef Name="CUR_PGM"/>
+                    <PropertyRef Name="EQUIP_MANF"/>
+                    <PropertyRef Name="UNIT_PRICE"/>
+                    <PropertyRef Name="SPEND_TYPE"/>
+                    <PropertyRef Name="RFID"/>
+                    <PropertyRef Name="ALDERAN"/>
+                    <PropertyRef Name="APRVL_STATUS"/>
+                    <PropertyRef Name="USERNAME"/>
+                    <PropertyRef Name="ZCOMMENT"/>
+                    <PropertyRef Name="ZZRFID_STATUS"/>
+                    <PropertyRef Name="ASSETNO"/>
+                    <PropertyRef Name="ASSETOWN"/>
+                    <PropertyRef Name="APPLE_PO_NUM"/>
+                    <PropertyRef Name="APPLE_PO_DATE"/>
+                    <PropertyRef Name="RFID_SCOPE"/>
+                    <PropertyRef Name="USR_MAIL"/>
+                    <PropertyRef Name="DEL_REASON"/>
+                    <PropertyRef Name="DEL_COMMENT"/>
+                    <PropertyRef Name="SHIP_DT"/>
+                    <PropertyRef Name="NON_TAGGABLE"/>
+                    <PropertyRef Name="ALDR_FEEDBACK"/>
+                    <PropertyRef Name="ASN_MODIFIED"/>
+                    <PropertyRef Name="ZRETROINSTALDATE"/>
+                    <PropertyRef Name="ZALDR_CM"/>
+                    <PropertyRef Name="ZALDR_SITE"/>
+                    <PropertyRef Name="ZALDR_CMPROGRAM"/>
+                </Key>
+                <Property Name="MANDT" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="EQUNR" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="AQID" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="SERNR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="ZZVMODEL" Type="Edm.String" MaxLength="150" Nullable="false"/>
+                <Property Name="TIMESTAMP" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="RECORD_TYPE" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="5" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="SITE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="BUILDING" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="FLOOR" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="LINE" Type="Edm.String" MaxLength="64" Nullable="false"/>
+                <Property Name="STATION" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="CUR_PGM" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="EQUIP_MANF" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="UNIT_PRICE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="SPEND_TYPE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="RFID" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="ALDERAN" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="APRVL_STATUS" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="USERNAME" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="ZCOMMENT" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="ZZRFID_STATUS" Type="Edm.String" MaxLength="1" Nullable="false"/>
+                <Property Name="ASSETNO" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="ASSETOWN" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="APPLE_PO_NUM" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="APPLE_PO_DATE" Type="Edm.String" MaxLength="8" Nullable="false"/>
+                <Property Name="RFID_SCOPE" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="USR_MAIL" Type="Edm.String" MaxLength="241" Nullable="false"/>
+                <Property Name="DEL_REASON" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="DEL_COMMENT" Type="Edm.String" MaxLength="80" Nullable="false"/>
+                <Property Name="SHIP_DT" Type="Edm.String" MaxLength="8" Nullable="false"/>
+                <Property Name="NON_TAGGABLE" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="ALDR_FEEDBACK" Type="Edm.String" MaxLength="150" Nullable="false"/>
+                <Property Name="ASN_MODIFIED" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="ZRETROINSTALDATE" Type="Edm.String" MaxLength="8" Nullable="false"/>
+                <Property Name="ZALDR_CM" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="ZALDR_SITE" Type="Edm.String" MaxLength="32" Nullable="false"/>
+                <Property Name="ZALDR_CMPROGRAM" Type="Edm.String" MaxLength="128" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="viflot">
+                <Key>
+                    <PropertyRef Name="MANDT"/>
+                    <PropertyRef Name="TPLNR"/>
+                    <PropertyRef Name="TPLMA"/>
+                    <PropertyRef Name="DATAB"/>
+                    <PropertyRef Name="MAPAR"/>
+                    <PropertyRef Name="ILOAN"/>
+                    <PropertyRef Name="OBJNR"/>
+                    <PropertyRef Name="TYPBZ"/>
+                    <PropertyRef Name="ZZPO_ADDER"/>
+                </Key>
+                <Property Name="MANDT" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="TPLNR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="TPLMA" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="DATAB" Type="Edm.String" MaxLength="8" Nullable="false"/>
+                <Property Name="MAPAR" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="ILOAN" Type="Edm.String" MaxLength="12" Nullable="false"/>
+                <Property Name="OBJNR" Type="Edm.String" MaxLength="22" Nullable="false"/>
+                <Property Name="TYPBZ" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="ZZPO_ADDER" Type="Edm.String" MaxLength="1" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="abj">
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Mfr" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Equipment_Name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Stack_item" Type="Edm.String" MaxLength="1"/>
+                <Property Name="GH_Site" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Station" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Group_Priority" Type="Edm.String" MaxLength="18"/>
+                <Property Name="Equipment_Type" Type="Edm.String" MaxLength="32"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+            </EntityType>
+            <EntityType Name="F4help">
+                <Key>
+                    <PropertyRef Name="Raw_Aqid"/>
+                    <PropertyRef Name="Program"/>
+                    <PropertyRef Name="MFR"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Recommendation_Type"/>
+                </Key>
+                <Property Name="Raw_Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="MFR" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Recommendation_Type" Type="Edm.String" MaxLength="18" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="T_COA_AQID_MAIN_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                    <PropertyRef Name="CM"/>
+                    <PropertyRef Name="Site"/>
+                    <PropertyRef Name="Aqid"/>
+                    <PropertyRef Name="Mfr"/>
+                    <PropertyRef Name="Program"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="CM" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Site" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="Aqid" Type="Edm.String" MaxLength="18" Nullable="false"/>
+                <Property Name="Mfr" Type="Edm.String" MaxLength="255" Nullable="false"/>
+                <Property Name="Program" Type="Edm.String" MaxLength="40" Nullable="false"/>
+            </EntityType>
+            <Association Name="T_COA_AQID_MAIN_texts_1">
+                <End Role="T_COA_AQID_MAIN" Type="AQID_Details.T_COA_AQID_MAIN" Multiplicity="1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Role="T_COA_AQID_MAIN_texts" Type="AQID_Details.T_COA_AQID_MAIN_texts" Multiplicity="*"/>
+            </Association>
+            <Association Name="T_COA_AQID_MAIN_localized">
+                <End Role="T_COA_AQID_MAIN" Type="AQID_Details.T_COA_AQID_MAIN" Multiplicity="*"/>
+                <End Role="T_COA_AQID_MAIN_texts" Type="AQID_Details.T_COA_AQID_MAIN_texts" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="T_COA_SHAPES_Shape_Vertices">
+                <End Role="T_COA_SHAPES" Type="AQID_Details.T_COA_SHAPES" Multiplicity="1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Role="T_COA_VERTICES" Type="AQID_Details.T_COA_VERTICES" Multiplicity="*"/>
+            </Association>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.EntityContainer/T_COA_AQID_MAIN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="ChangeEvent"/>
+                        <PropertyValue Property="CollectionPath" String="ChangeEvent"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/Mfr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN/Consumables" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Yes"/>
+                            <PropertyValue Property="Value" String="Y"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="No"/>
+                            <PropertyValue Property="Value" String="N"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/Level" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_BOM_STRUCTURE/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_BRING_UP/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_BRING_UP/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_BRING_UP/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_BRING_UP/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_BRING_UP/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_STATION_SUMMARY/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_LINE_SUMMARY/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_MAIN_LINE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_MAIN_LINE/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_MAIN_LINE/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_MAIN_LINE/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SUBLINE/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SUBLINE/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SUBLINE/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SUBLINE/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.SyncAQIDStatus/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.SyncAQIDStatus/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.SyncAQIDStatus/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.SyncAQIDStatus/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.SyncAQIDStatus/Log_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Raw_Aqid</PropertyPath>
+                        <PropertyPath>Program</PropertyPath>
+                        <PropertyPath>MFR</PropertyPath>
+                        <PropertyPath>Site</PropertyPath>
+                        <PropertyPath>Recommendation_Type</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                <Annotation Term="Common.Label" String="AQIDMapping"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Updated On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Updated By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Raw_Aqid"/>
+                                    <PropertyValue Property="ValueListProperty" String="Raw_Aqid"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Raw_Aqid"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Raw Aqid"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Mapped_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Cm_Recommendation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Program"/>
+                                    <PropertyValue Property="ValueListProperty" String="Program"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Program"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Program"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Site"/>
+                                    <PropertyValue Property="ValueListProperty" String="Site"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Site"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Site"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Stack_Item" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Make_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Short_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MFR"/>
+                                    <PropertyValue Property="ValueListProperty" String="MFR"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MFR"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Manufacturer"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Recommendation_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="F4help"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Recommendation_Type"/>
+                                    <PropertyValue Property="ValueListProperty" String="Recommendation_Type"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Recommendation_Type"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Recommendation Type"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="SystemRecommended"/>
+                            <PropertyValue Property="Value" String="S"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Exceptions"/>
+                            <PropertyValue Property="Value" String="E"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="UserRecommendations"/>
+                            <PropertyValue Property="Value" String="U"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/TimeStamp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Update_By_User" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.AQIDMapping/Comment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Aqid</PropertyPath>
+                        <PropertyPath>CM</PropertyPath>
+                        <PropertyPath>Site</PropertyPath>
+                        <PropertyPath>CM_Program</PropertyPath>
+                        <PropertyPath>Rfid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/CM_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Rfid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Line_Id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Uph" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Version" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Serial_Number" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Line_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Transfer_Flag" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/To_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/To_Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/To_Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Tp_Business_Grp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="false"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Submit_Dte" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Submit_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Review_Date" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_RFID_TT/Reviewed_By" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_3DV_HEADER/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_3DV_HEADER/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_3DV_HEADER/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_3DV_HEADER/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_ANNOTATION/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_ANNOTATION/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_ANNOTATION/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_ANNOTATION/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SHAPES/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SHAPES/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SHAPES/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_SHAPES/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_VERTICES/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_VERTICES/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_VERTICES/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_VERTICES/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/MANDT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="MANDT"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/EQUNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="EQUNR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/AQID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="AQID"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/SERNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SERNR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZZVMODEL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZZVMODEL"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/TIMESTAMP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TIMESTAMP"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/RECORD_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RECORD_TYPE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="STATUS"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CM"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SITE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/BUILDING" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="BUILDING"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/FLOOR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="FLOOR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/LINE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="LINE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/STATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="STATION"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/CUR_PGM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CUR_PGM"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/EQUIP_MANF" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="EQUIP_MANF"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/UNIT_PRICE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="UNIT_PRICE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/SPEND_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SPEND_TYPE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/RFID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ALDERAN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ALDERAN"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/APRVL_STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="APRVL_STATUS"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/USERNAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="USERNAME"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZCOMMENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZCOMMENT"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZZRFID_STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZZRFID_STATUS"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ASSETNO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETNO"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ASSETOWN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASSETOWN"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/APPLE_PO_NUM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="APPLE_PO_NUM"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/APPLE_PO_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="APPLE_PO_DATE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/RFID_SCOPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="RFID_SCOPE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/USR_MAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="USR_MAIL"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/DEL_REASON" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="DEL_REASON"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/DEL_COMMENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="DEL_COMMENT"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/SHIP_DT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SHIP_DT"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/NON_TAGGABLE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="NON_TAGGABLE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ALDR_FEEDBACK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ALDR_FEEDBACK"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ASN_MODIFIED" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ASN_MODIFIED"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZRETROINSTALDATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZRETROINSTALDATE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZALDR_CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_CM"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZALDR_SITE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_SITE"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.vei/ZALDR_CMPROGRAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZALDR_CMPROGRAM"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/MANDT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="MANDT"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/TPLNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TPLNR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/TPLMA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TPLMA"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/DATAB" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="DATAB"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/MAPAR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="MAPAR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/ILOAN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ILOAN"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/OBJNR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="OBJNR"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/TYPBZ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TYPBZ"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.viflot/ZZPO_ADDER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="ZZPO_ADDER"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/Mfr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/Equipment_Name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/Station" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.abj/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.F4help/Raw_Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Raw Aqid"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.F4help/Program" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Program"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.F4help/MFR" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Manufacturer"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.F4help/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Site"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.F4help/Recommendation_Type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Recommendation Type"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/locale" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Language Code"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/descr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Text" Path="name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="ChangeEvent"/>
+                        <PropertyValue Property="CollectionPath" String="ChangeEvent"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="code"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/CM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/Site" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/Aqid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="AQID_Details.T_COA_AQID_MAIN_texts/Mfr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
+

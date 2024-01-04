@@ -1,0 +1,56 @@
+{
+    "d": {
+        "results": [
+            {
+                "CM": "PEGA",
+                "Site": "KSPH",
+                "Program": "D42",
+                "UPH": 50,
+                "boH_Qty": 725,
+                "Fatp_Sustaining_Qty": 40,
+                "Working_Hrs": 22,
+                "Sub_Line_Name": "RIM-HVS",
+                "Remote_Site_Cap_Demand": 0,
+                "Efficiency_Field": 57,
+                "CO_LINE_QTY": 0,
+                "RFID": 0,
+                "Comment_Mainline": "TEST",
+                "Comment_Subline": "",
+                "Date_Mainline": "/Date(1664847621000+0000)/",
+                "Upload_By_User_Mainline": "nagadivya_kancharla@apple.com",
+                "Upload_By_User_Subline": "satyavrat_joshi@apple.com",
+                "SubLine_UPH": 2,
+                "Date_Subline": "/Date(1664326611000+0000)/",
+                "__metadata": {
+                    "type": "lineplan.LineplanView",
+                    "uri": "/LineplanView(CM='PEGA',Site='KSPH',Program='D42',Sub_Line_Name='RIM-HVS',UPH=50,boH_Qty=725,Working_Hrs=22,Remote_Site_Cap_Demand=0,Fatp_Sustaining_Qty=40,SubLine_UPH=2,Efficiency_Field=57,CO_LINE_QTY=0,RFID='0',Date_Mainline=datetimeoffset'2022-10-04T01:40:21Z',Upload_By_User_Mainline='nagadivya_kancharla%40apple.com',Comment_Mainline='TEST',Date_Subline=datetimeoffset'2022-09-28T00:56:51Z',Upload_By_User_Subline='satyavrat_joshi%40apple.com',Comment_Subline='')"
+                }
+            },
+            {
+                "CM": "PEG1",
+                "Site": "KSPH",
+                "Program": "D42",
+                "UPH": 50,
+                "boH_Qty": 725,
+                "Fatp_Sustaining_Qty": 40,
+                "Working_Hrs": 22,
+                "Sub_Line_Name": "RIM-HVS",
+                "Remote_Site_Cap_Demand": 0,
+                "Efficiency_Field": 57,
+                "CO_LINE_QTY": 0,
+                "RFID": 0,
+                "Comment_Mainline": "TEST",
+                "Comment_Subline": "",
+                "Date_Mainline": "/Date(1664847621000+0000)/",
+                "Upload_By_User_Mainline": "nagadivya_kancharla@apple.com",
+                "Upload_By_User_Subline": "satyavrat_joshi@apple.com",
+                "SubLine_UPH": 2,
+                "Date_Subline": "/Date(1664326611000+0000)/",
+                "__metadata": {
+                    "type": "lineplan.LineplanView",
+                    "uri": "/LineplanView(CM='PEGA',Site='KSPH',Program='D42',Sub_Line_Name='RIM-HVS',UPH=50,boH_Qty=725,Working_Hrs=22,Remote_Site_Cap_Demand=0,Fatp_Sustaining_Qty=40,SubLine_UPH=2,Efficiency_Field=57,CO_LINE_QTY=0,RFID='0',Date_Mainline=datetimeoffset'2022-10-04T01:40:21Z',Upload_By_User_Mainline='nagadivya_kancharla%40apple.com',Comment_Mainline='TEST',Date_Subline=datetimeoffset'2022-09-28T00:56:51Z',Upload_By_User_Subline='satyavrat_joshi%40apple.com',Comment_Subline='')"
+                }
+            }
+        ]
+    }
+}

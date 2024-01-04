@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" 
+     xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:smartTable="sap.ui.comp.smarttable">
+     <Dialog title="Upload Error Log" contentHeight="70%"
+         contentWidth="80%" class="sapUiSizeCompact" draggable="true" resizable="true"
+         beforeOpen="" afterClose="onAfterErrorClose">
+         <content>
+         <f:SimpleForm id="simplForm" editable="true"
+                 visible="true" layout="ResponsiveGridLayout" labelSpanXL="4"
+                 labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"
+                 emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                 columnsXL="1" columnsL="1" columnsM="1"
+                 singleContainerFullSize="false">
+             </f:SimpleForm>
+             <ScrollContainer width="auto" horizontal="false"
+                 vertical="true">
+                 <content>
+                <smartTable:SmartTable
+                id="tabError"
+                tableBindingPath="UnscannableModel>/UnscannableUploadStatus"
+                entitySet="Carryover_rfid_unscannable"
+                tableType="Table"
+                useVariantManagement="false"
+                header="Errors"
+                width="100%"
+                initialise="errorTabInit"
+                beforeRebindTable="applyErrorLog"
+                enableAutoColumnWidth="true"
+                showRowCount="true"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding sapUiSizeCompact"
+                requestAtLeastFields="GH_SITE,PROGRAM,FROM_BUSINESS_GRP,SEQUENCE_NO"
+                initiallyVisibleFields="GH_SITE,PROGRAM,FROM_BUSINESS_GRP,AQID,MAPPED_AQID,EQUIPMENT_NAME,PO_TYPE,SCOPE,CONSUMABLES,PROJECTED_QTY,COMMENT,TRANSFER_FLAG,NPI_INDICATOR,STATUS,SUBMIT_DATE,SUBMIT_BY_NAME,REVIEW_DATE,REVIEWED_BY_NAME,SAP_CM_SITE,SAP_TO_CM_SITE,ERROR,Parent,SEQUENCE_NO">
+                <t:Table id="ErrUITable" selectionMode="None" visibleRowCountMode="Interactive" />
+            </smartTable:SmartTable>
+                 </content>
+
+             </ScrollContainer>
+         </content>
+         <buttons>
+
+             <Button text="Ok" press="fnOutput_frag_CloseLog"
+                  class="applePrimaryBtn" />
+         </buttons>
+     </Dialog>
+ </core:FragmentDefinition>

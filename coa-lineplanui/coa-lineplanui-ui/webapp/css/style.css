@@ -1,0 +1,195 @@
+/* Enter your custom styles here */
+
+.sapUiBody {
+    font-family: "SF Pro Text", -apple-system, sans-serif !important;
+    font-size: 15px;
+    padding: 0px;
+    color: #333;
+    background: #ffffff !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: 'liga', 'kern';
+    font-feature-settings: 'liga', 'kern';
+    text-shadow: none;
+}
+
+.sapMText,
+.sapMLnk,
+.sapMLabel,
+.sapMObjStatusText,
+.sapUiTable,
+.sapMBtnInner,
+.sapMTitle {
+    font-family: "SF Pro Text", -apple-system, sans-serif !important;
+}
+
+.contrastTextSF .sapMLabel {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.contrastTextSF .sapMText {
+    color: #ffffff !important;
+}
+
+.contrastTextSF .sapMBtnTransparent {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.contrastTextSF .sapMBtnIcon {
+    color: #ffffff !important;
+}
+
+.zTable {
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.zTable .sapUiTableHeaderDataCell .sapMLabel,
+.sapMListTbl .sapMColumnHeader .sapMLabel {
+    font-weight: bold !important;
+}
+
+.zTable .sapMTitle {
+    /* color : #32363a  !important; */
+    font-weight: bold !important;
+}
+
+.zDynamicPage .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
+    background: #fff !important;
+}
+
+.zDynamicPageHeader .sapMTitle {
+    font-weight: bold;
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.5rem !important;
+}
+
+.zDynamicPageHeader {
+    background: url(../utils/BannerLines.png), #000000;
+    background-size: contain;
+    min-height: 11rem !important;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: top;
+}
+
+.zDynamicPageHeader .sapMText {
+    font-size: 0.80rem !important;
+}
+
+.zfilter .sapMLabel {
+    color: rgb(46, 43, 43) !important;
+}
+
+.applePrimaryBtn .sapMBtnInner.sapMBtnEmphasized {
+    font-size: 15px;
+    font-family: "SF Pro Text", -apple-system, sans-serif;
+    color: #FFFFFF;
+    font-weight: 500 !important;
+    letter-spacing: 0px;
+    height: 32px;
+    margin-left: 15px;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    text-shadow: none !important;
+    align-items: center;
+    background: #007AFF 0% 0% no-repeat padding-box !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.applePrimaryBtn .sapMBtnInner.sapMBtnEmphasized:active {
+    background: #0068D1 !important;
+    border: transparent;
+}
+
+.applePrimaryBtn .sapMBtnInner.sapMBtnEmphasized:hover {
+    background: #177DE5 !important;
+}
+
+.applePrimaryBtn .sapMBtnInner.sapMBtnEmphasized .sapMBtnContent:hover {
+    color: #FFFFFFFF !important;
+}
+
+.applePrimaryBtn .sapMBtnIcon {
+    color: #FFFFFFFF !important;
+}
+
+.applePrimaryBtn .sapMBtnInner.sapMBtnEmphasized .sapMBtnContent {
+    color: #FFFFFFFF !important;
+}
+
+/* 
+  Transparent
+ */
+.appleSecondaryBtn .sapMBtnInner {
+    font-size: 15px;
+    font-weight: 500 !important;
+    border: 1px solid gray !important;
+    color: #000000 !important;
+    letter-spacing: 0px;
+    height: 32px;
+    margin-left: 15px;
+    padding: 0;
+    border-radius: 5px;
+    text-shadow: none !important;
+    align-items: center;
+    background: #E8E8ED 0% 0% no-repeat padding-box;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.appleSecondaryBtn .sapMBtnInner .sapMBtnContent:hover {
+    color: rgb(0, 0, 0) !important;
+}
+
+.appleSecondaryBtn .sapMBtnInner:hover {
+    background: rgb(230, 230, 232) !important;
+    border-color: transparent !important;
+}
+
+.appleSecondaryBtn .sapMBtnInner:active {
+    background: rgb(216, 215, 216) !important;
+    border: 1px solid #FFFFFF52 !important;
+}
+
+.appleSecondaryBtn .sapMBtnIcon {
+    color: rgb(0, 0, 0) !important;
+}
+
+.appleSecondaryBtn {
+    color: rgb(0, 0, 0) !important;
+}
+
+
+.zfilter {
+    padding-top: 3rem !important;
+}
+
+.dPageHeader .sapFDynamicPageHeader {
+    background: url(../utils/BannerNew.png) bottom / 100%, linear-gradient(#6C0075, #1104BD);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    height: 15rem;
+}
+
+.dPageHeader .sapFDynamicPageTitle {
+    background: linear-gradient(#1104BD, #6C0075);
+}
+
+.zPageTitle .sapMBar {
+    background: linear-gradient(#1104BD, #6C0075);
+}
+
+.buttonWithIconOnly .sapMBtnInner.sapMBtnIconFirst {
+    border: 1px solid #00000029 !important;
+    border-radius: 8px !important;
+}
+
+.buttonWithIconOnly .sapMBtnInner.sapMBtnIconFirst .sapMBtnIcon {
+    color: #000000 !important;
+}

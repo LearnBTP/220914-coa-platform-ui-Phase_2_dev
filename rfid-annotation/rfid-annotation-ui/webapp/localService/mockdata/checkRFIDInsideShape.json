@@ -1,0 +1,111 @@
+{
+    "d": {
+        "results": [
+            {
+                "createdAt": "/Date(1660837166250+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1660837166250+0000)/",
+                "modifiedBy": "anonymous",
+                "Rfid": "000000000000A14000104AC6",
+                "Building": "Sacramento 1",
+                "Floor": "1",
+                "Site": "Site",
+                "CM": "Apple",
+                "Status": "DRAFT",
+                "Shape_Guid": "4ca69c48-adfb-4e42-b037-6c7d1318e495",
+                "Version_Id": null,
+                "Comments": null,
+                "Rfid_XAxis": "34.185",
+                "Rfid_YAxis": "12.699",
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_AQID_ANNOTATION",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_AQID_ANNOTATION(Rfid='000000000000A14000104AC6',Building='Sacramento%201',Floor='1',Site='ElkGrove',CM='Apple',Status='DRAFT')"
+                }
+            },
+            {
+                "createdAt": "/Date(1660837166250+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1660837166250+0000)/",
+                "modifiedBy": "anonymous",
+                "Rfid": "000000000000A15220100155",
+                "Building": "Sacramento 1",
+                "Floor": "1",
+                "Site": "Site",
+                "CM": "Apple",
+                "Status": "DRAFT",
+                "Shape_Guid": "4ca69c48-adfb-4e42-b037-6c7d1318e495",
+                "Version_Id": null,
+                "Comments": null,
+                "Rfid_XAxis": "33.185",
+                "Rfid_YAxis": "12.699",
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_AQID_ANNOTATION",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_AQID_ANNOTATION(Rfid='000000000000A15220100155',Building='Sacramento%201',Floor='1',Site='ElkGrove',CM='Apple',Status='DRAFT')"
+                }
+            },
+            {
+                "createdAt": "/Date(1660837166250+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1660837166250+0000)/",
+                "modifiedBy": "anonymous",
+                "Rfid": "000000000000A15220100158",
+                "Building": "Sacramento 1",
+                "Floor": "1",
+                "Site": "Site",
+                "CM": "Apple",
+                "Status": "DRAFT",
+                "Shape_Guid": "4ca69c48-adfb-4e42-b037-6c7d1318e495",
+                "Version_Id": null,
+                "Comments": null,
+                "Rfid_XAxis": "35.685",
+                "Rfid_YAxis": "13.199",
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_AQID_ANNOTATION",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_AQID_ANNOTATION(Rfid='000000000000A15220100158',Building='Sacramento%201',Floor='1',Site='ElkGrove',CM='Apple',Status='DRAFT')"
+                }
+            },
+            {
+                "createdAt": "/Date(1660837166250+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1660837166250+0000)/",
+                "modifiedBy": "anonymous",
+                "Rfid": "000000000000A15220100157",
+                "Building": "Sacramento 1",
+                "Floor": "1",
+                "Site": "Site",
+                "CM": "Apple",
+                "Status": "DRAFT",
+                "Shape_Guid": "4ca69c48-adfb-4e42-b037-6c7d1318e495",
+                "Version_Id": null,
+                "Comments": null,
+                "Rfid_XAxis": "36.185",
+                "Rfid_YAxis": "13.199",
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_AQID_ANNOTATION",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_AQID_ANNOTATION(Rfid='000000000000A15220100157',Building='Sacramento%201',Floor='1',Site='ElkGrove',CM='Apple',Status='DRAFT')"
+                }
+            },
+            {
+                "createdAt": "/Date(1660837166250+0000)/",
+                "createdBy": "anonymous",
+                "modifiedAt": "/Date(1660837166250+0000)/",
+                "modifiedBy": "anonymous",
+                "Rfid": "000000000000A15220100156",
+                "Building": "Sacramento 1",
+                "Floor": "1",
+                "Site": "Site",
+                "CM": "Apple",
+                "Status": "DRAFT",
+                "Shape_Guid": "4ca69c48-adfb-4e42-b037-6c7d1318e495",
+                "Version_Id": null,
+                "Comments": null,
+                "Rfid_XAxis": "36.185",
+                "Rfid_YAxis": "12.699",
+                "__metadata": {
+                    "type": "Annotation3DV.T_COA_AQID_ANNOTATION",
+                    "uri": "annotation/v2/annotation3-dv/T_COA_AQID_ANNOTATION(Rfid='000000000000A15220100156',Building='Sacramento%201',Floor='1',Site='ElkGrove',CM='Apple',Status='DRAFT')"
+                }
+            }
+        ]
+    }
+}
